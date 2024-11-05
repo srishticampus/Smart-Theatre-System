@@ -1,0 +1,16 @@
+.admin-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Adjusted gap for compact appearance */
+    font-weight: normal;
+    font-size: 14px; /* Smaller font size */
+    color: #333;
+    margin: 0;
+  }
+  
+  .admin-radios{
+    margin-left: 20px !important;
+    width: 178px !important;
+    height: 38px !important;
+   
+  }
