@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
 
-      <BrowserRouter basename="maxuscinemas">
+      <BrowserRouter basename="theatre">
         <ScrollToTop />
         <ToastContainer
           autoClose={3000} 
