@@ -68,9 +68,25 @@
     color: #ffffff;
     font-size: 32px;
     font-weight: 600;
+    margin-top: 10px;
 }
 
 .admin_dashboard_cards_user_type{
     color: #ffffff;
     font-size: 24px;
+    margin-top: -50px;
+    margin-left: 50px;
 }
+.activate-btn{
+    padding-bottom: 0;
+    padding-top: 10px;
+    font-weight: bold;
+}
+.image-rounded {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    object-fit: cover;
+    align-items: center;
+  }
+  

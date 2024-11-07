@@ -130,8 +130,8 @@ const viewUserById = (req, res) => {
 };
 
 // View all active Users
-const viewActiveUsers = (req, res) => {
-    User.find({ isActive: true })
+const viewAllUsers = (req, res) => {
+    User.find({ })
         .exec()
         .then(data => {
             res.json({
@@ -367,8 +367,8 @@ module.exports = {
     login,
     editUserById,
     deleteUserById,
-    viewActiveUsers,
-    resetPassword,
+    viewAllUsers,
+        resetPassword,
     forgotPassword,
     activateUserById,
     approveUserById,

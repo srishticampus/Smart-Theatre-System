@@ -58,7 +58,7 @@ function AdminLogin() {
     if (data.email === hardCodedUsername && data.password === hardCodedPassword) {
       localStorage.setItem("admin", 1);
       toast.success('Login successful!');
-      navigate('/admin_dashboard');
+      navigate('/admin-dashboard');
     } else {
       toast.error('Incorrect Username or Password');
     }

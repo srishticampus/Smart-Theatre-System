@@ -6,8 +6,20 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
     },
-    name: {
+    fname: {
         type: String,
+        required: true,
+    },
+    lname: {
+        type: String,
+        required: true,
+    },
+    role: {
+        type: String,
+        required: true,
+    },
+    doj: {
+        type: Date,
         required: true,
     },
     password: {
@@ -29,4 +41,4 @@ const schema = mongoose.Schema({
         required: true
     },
 },{timeStamps:true});
-module.exports = mongoose.model('users', schema)
+module.exports = mongoose.model('staff', schema)
