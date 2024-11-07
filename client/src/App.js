@@ -43,7 +43,7 @@ function App() {
         <div>
           <Routes>
             {/* Common routes */}
-            <Route path="/" element={[<LandingNavbar />, <LandingPage />, <Footer />]} />
+            <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
 
 
      {/* Admin Routes */}
