@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import AdminViewComplaints from "./AdminViewComplaints";
 import AdminViewAllUsers from "./AdminViewAllUsers";
 import ViewReviews from "../Common/ViewReviews";
+import AdminAddStaff from "./AdminAddStaff";
+import AdminViwAllStaff from "./AdminViwAllStaff";
+import AdminEditStaff from "./AdminEditStaff";
 
 
 function AdminCall({ type }) {
@@ -34,10 +37,16 @@ function AdminCall({ type }) {
             <AdminDashboard />
           )  : type === "view_complaints" ? (
             <AdminViewComplaints  />
-          ) : type === "view_users" ? (
+          ) : type === "admin_view_users" ? (
             <AdminViewAllUsers  />
           ) : type === "view_review" ? (
             <ViewReviews  />
+          ) : type === "admin_add_staff" ? (
+            <AdminAddStaff  />
+          ) : type === "admin-view-staff" ? (
+            <AdminViwAllStaff  />
+          ) : type === "admin-edit-staff" ? (
+            <AdminEditStaff  />
           ) : (
             ""
           )}

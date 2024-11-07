@@ -47,13 +47,17 @@ function App() {
 
 
      {/* Admin Routes */}
-     <Route path='/admin_login' element={<AdminLogin/>} />
-     <Route path='/admin_dashboard' element={<AdminCall type='admin_dashboard' />} />
+     <Route path='/admin-login' element={<AdminLogin/>} />
+     <Route path='/admin-dashboard' element={<AdminCall type='admin_dashboard' />} />
+     <Route path='/admin_view_users' element={<AdminCall type='admin_view_users' />} />
+     <Route path='/admin_add_staff' element={<AdminCall type='admin_add_staff' />} />
+     <Route path='/admin-view-staff' element={<AdminCall type='admin-view-staff' />} />
+     <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
 
 
 
             {/* user */}
-            <Route path='/user_registration' element={[<LandingNavbar />, <UserRegistration/>]} />
+            <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration/>]} />
             {/* <Route path='/user_login' element={[<LandingNavbar />, <UserLogin />]} />
             <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
