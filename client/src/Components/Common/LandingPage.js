@@ -2,7 +2,11 @@ import React from "react";
 import "../../Assets/Styles/LandingPage.css";
 import logo from "../../Assets/Images/Vector.png";
 import { Link } from "react-router-dom";
-
+import film1 from '../../Assets/Images/film1.png'
+import film2 from '../../Assets/Images/film2.png'
+import film3 from '../../Assets/Images/film3.png'
+import film4 from '../../Assets/Images/film4.png'
+import film5 from '../../Assets/Images/film5.png'
 function LandingPage() {
   return (
     <div className="landing-page-container">
@@ -27,12 +31,33 @@ function LandingPage() {
           </div>
         </div>
       </div>
-     <div className="">
-     <div className="landind-sec2">
-<p className="landing-div2 mt-5">Now Showing movies</p>
-     </div>
-     </div>
+     <div className="landing-sec2 ">
+ 
+<p className="landing-div2 mt-5 mb-5">Now Showing movies</p>
+<div className="landing-now-showing-container mt-5">
+
+  <div className="row">
+
+  <div className="landing-now-showing-img">
+      <img src={film1} alt="film 1" />
     </div>
+    <div className="landing-now-showing-img">
+      <img src={film2} alt="film 2" />
+    </div>
+    <div className="landing-now-showing-img">
+      <img src={film3} alt="film 3" />
+    </div>
+    <div className="landing-now-showing-img">
+      <img src={film4} alt="film 4" />
+    </div>
+    <div className="landing-now-showing-img">
+      <img src={film5} alt="film 5" />
+    </div>
+  </div>
+</div>
+     </div>
+     </div>
+  
   );
 }
 
