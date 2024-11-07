@@ -1,3 +1,11 @@
+/* Apply black background only to the landing page container */
+.landing-page-container {
+  background-color: black; /* Set the black background */
+  color: white; /* Ensure text is readable on black background */
+  height: 100vh; /* Ensure it covers full viewport height */
+}
+
+/* Banner Styling */
 .landing_banner {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
     linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
@@ -6,21 +14,44 @@
   width: 100%;
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.landing_banner_left_box img {
-  height: 400px;
-  margin: auto;
-  display: flex;
+/* Now Showing Section */
+.landing-sec2 {
+  background-color: black; /* Ensures black background for this section */
+  padding: 40px 0;
 }
+
+.landing-div2 {
+  color: #D6D6D6;
+  font-family: Lato, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: normal;
+ 
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Banner Content */
+.landing_banner_left_box img {
+  max-height: 400px;
+  width: auto;
+  margin: auto;
+}
+
 .landing_banner_left_box p {
   color: #e2e2e2;
   text-align: center;
   font-size: 58px;
-  font-style: normal;
   font-weight: 700;
   line-height: 150%;
 }
+
 .landing_banner_right_box {
   padding: 30px 20px;
 }
@@ -28,7 +59,6 @@
 .landing_banner_right_box_title {
   color: white;
   font-size: 38px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
@@ -36,73 +66,64 @@
 .landing_banner_right_box_sub_title {
   color: white;
   font-size: 22px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 33px */
+  line-height: 150%;
 }
-.admin-custom-radio {
-  width: 8px;
-  height: 18px;
-  accent-color: #333;
-  margin-right: 4px; /* Reduced space between radio and label */
-  cursor: pointer;
-}
+
 .landing_banner_register_btn {
   background-color: #e50000;
   border: none;
   width: 200px;
   height: 50px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
-.landing_banner_1{
-    background-image: url(../../Assets/Images/left-black.jpg);
-    height: 50vh;
+/* Section 1 and Section 2 Adjustments */
+.landing-banner-1 {
+  background-image: url(../../Assets/Images/left-black.jpg);
+  height: 50vh;
   width: 100%;
   background-size: cover;
   background-position: center;
   padding: 30px 50px;
 }
 
-.landing_banner_left_title{
-    color: white;
+.landing_banner_left_title {
+  color: white;
   font-size: 38px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
 
-.landing_banner_left_content{
-    color: white;
+.landing_banner_left_content {
+  color: white;
   font-size: 22px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 33px */
+  line-height: 150%;
 }
 
-.landing_banner_2{
-    background-image: url(../../Assets/Images/right-black.jpg);
-    height: 50vh;
+.landing_banner_2 {
+  background-image: url(../../Assets/Images/right-black.jpg);
+  height: 50vh;
   width: 100%;
   background-size: cover;
   background-position: center;
   padding: 30px 50px;
-
 }
 
-.landing_banner_right_title{
-    color: white;
+.landing_banner_right_title {
+  color: white;
   font-size: 38px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
   text-align: right;
 }
 
-.landing_banner_right_content{
-    color: white;
+.landing_banner_right_content {
+  color: white;
   font-size: 22px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 33px */
+  line-height: 150%;
   text-align: right;
 }
