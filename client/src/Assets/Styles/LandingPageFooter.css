@@ -1,0 +1,34 @@
+.streambox_img {
+    margin-left: 17px;
+}
+
+.Footer_logo_space {
+    margin-right: 20px;
+}
+
+.Footer_heading {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.Footer_list1 li {
+   
+    list-style-type: none;
+    color: #BDBDBD;
+    margin: 5px 0;
+    text-align: left;
+
+}
+
+.Footer_list2{
+    list-style-type: none;
+    color: #BDBDBD;
+    margin: 5px 0;
+    text-align: left;
+   
+}

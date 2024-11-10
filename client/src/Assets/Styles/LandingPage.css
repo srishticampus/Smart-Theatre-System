@@ -1,14 +1,18 @@
 /* Apply black background only to the landing page container */
 .landing-page-container {
-  background-color: black; /* Set the black background */
-  color: white; /* Ensure text is readable on black background */
-  height: 100vh; /* Ensure it covers full viewport height */
+  background-color: black;
+  /* Set the black background */
+  color: white;
+  /* Ensure text is readable on black background */
+  height: 100vh;
+  /* Ensure it covers full viewport height */
 }
 
 .landing_banner {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
     linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
-    url(../../Assets/Images/banner2.jpg) !important; /* Added !important */
+    url(../../Assets/Images/banner2.jpg) !important;
+  /* Added !important */
   height: 100vh;
   width: 100%;
   background-size: cover;
@@ -18,12 +22,14 @@
   align-items: center;
   text-align: center;
 }
+
 /* Now Showing Section */
 .landing-sec2 {
-  background-color: black; /* Ensures black background for this section */
+  background-color: black;
+  /* Ensures black background for this section */
   padding: 40px 0;
-  height: 100vh;
-  
+
+
 }
 
 .landing-div2 {
@@ -32,7 +38,7 @@
   font-size: 24px;
   font-weight: 700;
   line-height: normal;
- background-color: black;
+  background-color: black;
   margin-top: 20px;
   margin-bottom: 10px;
   margin-left: 30px !important;
@@ -128,19 +134,168 @@
   line-height: 150%;
   text-align: right;
 }
+
 .landing-now-showing-container {
   margin-left: 40px !important;
   display: flex;
   justify-content: flex-start;
-  
-  flex-wrap: wrap; /* Allow images to wrap to next line if there's not enough space */
+
+  flex-wrap: wrap;
+  /* Allow images to wrap to next line if there's not enough space */
 }
 
-.landing-now-showing-img {
-margin-left: 20px;;
-  border-radius: 20px;
-  margin-right: 20px;
-  width: 100%; /* Ensure images scale with their container */
-  max-width: 200px; /* Set a maximum width for images */
-  object-fit: cover; /* Maintain aspect ratio without distortion */
+
+/* Ensure the carousel items and controls are properly positioned */
+.carousel-control-prev,
+.carousel-control-next {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  /* Ensure the controls appear above the images */
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Darken the background for better contrast */
+  border: none;
+  /* Remove any default border */
+
+  border-radius: 50%;
+  /* Keeps the buttons circular */
+}
+
+.carousel-control-prev i,
+.carousel-control-next i {
+
+  font-size: 2rem;
+  /* Icon size */
+  color: white;
+  /* Icon color to ensure visibility */
+}
+
+/* Optional: Darken background on hover */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+
+}
+
+/* Optional: Transition effect for hover */
+.carousel-control-prev,
+.carousel-control-next {
+  transition: background-color 0.3s ease;
+}
+
+.BootstrapCard {
+  background-color: black;
+  border-radius: 25px;
+  border: none;
+}
+
+.card img {
+  width: 100%;
+  /* Make the image take up the full width of the card */
+  height: 299px;
+  /* Set a fixed height for the images */
+  object-fit: cover;
+  /* Ensure the image covers the card without distorting */
+  border-radius: 25px;
+}
+
+.landing-sec3 {
+  background-color: black;
+ 
+  padding: 40px 0;
+
+
+}
+.key_features {
+  text-align: center;
+  color: #D6D6D6;
+  font-family: Lato;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.All_You_Need {
+  text-align: center;
+  color: #D6D6D6;
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.Sec3_Cards{
+background-color: rgb(0, 0, 0);
+color : #FFF;
+border: 1px solid white;
+border-radius: 25px;
+height: 180px;
+}
+.Sec3_Cards_header{
+  color: #FFF;
+  text-align: center;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.Sec3_Cards_Sec_header{
+  color: #FFF;
+text-align: center;
+font-family: Lato;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+.Sec3_card_body{
+  color: #D6D6D6;
+text-align: center;
+font-family: Lato;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.landing_sec_4{
+  background-color: black;
+  padding: 40px 0;
+}
+.landing_sec_4_head{
+  color: #D6D6D6;
+  font-family: Lato, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: normal;
+  background-color: black;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 30px !important;
+}
+.landing_sec_5{
+  background-color: black;
+  padding: 40px 0;
+}
+.streamboximg{
+  height: 50px;
+
+
+
+}
+.streambox{
+  color: #FFF;
+  font-family: Lato;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
