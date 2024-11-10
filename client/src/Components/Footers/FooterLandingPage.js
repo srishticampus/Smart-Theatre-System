@@ -56,6 +56,7 @@ function FooterLandingPage() {
                     </div>
                 </div>
                 <div className="container"><hr></hr></div>
+                <p className='copyright'>Copy right &copy; 2024, All rights received</p>
             </div>
 
         </div>
