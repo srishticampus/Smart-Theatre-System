@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../Assets/Styles/LandingPageFooter.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import streambox from '../../Assets/Images/streambox.png'
+import logo from '../../Assets/Images/Vector (1).png';
 import facebook_logo from '../../Assets/Images/facebook_logo.png'
 import insta_logo from '../../Assets/Images/insta_logo.png';
 import pinterest_logo from '../../Assets/Images/pinterest_logo.png';
@@ -15,8 +15,8 @@ function FooterLandingPage() {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-3">
-                        <img className='streambox_img' src={streambox} alt='streambox' />
-                        <p>streambox</p>
+                        <img className='streambox_img' src={logo} alt='streambox' />
+                        <p><span className='logo_red'>Maxus</span>Cinemas</p>
                         <div className='logos mt-5'>
                             <img className='Footer_logo_space' src={facebook_logo} alt="facebook"/>
                             <img className='Footer_logo_space' src={insta_logo} alt="insta"/>
