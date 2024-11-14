@@ -10,3 +10,22 @@
 .fs-16 {
     font-size: 16px;
   }
+
+  .profile-label-staff{
+    font-size: 34px;
+    color:white;
+    font-weight: bold;
+    text-align: center;
+  }
+  .staff-profile-container{
+    display: flex;
+width: 80%;
+height: 1024px;
+margin-top:-100px;
+margin-left:100px;
+align-items: center;
+  }
+
+  .staff-view-profile-text{
+background-color: white !important;
+  }

@@ -6,6 +6,7 @@ import "../../Assets/Styles/AdminCall.css";
 import { useNavigate } from "react-router-dom";
 import StaffSidebar from "./StaffSidebar";
 import StaffDashboard from "./StaffDashboard";
+import StaffViewProfile from "./StaffViewProfile";
 
 
 
@@ -32,8 +33,8 @@ function StaffMain({ type }) {
         <div className=" col-lg-9 col-md-6 col-sm-12 adminmain-content">
           {type === "staff-home" ? (
             <StaffDashboard />
-          )  : type === "view_complaints" ? (
-            <StaffDashboard  />
+          )  : type === "staff-profile" ? (
+            <StaffViewProfile  />
          
           ) : (
             ""
