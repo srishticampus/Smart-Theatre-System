@@ -71,7 +71,7 @@
     line-height: normal;
     margin-top: 20px;
 }
-input[type="text"]{
+/* input[type="text"]{
     background-color: #1D1D1D !important;
     height: 50px;
     color: white !important;
@@ -93,7 +93,7 @@ input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 textarea::placeholder {
     color: white !important;
-}
+} */
 .submit_button {
     border-radius: 25px;
     width: 150px;
