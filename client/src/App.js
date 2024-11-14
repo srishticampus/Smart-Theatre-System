@@ -71,7 +71,6 @@ function App() {
 
             <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
 
-{/* Staff */}
 
 
 
