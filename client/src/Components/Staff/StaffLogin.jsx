@@ -1,0 +1,113 @@
+import React, { useEffect, useState } from "react";
+import logo from "../../Assets/Images/Vector.png";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+function StaffLogin() {
+  
+    
+  
+      const navigate = useNavigate();
+      const [showPassword, setShowPassword] = useState(false);
+      const [data, setData] = useState('');
+    
+      const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      };
+    
+      
+    
+      const onSubmit = (values) => {
+        console.log(values);
+       
+      };
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+      
+        setData({
+            ...data,
+            [name]: value,
+        });
+    
+      
+    };
+    
+    
+    
+      return (
+        <div>
+          <div className="landing_banner">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-6 col-md-6 col-sm-12 landing_banner_left_box">
+                  <img src={logo} alt="logo" />
+                  <p><span className='logo_red'>Maxus</span>Cinemas</p>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12 landing_banner_right_box">
+                  <div className="user_reg_container">
+                    <p className="mt-5">Sign In</p>
+                    <form onSubmit={(e) => { onSubmit(e) }}>
+                      <div className="row mt-5">
+                        <div className="col-lg-12 col-md-12 col-sm-12 user_reg_input_grp">
+                          <input
+                            type="email"
+                            placeholder="Enter Your Email"
+                            className="form-control user_inp"
+                            id="email"
+                            name="email"
+                            value={data.email}
+                            onChange={handleChange}
+                        
+                          />
+                          {/* {errors.email && touched.email && (
+                            <span className="text-danger">{errors.email}</span>
+                          )} */}
+                        </div>
+    
+                        <div className="col-lg-12 col-md-12 col-sm-12 user_reg_input_grp mt-3 position-relative">
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Enter Your Password"
+                            className="form-control user_inp"
+                            id="password"
+                            name="password"
+                            value={data.password}
+                            onChange={handleChange}
+                         
+                          />
+                          <i
+                            className={`ri-eye${showPassword ? "-off" : ""}-line password-toggle-icon`}
+                            onClick={togglePasswordVisibility}
+                          ></i>
+                          {/* {errors.password && touched.password && (
+                            <span className="text-danger">{errors.password}</span>
+                          )} */}
+                        </div>
+                        <div className="d-flex justify-content-end mt-2">
+                          <h6>
+                            <Link to="/user_forgot_password">Forgot Password</Link>
+                          </h6>
+                        </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12 user_reg_input_grp_btn ">
+                          <button type="submit" className="button_bg w-100 mt-2">Sign In</button>
+                        </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12 mt-4">
+                          <h6>
+                            New to Cinestream?{" "}
+                            <Link to="/user_registration">Sign Up Now</Link>
+                          </h6>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    
+
+export default StaffLogin

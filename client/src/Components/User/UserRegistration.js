@@ -122,9 +122,8 @@ function UserRegistration() {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 landing_banner_left_box">
             <img src={logo} alt="logo" />
-            <p>
-              <span className="logo_red">Cine</span>Stream
-            </p>
+            <p><span className='logo_red'>Maxus</span>Cinemas</p>
+
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12 landing_banner_right_box">
             <div className="user_reg_container">
