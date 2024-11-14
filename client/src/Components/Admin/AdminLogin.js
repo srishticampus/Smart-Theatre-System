@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import '../../Assets/Styles/AdminLogin.css'
 import logo from "../../Assets/Images/Vector.png";
+import { login } from "../../Services/CommonServices";
 
 function AdminLogin() {
 
@@ -62,6 +63,30 @@ function AdminLogin() {
     } else {
       toast.error('Incorrect Username or Password');
     }
+   
+  }
+  else{
+    try {
+      console.log(data);
+      
+      const result = await login(data, 'loginStaff');
+
+      if (result.success) {
+          console.log(result);
+          localStorage.setItem("staff",result.user._id);
+
+          toast.success('Login successful!');
+          navigate('/staff-home');
+
+
+      } else {
+          console.error('Registration error:', result);
+          toast.error(result.message);
+      }
+  } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.error('An unexpected error occurred during Registration');
+  }
   }
   };
 

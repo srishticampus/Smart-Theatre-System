@@ -30,6 +30,8 @@ import AdminCall from './Components/Admin/AdminCall'
 
 import Footer from './Components/Footers/Footer'
 import { ToastContainer, toast } from 'react-toastify';
+import UserLogin from './Components/User/UserLogin';
+import StaffMain from './Components/Staff/StaffMain';
 function App() {
   return (
     <div className="App">
@@ -43,7 +45,7 @@ function App() {
         />
         <div>
           <Routes>
-            {/* Common routes */}
+            {/* Common routesss */}
             <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
             <Route path="/ContactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
            
@@ -62,8 +64,8 @@ function App() {
 
             {/* user */}
             <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration/>]} />
-            {/* <Route path='/user_login' element={[<LandingNavbar />, <UserLogin />]} />
-            <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
+            <Route path='/user_login' element={[<LandingNavbar />, <UserLogin />]} />
+           {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
             <Route path='/user_home' element={[<UserNavbar />, <UserHome />]} />
 
@@ -73,6 +75,10 @@ function App() {
             <Route path='/user_edit_profile' element={[<UserNavbar />, <UserEditProfile />]} />
 
             <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
+
+{/* STaff */}
+
+<Route path='/staff-home' element={<StaffMain type='staff-home' />} />
 
 
 
