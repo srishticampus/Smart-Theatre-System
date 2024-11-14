@@ -1,0 +1,12 @@
+.staff_dashboard_cards_new{
+    height: 27vh;
+    width: 45%;
+    background-color: #2A2A2A ;
+    border-radius: 15px;
+    padding: 20px;
+    /* display: flex;
+    justify-content: space-evenly; */
+}
+.fs-16 {
+    font-size: 16px;
+  }

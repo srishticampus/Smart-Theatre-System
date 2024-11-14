@@ -13,7 +13,7 @@ app.use(cors())
 const route=require('./routes')
 app.use('/theatre_api',route)
 
-app.listen(4046,()=>{
+app.listen(4049,()=>{
     console.log("Server created successfully at 4049");
 })
 

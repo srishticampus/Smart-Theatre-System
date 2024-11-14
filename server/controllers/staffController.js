@@ -198,6 +198,35 @@ const resetPassword = async (req, res) => {
         return res.status(200).json({ msg: "Old Password doesn't match" });
     }
 };
+const login = (req, res) => {
+    const { email, password } = req.body;
+
+    Staff.findOne({ email }).then(user => {
+        if (!user) {
+            return res.status(404).json({ msg: 'Staff not found' });
+        }
+
+        if (user.password !== password) {
+            return res.status(403).json({ msg: 'Password Mismatch !!' });
+        }
+
+        
+        if (!user.isActive) {
+            return res.status(403).json({ msg: 'You are currently deactivated By Admin !!' });
+        }
+
+      
+
+        res.json({
+            status: 200,
+            data: user,
+           
+        });
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).json({ msg: 'Something went wrong' });
+    });
+};
 
 module.exports = {
     registerStaff,
@@ -210,4 +239,5 @@ module.exports = {
     forgotPassword,
     activateStaffById,
     deActivateStaffById,
+    login
 };
