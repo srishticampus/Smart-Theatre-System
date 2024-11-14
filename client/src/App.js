@@ -46,6 +46,8 @@ function App() {
             {/* Common routes */}
             <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
             <Route path="/ContactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
+           
+
 
 
      {/* Admin Routes */}

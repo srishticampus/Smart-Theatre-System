@@ -11,12 +11,12 @@ import twitter_logo from '../../Assets/Images/twitter_logo.png';
 function FooterLandingPage() {
     return (
         <div>
-            <hr></hr>
+              <hr style={{ borderColor: 'white', borderWidth: '2px' }} />
             <div className="container">
                 <div className="row">
                     <div className="col-sm-3">
                         <img className='streambox_img' src={logo} alt='streambox' />
-                        <p><span className='logo_red'>Maxus</span>Cinemas</p>
+                        <p><span className='logo_red'>Maxus</span><span className='cinemas_white'>Cinemas</span></p>
                         <div className='logos mt-5'>
                             <img className='Footer_logo_space' src={facebook_logo} alt="facebook"/>
                             <img className='Footer_logo_space' src={insta_logo} alt="insta"/>
@@ -55,7 +55,7 @@ function FooterLandingPage() {
 
                     </div>
                 </div>
-                <div className="container"><hr></hr></div>
+                <div className="container"><hr style={{ borderColor: 'white', borderWidth: '2px' }} ></hr></div>
                 <p className='copyright'>Copy right &copy; 2024, All rights received</p>
             </div>
 

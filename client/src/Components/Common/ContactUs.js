@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Phone from '../../Assets/Images/Phone.png';
 import Mail from '../../Assets/Images/Mail.png';
 import location from '../../Assets/Images/location.png';
+import FooterLandingPage from "../Footers/FooterLandingPage";
 
 
 
@@ -66,7 +67,7 @@ function ContactUs() {
                 </div>
               </div>
 
-              <div className="col-sm-6">
+              <div className="col-sm-6 ">
                 <div className='row'>
                   <div className='col-sm-12 d-flex justify-content-around'>
                     <div className='card Section-two_right_card_one'>
@@ -87,7 +88,7 @@ function ContactUs() {
                         <img src={Mail} className='Mail_Icon' alt='mail' />
                         <div>
                           <p className='email'>maxuscinemas@gmail.com</p>
-                          <p className='We_will_Respond'>We will respond within 24 <br/> hours on weekdays</p>
+                          <p className='We_will_Respond'>We will respond within 24 <br /> hours on weekdays</p>
                         </div>
                       </div>
                     </div>
@@ -108,16 +109,24 @@ function ContactUs() {
                 </div>
               </div>
 
-              
+
             </div>
           </div>
         </div>
+
+      <div className='Section-three'>
+      <FooterLandingPage />
+      </div>
+
+
+
+
       </div>
     </>
   )
 }
 
-// checking.
+
 
 
 

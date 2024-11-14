@@ -99,6 +99,7 @@ textarea::placeholder {
     width: 150px;
 }
 .Section-two_right_card_one{
+   
     background-color: #1D1D1D !important;
     width: 470px;
     border-radius: 25px;
@@ -207,3 +208,8 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 }
+.Section-three{
+    background-color: black;
+    padding: 40px 0;
+  }
+  
