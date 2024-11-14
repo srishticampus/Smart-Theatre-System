@@ -1,18 +1,12 @@
-/* Apply black background only to the landing page container */
 .landing-page-container {
   background-color: black;
-  /* Set the black background */
   color: white;
-  /* Ensure text is readable on black background */
-  height: 100vh;
-  /* Ensure it covers full viewport height */
+  height: 100vh;  
 }
-
 .landing_banner {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
     linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
     url(../../Assets/Images/banner2.jpg) !important;
-  /* Added !important */
   height: 100vh;
   width: 100%;
   background-size: cover;
@@ -23,10 +17,10 @@
   text-align: center;
 }
 
-/* Now Showing Section */
+
 .landing-sec2 {
   background-color: black;
-  /* Ensures black background for this section */
+
   padding: 40px 0;
 
 
@@ -86,7 +80,7 @@
   margin-top: 20px;
 }
 
-/* Section 1 and Section 2 Adjustments */
+
 .landing-banner-1 {
   background-image: url(../../Assets/Images/left-black.jpg);
   height: 50vh;
@@ -141,11 +135,11 @@
   justify-content: flex-start;
 
   flex-wrap: wrap;
-  /* Allow images to wrap to next line if there's not enough space */
+ 
 }
 
 
-/* Ensure the carousel items and controls are properly positioned */
+
 .carousel-control-prev,
 .carousel-control-next {
   height: 50px;
@@ -154,33 +148,20 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  /* Ensure the controls appear above the images */
   background-color: rgba(0, 0, 0, 0.6);
-  /* Darken the background for better contrast */
   border: none;
-  /* Remove any default border */
-
   border-radius: 50%;
-  /* Keeps the buttons circular */
 }
 
 .carousel-control-prev i,
 .carousel-control-next i {
-
   font-size: 2rem;
-  /* Icon size */
   color: white;
-  /* Icon color to ensure visibility */
 }
-
-/* Optional: Darken background on hover */
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
   background-color: rgba(255, 255, 255, 0.5);
-
 }
-
-/* Optional: Transition effect for hover */
 .carousel-control-prev,
 .carousel-control-next {
   transition: background-color 0.3s ease;
@@ -194,20 +175,14 @@
 
 .card img {
   width: 100%;
-  /* Make the image take up the full width of the card */
   height: 299px;
-  /* Set a fixed height for the images */
   object-fit: cover;
-  /* Ensure the image covers the card without distorting */
   border-radius: 25px;
 }
 
 .landing-sec3 {
   background-color: black;
-
   padding: 40px 0;
-
-
 }
 
 .key_features {
@@ -294,9 +269,6 @@
 
 .streamboximg {
   height: 50px;
-
-
-
 }
 
 .streambox {

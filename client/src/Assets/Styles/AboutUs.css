@@ -1,4 +1,4 @@
-.Section_one {
+.Aboutus_Section_one {
     background: url(../../Assets/Images/Aboutus_Background.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -36,7 +36,12 @@
     line-height: 25px;
 }
 
-.container {
+.AboutUs_Section_two {
+    background: black;
+}
+
+.sectwo_container {
+    padding: 70px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -71,8 +76,10 @@
     line-height: 25px
 }
 
-.Section_three {
+.Aboutus_Section_three {
     background: black;
+  
+    
 }
 
 .Section_three_head1 {
@@ -82,7 +89,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: 25px;
-    
+    margin-bottom: 23px;
+
 }
 
 .Section_three_para1 {
@@ -92,4 +100,61 @@
     font-style: normal;
     font-weight: 500;
     line-height: 25px;
+    margin-bottom: 50px;
+}
+
+.Section_three_head2 {
+    color: #D6D6D6;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.Section_three_head3 {
+    color: #D6D6D6;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+
+.Section_three_list {
+    color: #D6D6D6;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+    margin-bottom: 50px;
+}
+
+.Section_three_head4 {
+    color: #D6D6D6;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+
+.Section_three_para2 {
+    color: #D6D6D6;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+    margin-bottom: 0; 
+}
+.Aboutus_Section_four{
+    background-color: black;
+    padding: 40px 0;
+ 
 }

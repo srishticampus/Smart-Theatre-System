@@ -45,7 +45,7 @@ const handleClose = () => {
         <div className="profile-div">
           <div className="row">
             <div className="col-md-12 col-sm-12 d-flex justify-content-center ">
-              <label className="profile-label text-light">Administrator</label>
+              <label className="profile-label-staff fs-24">Staff</label>
             </div>
           </div>
         </div>
@@ -58,103 +58,45 @@ const handleClose = () => {
                 <Link to={'/staff-home'}>
                 <label className="label-sub">Dashboard</label></Link>
               </div>
+             
+            
+           
+                <div className="adjust-space">
+                <label className="label-sub">Ticket Booking</label>
+              </div>
+             
+           
               <div className="adjust-space">
-                <Link to={'/admin_view_users'}>
-                <label className="label-sub">Users</label>
+              <Link className="adjust-space" to={'/admin_view_users'}>
+                <label className="label-sub">Manage Queue</label>
                 </Link>
-                
-              </div>
-              <div className="adjust-space" onClick={toggleMoviesDropdown}>
-                <label className="label-sub">Staff</label>
-              </div>
-              {showMoviesDropdown && (
-                <div className="custom-dropdown-menu">
-                  <Link to={'/admin_add_staff'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">Add Staff</label>
-                    </div>
-                  </Link>
-                  <Link to={'/admin-view-staff'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">View Staff</label>
-                    </div>
-                  </Link>
                 </div>
-              )}
-              <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
-                <label className="label-sub">Show Time</label>
-              </div>
-              {showSubscription && (
-                <div className="custom-dropdown-menu">
-                  <Link to={'/admin_add_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">Add Subscription</label>
-                    </div>
-                  </Link>
-                  <Link to={'/admin_view_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">View Subscription</label>
-                    </div>
-                  </Link>
+            
+                <div className="adjust-space">
+              <Link className="adjust-space" to={'/admin_view_users'}>
+                <label className="label-sub">Food Orders</label>
+                </Link>
                 </div>
-              )}
-                <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
-                <label className="label-sub">Movies</label>
-              </div>
-              {showSubscription && (
-                <div className="custom-dropdown-menu">
-                  <Link to={'/admin_add_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">Add Subscription</label>
-                    </div>
-                  </Link>
-                  <Link to={'/admin_view_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">View Subscription</label>
-                    </div>
-                  </Link>
-                </div>
-              )}
-                <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
-                <label className="label-sub">Booking</label>
-              </div>
-              {showSubscription && (
-                <div className="custom-dropdown-menu">
-                  <Link to={'/admin_add_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">Add Subscription</label>
-                    </div>
-                  </Link>
-                  <Link to={'/admin_view_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">View Subscription</label>
-                    </div>
-                  </Link>
-                </div>
-              )}
-                <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
-                <label className="label-sub">Parking</label>
-              </div>
-              {showSubscription && (
-                <div className="custom-dropdown-menu">
-                  <Link to={'/admin_add_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">Add Subscription</label>
-                    </div>
-                  </Link>
-                  <Link to={'/admin_view_subscription_plan'}>
-                    <div className="custom-dropdown-item">
-                      <label className="label-sub">View Subscription</label>
-                    </div>
-                  </Link>
-                </div>
-              )}
+                <div className="adjust-space">
+                <Link to={'/admin_view_users'}>
+                <label className="label-sub">Order History</label>
+                </Link></div>
+                <div className="adjust-space">
+              <Link to={'/admin_view_users'}>
+                <label className="label-sub">Parking Assistance</label>
+                </Link></div>
+           
               <div className="adjust-space">
                 <Link to={'/admin_view_complaints'}>
                 <label className="label-sub">Feedback</label>
                 </Link>
                 
               </div>
+              <div className="adjust-space">
+              <Link to={'/staff-profile'}>
+                <label className="label-sub">Profile</label>
+                </Link>
+             </div>
               <div className="adjust-space">
                 <Link onClick={handleLogout}><label className="label-sub">Logout</label></Link>
               </div>

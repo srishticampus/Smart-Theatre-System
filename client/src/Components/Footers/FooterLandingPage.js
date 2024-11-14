@@ -50,12 +50,14 @@ function FooterLandingPage() {
                         <h5 className='Footer_heading'>Get in touch</h5>
                         <ul className='Footer_list2'>
                             <li>0471-2525444</li>
-                            <li>streambox@gmail.com</li>  
+                            <li>maxuscinemas@gmail.com</li>  
                         </ul>
 
                     </div>
                 </div>
-                <div className="container"><hr style={{ borderColor: 'white', borderWidth: '2px' }} ></hr></div>
+                <div className="container">
+                <hr className="footer-hr" />
+                </div>
                 <p className='copyright'>Copy right &copy; 2024, All rights received</p>
             </div>
 

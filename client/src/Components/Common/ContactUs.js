@@ -19,7 +19,7 @@ function ContactUs() {
           <p className='sec_one_para'>Whether you have a question, need support, or want to provide feedback, we’re here to ensure you have the best movie experience possible. <br />Reach out to us through any of the options below, and our team will get back to you promptly.</p>
         </div>
 
-        <div className="Section_two">
+        <div className="Contactus_Section_two">
           <div className='container'>
             <div className="row">
 
@@ -31,10 +31,10 @@ function ContactUs() {
                   <div className="card-body">
                     <form>
 
-                      <div className=" mb-4">
+                      <div className="card  mb-4">
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control Section-two_left_card_inputfield"
                           id="name"
                           placeholder="Name"
                         />
@@ -43,7 +43,7 @@ function ContactUs() {
                       <div className="mb-4">
                         <input
                           type="email"
-                          className="form-control"
+                          className="form-control Section-two_left_card_inputemail"
                           id="email"
                           placeholder="E-Mail"
                         />
@@ -51,7 +51,7 @@ function ContactUs() {
 
                       <div className="mb-3">
                         <textarea
-                          className="form-control"
+                          className="form-control Section-two_left_card_inputtextarea"
                           rows="7"
                           placeholder="Description"
                         />
