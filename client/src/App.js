@@ -11,6 +11,7 @@ import LandingNavbar from './Components/Navbars/LandingNavbar'
 import LandingPage from './Components/Common/LandingPage'
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
+import Aboutus from './Components/Common/Aboutus';
 
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserLogin from './Components/User/UserEditProfile'
@@ -48,6 +49,9 @@ function App() {
             {/* Common routes */}
             <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
             <Route path="/ContactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
+            <Route path="/AboutUs" element={[<LandingNavbar/>,<Aboutus/>]}/>
+           
+
 
 
      {/* Admin Routes */}

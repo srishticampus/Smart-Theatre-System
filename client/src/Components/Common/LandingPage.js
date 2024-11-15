@@ -9,7 +9,8 @@ import film3 from '../../Assets/Images/film3.png';
 import film4 from '../../Assets/Images/film4.png';
 import film5 from '../../Assets/Images/film5.png';
 import tamil from '../../Assets/Images/tamil.jpg';
-import telugu from '../../Assets/Images/telugu.jpg'
+import telugu from '../../Assets/Images/telugu.jpg';
+import film6 from '../../Assets/Images/film6.png';
 import FooterLandingPage from "../Footers/FooterLandingPage";
 
 function Carousel({ cards, groupedCards }) {
@@ -71,6 +72,7 @@ function LandingPage() {
     { id: 3, img: film3 },
     { id: 4, img: film4 },
     { id: 5, img: film5 },
+    { id: 6, img: film6 },
     { id: 6, img: tamil },
     { id: 7, img: telugu },
   ];
