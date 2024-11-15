@@ -78,6 +78,7 @@ function App() {
 
 <Route path='/staff-home' element={<StaffMain type='staff-home' />} />
 <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
+<Route path='/staff-edit-profile/:id' element={<StaffMain type='staff-edit-profile' />} />
 
 
 

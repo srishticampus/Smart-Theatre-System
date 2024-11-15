@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import StaffSidebar from "./StaffSidebar";
 import StaffDashboard from "./StaffDashboard";
 import StaffViewProfile from "./StaffViewProfile";
+import StaffEditProfile from "./StaffEditProfile";
 
 
 
@@ -35,7 +36,8 @@ function StaffMain({ type }) {
             <StaffDashboard />
           )  : type === "staff-profile" ? (
             <StaffViewProfile  />
-         
+          )  : type === "staff-edit-profile" ? (
+            <StaffEditProfile  />
           ) : (
             ""
           )}
