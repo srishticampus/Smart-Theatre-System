@@ -48,8 +48,8 @@ function App() {
           <Routes>
             {/* Common routes */}
             <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
-            <Route path="/ContactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
-            <Route path="/AboutUs" element={[<LandingNavbar/>,<Aboutus/>]}/>
+            <Route path="/contactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
+            <Route path="/aboutUs" element={[<LandingNavbar/>,<Aboutus/>]}/>
            
 
 
@@ -82,6 +82,7 @@ function App() {
 
 <Route path='/staff-home' element={<StaffMain type='staff-home' />} />
 <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
+<Route path='/staff-edit-profile/:id' element={<StaffMain type='staff-edit-profile' />} />
 
 
 
