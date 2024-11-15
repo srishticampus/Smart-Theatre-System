@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Phone from '../../Assets/Images/Phone.png';
 import Mail from '../../Assets/Images/Mail.png';
 import location from '../../Assets/Images/location.png';
+import FooterLandingPage from "../Footers/FooterLandingPage";
 
 
 
@@ -18,7 +19,7 @@ function ContactUs() {
           <p className='sec_one_para'>Whether you have a question, need support, or want to provide feedback, we’re here to ensure you have the best movie experience possible. <br />Reach out to us through any of the options below, and our team will get back to you promptly.</p>
         </div>
 
-        <div className="Section_two">
+        <div className="Contactus_Section_two">
           <div className='container'>
             <div className="row">
 
@@ -30,10 +31,10 @@ function ContactUs() {
                   <div className="card-body">
                     <form>
 
-                      <div className=" mb-4">
+                      <div className="card  mb-4">
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control Section-two_left_card_inputfield"
                           id="name"
                           placeholder="Name"
                         />
@@ -42,7 +43,7 @@ function ContactUs() {
                       <div className="mb-4">
                         <input
                           type="email"
-                          className="form-control"
+                          className="form-control Section-two_left_card_inputemail"
                           id="email"
                           placeholder="E-Mail"
                         />
@@ -50,7 +51,7 @@ function ContactUs() {
 
                       <div className="mb-3">
                         <textarea
-                          className="form-control"
+                          className="form-control Section-two_left_card_inputtextarea"
                           rows="7"
                           placeholder="Description"
                         />
@@ -66,7 +67,7 @@ function ContactUs() {
                 </div>
               </div>
 
-              <div className="col-sm-6">
+              <div className="col-sm-6 ">
                 <div className='row'>
                   <div className='col-sm-12 d-flex justify-content-around'>
                     <div className='card Section-two_right_card_one'>
@@ -87,7 +88,7 @@ function ContactUs() {
                         <img src={Mail} className='Mail_Icon' alt='mail' />
                         <div>
                           <p className='email'>maxuscinemas@gmail.com</p>
-                          <p className='We_will_Respond'>We will respond within 24 <br/> hours on weekdays</p>
+                          <p className='We_will_Respond'>We will respond within 24 <br /> hours on weekdays</p>
                         </div>
                       </div>
                     </div>
@@ -108,16 +109,24 @@ function ContactUs() {
                 </div>
               </div>
 
-              
+
             </div>
           </div>
         </div>
+
+      <div className='Section-three'>
+      <FooterLandingPage />
+      </div>
+
+
+
+
       </div>
     </>
   )
 }
 
-// checking.
+
 
 
 

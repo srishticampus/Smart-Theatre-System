@@ -1,5 +1,5 @@
 .Contact_Us_Background {
-    background: url(../../Assets/Images/ContactUS_Background.png) !important;
+    background: url(../../Assets/Images/ContactUS_Background.png) ;
    
     height: 500px;
 
@@ -47,12 +47,13 @@
     line-height: 25px;
 }
 
-.Section_two {
+.Contactus_Section_two{
     background: black;
 
 }
 
 .Section-two_left_card {
+    margin-left: 70px;
     max-width: 470px;
     height:auto;
     background: #1D1D1D;
@@ -71,34 +72,34 @@
     line-height: normal;
     margin-top: 20px;
 }
-/* input[type="text"]{
+
+.Section-two_left_card_inputfield{
     background-color: #1D1D1D !important;
     height: 50px;
     color: white !important;
-   
-    }
-
-input[type="email"] {
-    background-color: #1D1D1D !important;
-    height: 50px;
-    color: white !important;
-
 }
-textarea{
+
+.Section-two_left_card_inputemail{
+    background-color: #1D1D1D !important;
+    height: 50px;
+    color: white !important;
+}
+.Section-two_left_card_inputtextarea{
     background-color: #1D1D1D !important; 
     color: white !important;
 }
-
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-textarea::placeholder {
+.Section-two_left_card_inputfield::placeholder,
+.Section-two_left_card_inputemail::placeholder,
+.Section-two_left_card_inputtextarea::placeholder{
     color: white !important;
-} */
+}
+
 .submit_button {
     border-radius: 25px;
     width: 150px;
 }
 .Section-two_right_card_one{
+   
     background-color: #1D1D1D !important;
     width: 470px;
     border-radius: 25px;
@@ -207,3 +208,8 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 }
+.Section-three{
+    background-color: black;
+    padding: 40px 0;
+  }
+  
