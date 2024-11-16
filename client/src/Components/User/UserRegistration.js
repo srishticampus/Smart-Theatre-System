@@ -276,7 +276,7 @@ function UserRegistration() {
                   <div className="col-lg-12 col-md-12 col-sm-12 mt-2">
                     <h6>
                       Already have an Account?{" "}
-                      <Link to="/user_login">Sign In</Link>
+                      <Link to="/user-login">Sign In</Link>
                     </h6>
                   </div>
                 </div>
