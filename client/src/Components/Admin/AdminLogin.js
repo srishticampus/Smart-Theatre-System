@@ -34,11 +34,7 @@ function AdminLogin() {
 
       newErrors.email = 'Email is required';
     }
-    else   if (!emailRegex.test(data.email)) {
-
-
-      newErrors.email = 'Enter a Valid E-Mail Id';
-    }
+   
     if (!data.password) {
       newErrors.password = 'Password is required';
     }
@@ -159,9 +155,7 @@ function AdminLogin() {
                         onChange={handleChange}
                         defaultChecked
                       />
-                      {errors.email && (
-                        <span className="text-danger">{errors.email}</span>
-                      )}
+                     
                     </div>
                     <div className="user_registration_input mt-4">
                       <input
