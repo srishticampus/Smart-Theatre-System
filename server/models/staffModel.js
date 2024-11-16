@@ -36,6 +36,10 @@ const schema = mongoose.Schema({
         type: Boolean,
         default: true
     },
+    address: {
+        type: String,
+        default: true
+    },
     profilePic: {
         type: Object,
         required: true

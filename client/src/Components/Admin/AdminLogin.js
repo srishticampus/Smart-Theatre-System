@@ -34,7 +34,11 @@ function AdminLogin() {
 
       newErrors.email = 'Email is required';
     }
+    else   if (!emailRegex.test(data.email)) {
 
+
+      newErrors.email = 'Enter a Valid E-Mail Id';
+    }
     if (!data.password) {
       newErrors.password = 'Password is required';
     }
@@ -125,6 +129,7 @@ function AdminLogin() {
       onChange={handleChange}
       checked
     />
+    
     <label className="btn btn-outline-dark admin-radios" htmlFor="admin">
       Admin
     </label>

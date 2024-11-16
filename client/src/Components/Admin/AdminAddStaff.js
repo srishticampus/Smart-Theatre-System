@@ -60,7 +60,9 @@ function AdminAddStaff() {
       if (!data.profilePic) {
           newErrors.profilePic = 'Profile Picture is required';
       }
-     
+      if (!data.address) {
+        newErrors.address = 'Address is required';
+    }
       if (!data.password) {
           newErrors.password = 'Password is required';
       } else if (!passwordRegex.test(data.password)) {
@@ -210,6 +212,18 @@ function AdminAddStaff() {
                             </select>
                             {errors.role &&  (
                         <span className="text-danger">{errors.role}</span>
+                      )}
+                      </div>
+                      </div>
+                      <div className="row">
+                      <div className="col-12 user_reg_input_grp mt-3">
+                        <label>Address</label>
+                        <textarea  placeholder="Enter Address"
+                          name='address'
+                          rows="2"
+                          onChange={handleChange}> </textarea>
+                            {errors.address &&  (
+                        <span className="text-danger">{errors.address}</span>
                       )}
                       </div>
                       </div>

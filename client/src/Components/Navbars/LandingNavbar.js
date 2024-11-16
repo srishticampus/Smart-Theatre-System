@@ -20,10 +20,10 @@ function LandingNavbar() {
           <Link to='/aboutUs' className="nav-link"><p>About</p></Link>
         </div>
         <div className="landing_nav_login">
-          <Link to='/contactUs' className="nav-link"><p>Contact</p></Link>
+          <Link to='/contact' className="nav-link"><p>Contact</p></Link>
         </div>
         <div className="landing_nav_login">
-          <Link to='/user_login' className="nav-link nav-button"><p className="nav-button-p">Login</p></Link>
+          <Link to='/user-login' className="nav-link nav-button"><p className="nav-button-p">Login</p></Link>
         </div>
       </div>
     </div>

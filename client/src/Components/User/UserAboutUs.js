@@ -4,12 +4,11 @@ import "../../Assets/Styles/AboutUs.css";
 import Aboutus_Section2 from '../../Assets/Images/Aboutus_Section2.png';
 import FooterLandingPage from "../Footers/FooterLandingPage";
 
-function Aboutus() {
+function UserAboutus() {
   return (
     <>
-    <div className='Aboutus_bg'>
       <div className='Aboutus_Section_one '>
-        <p className="Section_one_head1">1</p>
+      <p className="Section_one_head1">1</p>
        < div className='Section_one_div2'>
        <p className='Section_one_div2'>About Us</p>
        <p className='Section_one_head2'>Welcome to Smart Theatre – Your Smart <br /> Solution for Movie Night!</p>
@@ -46,9 +45,8 @@ function Aboutus() {
       <div className='Aboutus_Section_four'>
         <FooterLandingPage />
       </div>
-    
-      </div></>
+    </>
   )
 }
 
-export default Aboutus
+export default UserAboutus
