@@ -7,10 +7,14 @@ import FooterLandingPage from "../Footers/FooterLandingPage";
 function Aboutus() {
   return (
     <>
+    <div className='Aboutus_bg'>
       <div className='Aboutus_Section_one '>
-        <p className="Section_one_head1">ABOUT US</p>
-        <p className='Section_one_head2'>Welcome to Smart Theatre – Your Smart <br /> Solution for Movie Night!</p>
-        <p className='Section_one_para'>At Smart Theatre, we believe that a night at the movies should be fun, easy, and hassle-free. Founded by a team of movie lovers and tech<br /> enthusiasts, we set out to transform the way people experience cinema by bringing convenience and joy back to every step of the process.<br /> Our app offers a seamless, all-in-one solution to make your movie night as smooth as possible, from booking tickets to ordering snacks and<br /> securing parking.</p>
+        <p className="Section_one_head1">1</p>
+       < div className='Section_one_div2'>
+       <p className='Section_one_div2'>About Us</p>
+       <p className='Section_one_head2'>Welcome to Smart Theatre – Your Smart <br /> Solution for Movie Night!</p>
+        </div> 
+        <p className='Section_one_para mt-5'>At Smart Theatre, we believe that a night at the movies should be fun, easy, and hassle-free. Founded by a team of movie lovers and tech<br /> enthusiasts, we set out to transform the way people experience cinema by bringing convenience and joy back to every step of the process.<br /> Our app offers a seamless, all-in-one solution to make your movie night as smooth as possible, from booking tickets to ordering snacks and<br /> securing parking.</p>
       </div>
       <div className='AboutUs_Section_two'>
         <div className='container sectwo_container'>
@@ -42,7 +46,8 @@ function Aboutus() {
       <div className='Aboutus_Section_four'>
         <FooterLandingPage />
       </div>
-    </>
+    
+      </div></>
   )
 }
 
