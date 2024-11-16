@@ -163,9 +163,7 @@ const login = (req, res) => {
             return res.status(403).json({ msg: 'Password Mismatch !!' });
         }
 
-        if (!user.adminApproved) {
-            return res.status(403).json({ msg: 'Please wait for Admin Approval !!' });
-        } 
+     
         if (!user.isActive) {
             return res.status(403).json({ msg: 'You are currently deactivated By Admin !!' });
         }

@@ -100,7 +100,7 @@ function UserRegistration() {
               console.log(result);
 
               toast.success('Registration successful!');
-              navigate('/akshaya-login');
+              navigate('/user-login');
 
 
           } else {

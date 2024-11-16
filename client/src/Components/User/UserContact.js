@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../Assets/Styles/ContactUs.css"
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Phone from '../../Assets/Images/Phone.png';
 import Mail from '../../Assets/Images/Mail.png';
 import location from '../../Assets/Images/location.png';
@@ -8,7 +9,7 @@ import FooterLandingPage from "../Footers/FooterLandingPage";
 
 
 
-function ContactUs() {
+function UserContact() {
   return (
     <>
       <div className="Contact_Us_Background">
@@ -130,4 +131,4 @@ function ContactUs() {
 
 
 
-export default ContactUs
+export default UserContact

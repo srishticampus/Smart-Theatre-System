@@ -25,6 +25,7 @@ const registerStaff = async (req, res) => {
         const newStaff = new Staff({
             email,
             contact,
+            address,
             password,
             fname,
             lname,

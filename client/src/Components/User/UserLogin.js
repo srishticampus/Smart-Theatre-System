@@ -2,41 +2,71 @@ import React, { useEffect, useState } from "react";
 import logo from "../../Assets/Images/Vector.png";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { login } from "../../Services/CommonServices";
 // import "remixicon/fonts/remixicon.css"; // Import RemixIcon CSS
 
 function UserLogin() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState('');
+  const [errors, setErrors] = useState({});
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  
+  const validate = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const onSubmit = (values) => {
+    if (!data.email) {
+      console.log("here");
+
+      newErrors.email = 'Email is required';
+    }
+else   if (!emailRegex.test(data.email)) {
+
+
+  newErrors.email = 'Enter a Valid E-Mail Id';
+}
+    if (!data.password) {
+      newErrors.password = 'Password is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const onSubmit =async (values) => {
+    values.preventDefault()
     console.log(values);
-    // axiosInstance.post('/loginUser', values)
-    //   .then((res) => {
-    //     console.log('working', res);
-    //     if (res.data.status === 200) {
-    //       localStorage.setItem('userId', res.data.data._id);
-    //       if (res.data.data.profileStatus === false) {
-    //         navigate('/user_prefer_languages');
-    //       } else {
-    //         navigate(`/user_home`);
-    //         toast.success("Login Successful");
-    //       }
-    //     } else if (res.data.status === 405) {
-    //       toast.warning(res.data.msg);
-    //     } else {
-    //       toast.error('Login Failed');
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     toast.error('Login Failed');
-    //   });
+
+    if (!validate()) {
+      toast.error('Please fix the errors in the form.');
+      return;
+    }
+    try {
+      console.log(data);
+      
+      const result = await login(data, 'loginUser');
+
+      if (result.success) {
+          console.log(result);
+          localStorage.setItem("user",result.user._id);
+
+          toast.success('Login successful!');
+          navigate('/user-home');
+
+
+      } else {
+          console.error('Registration error:', result);
+          toast.error(result.message);
+      }
+  } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.error('An unexpected error occurred during Login');
+  }
+   
   };
 
   const handleChange = (e) => {
@@ -77,9 +107,9 @@ function UserLogin() {
                         onChange={handleChange}
                     
                       />
-                      {/* {errors.email && touched.email && (
+                      {errors.email  && (
                         <span className="text-danger">{errors.email}</span>
-                      )} */}
+                      )}
                     </div>
 
                     <div className="col-lg-12 col-md-12 col-sm-12 user_reg_input_grp mt-3 position-relative">
@@ -93,6 +123,9 @@ function UserLogin() {
                         onChange={handleChange}
                      
                       />
+                        {errors.password && (
+                        <span className="text-danger">{errors.password}</span>
+                      )}
                       <i
                         className={`ri-eye${showPassword ? "-off" : ""}-line password-toggle-icon`}
                         onClick={togglePasswordVisibility}

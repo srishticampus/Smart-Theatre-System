@@ -146,7 +146,7 @@ function StaffViewProfile() {
 
                     <center><div className="col-lg-4 col-md-12 col-sm-12 user_reg_input_grp_btn mt-4">
                         <button onClick={()=>{
-                           navigate(`/staff-edit-profile/${data._id}`)
+                           navigate(`/staff-edit-profile`)
                         }}>Edit</button>
                     </div>
                     </center>

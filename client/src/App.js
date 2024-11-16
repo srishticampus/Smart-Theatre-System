@@ -12,11 +12,9 @@ import LandingPage from './Components/Common/LandingPage'
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
+import UserNavbar from './Components/Navbars/UserNavbar';
 
 // import ForgotPassword from './Components/User/ForgotPassword'
-// import UserLogin from './Components/User/UserEditProfile'
-
-// import UserHome from './Components/User/UserHome'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
 // import UserAddReview from './Components/User/UserAddReview'
 // import UserEditProfile from './Components/User/UserEditProfile'
@@ -33,6 +31,9 @@ import Footer from './Components/Footers/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import UserLogin from './Components/User/UserLogin';
 import StaffMain from './Components/Staff/StaffMain';
+import UserHome from './Components/User/UserHome';
+import UserContact from './Components/User/UserContact';
+import UserAboutus from './Components/User/UserAboutUs';
 function App() {
   return (
     <div className="App">
@@ -48,7 +49,7 @@ function App() {
           <Routes>
             {/* Common routes */}
             <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
-            <Route path="/contactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
+            <Route path="/contact" element={[<LandingNavbar/>,<ContactUs />,]}/>
             <Route path="/aboutUs" element={[<LandingNavbar/>,<Aboutus/>]}/>
            
 
@@ -66,10 +67,13 @@ function App() {
 
             {/* user */}
             <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration/>]} />
-            <Route path='/user_login' element={[<LandingNavbar />, <UserLogin />]} />
+            <Route path='/user-login' element={[<LandingNavbar />, <UserLogin />]} />
+            <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
+            <Route path="/user-contact" element={[<UserNavbar/>,<UserContact />,]}/>
+            <Route path="/user-about" element={[<UserNavbar/>,<UserAboutus/>]}/>
            {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
-            <Route path='/user_home' element={[<UserNavbar />, <UserHome />]} />
+           
 
             <Route path='/user_add_complaint' element={[<UserNavbar />, <UserAddComplaints />]} />
 
@@ -82,7 +86,7 @@ function App() {
 
 <Route path='/staff-home' element={<StaffMain type='staff-home' />} />
 <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
-<Route path='/staff-edit-profile/:id' element={<StaffMain type='staff-edit-profile' />} />
+<Route path='/staff-edit-profile' element={<StaffMain type='staff-edit-profile' />} />
 
 
 
