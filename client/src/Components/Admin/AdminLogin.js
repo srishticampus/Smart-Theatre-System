@@ -115,15 +115,15 @@ function AdminLogin() {
                   >
                   <div className="user_registration_input mt-4">
   <div className="btn-group" role="group" aria-label="User Role">
-    <input
+  <input
       type="radio"
-      className="btn-check p-5"
+      className="btn-check"
       name="role"
       id="admin"
       autoComplete="off"
       value="admin"
       onChange={handleChange}
-      checked
+      checked={data.role === 'admin'} // Dynamically set checked
     />
     
     <label className="btn btn-outline-dark admin-radios" htmlFor="admin">
@@ -132,12 +132,13 @@ function AdminLogin() {
 
     <input
       type="radio"
-      className="btn-check admin-radios"
+      className="btn-check"
       name="role"
       id="staff"
       autoComplete="off"
       value="staff"
       onChange={handleChange}
+      checked={data.role === 'staff'} // Dynamically set checked
     />
     <label className="btn btn-outline-dark admin-radios" htmlFor="staff">
       Staff
