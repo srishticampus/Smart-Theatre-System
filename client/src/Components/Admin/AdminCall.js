@@ -11,6 +11,7 @@ import ViewReviews from "../Common/ViewReviews";
 import AdminAddStaff from "./AdminAddStaff";
 import AdminViwAllStaff from "./AdminViwAllStaff";
 import AdminEditStaff from "./AdminEditStaff";
+import AdminAddScreen from "./AdminAddScreen";
 
 
 function AdminCall({ type }) {
@@ -47,9 +48,12 @@ function AdminCall({ type }) {
             <AdminViwAllStaff  />
           ) : type === "admin-edit-staff" ? (
             <AdminEditStaff  />
-          ) : (
+          ) : 
+            type ==="admin-add-screen" ?(
+            <AdminAddScreen/>
+            ):
             ""
-          )}
+          }
         </div>
       </div>
     </div>
