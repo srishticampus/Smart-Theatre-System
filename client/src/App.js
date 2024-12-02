@@ -13,6 +13,8 @@ import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
 import UserNavbar from './Components/Navbars/UserNavbar';
+import AdminSidebar from './Components/Admin/AdminSidebar';
+import AdminAddScreen from './Components/Admin/AdminAddScreen';
 
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
@@ -41,37 +43,38 @@ function App() {
       <BrowserRouter basename="theatre">
         <ScrollToTop />
         <ToastContainer
-          autoClose={3000} 
-          hideProgressBar={true}  
-          position="top-right"  
+          autoClose={3000}
+          hideProgressBar={true}
+          position="top-right"
         />
         <div>
           <Routes>
             {/* Common routes */}
-            <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
-            <Route path="/contact" element={[<LandingNavbar/>,<ContactUs />,]}/>
-            <Route path="/aboutUs" element={[<LandingNavbar/>,<Aboutus/>]}/>
-           
+            <Route path="/" element={[<LandingNavbar />, <LandingPage />,]} />
+            <Route path="/contact" element={[<LandingNavbar />, <ContactUs />,]} />
+            <Route path="/aboutUs" element={[<LandingNavbar />, <Aboutus />]} />
 
 
 
-     {/* Admin Routes */}
-     <Route path='/admin-login' element={<AdminLogin/>} />
-     <Route path='/admin-dashboard' element={<AdminCall type='admin_dashboard' />} />
-     <Route path='/admin_view_users' element={<AdminCall type='admin_view_users' />} />
-     <Route path='/admin_add_staff' element={<AdminCall type='admin_add_staff' />} />
-     <Route path='/admin-view-staff' element={<AdminCall type='admin-view-staff' />} />
-     <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
+
+            {/* Admin Routes */}
+            <Route path='/admin-login' element={<AdminLogin />} />
+            <Route path='/admin-dashboard' element={<AdminCall type='admin_dashboard' />} />
+            <Route path='/admin_view_users' element={<AdminCall type='admin_view_users' />} />
+            <Route path='/admin_add_staff' element={<AdminCall type='admin_add_staff' />} />
+            <Route path='/admin-view-staff' element={<AdminCall type='admin-view-staff' />} />
+            <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
+            <Route path='/admin-add-screen' element={<AdminCall type='admin-add-screen' />} />
 
 
 
             {/* user */}
-            <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration/>]} />
+            <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration />]} />
             <Route path='/user-login' element={[<LandingNavbar />, <UserLogin />]} />
             <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
-            <Route path="/user-contact" element={[<UserNavbar/>,<UserContact />,]}/>
-            <Route path="/user-about" element={[<UserNavbar/>,<UserAboutus/>]}/>
-           {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
+            <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
+            <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
+            {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
            
 
@@ -82,11 +85,11 @@ function App() {
 
             <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
 
-{/* STaff */}
+            {/* STaff */}
 
-<Route path='/staff-home' element={<StaffMain type='staff-home' />} />
-<Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
-<Route path='/staff-edit-profile' element={<StaffMain type='staff-edit-profile' />} />
+            <Route path='/staff-home' element={<StaffMain type='staff-home' />} />
+            <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
+            <Route path='/staff-edit-profile' element={<StaffMain type='staff-edit-profile' />} />
 
 
 
