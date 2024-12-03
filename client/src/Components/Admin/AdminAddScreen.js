@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import "../../Assets/Styles/AdminAddScreen.css";
 
 const AdminAddScreen = () => {
-  // State to track the selected lounge
+
   const [selectedLounge, setSelectedLounge] = useState('gold');
-  // State to track whether the "Previous" button should be visible
   const [isPreviousVisible, setIsPreviousVisible] = useState(false);
 
-  // Function to handle lounge button click
   const handleLoungeClick = (lounge) => {
     setSelectedLounge(lounge); // Set the selected lounge to the clicked lounge
   };
