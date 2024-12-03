@@ -1,18 +1,54 @@
-.admin-view-screen-head{
+.admin-view-screen-head {
     color: #000;
-font-family: Lato;
-font-size: 36px;
-font-style: normal;
-font-weight: 700;
-line-height: 14px; 
-margin-top: 200px;
-margin-left: 100px;
-
-}
-.admin-view-screen-table{
-    
-    height: 300px;
-    width: 900px;
+    font-family: Lato;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 14px; 
+    margin-top: 100px;
+    margin-left: 100px;
+  }
+  
+  .admin-view-screen-table {
     margin-left: 50px;
     margin-top: 50px;
-}
+    overflow-x: auto;  /* Ensures table scrolls on small screens */
+    width: 100%;       /* Make sure the table takes full available width */
+  }
+  
+  .table {
+    width: 90%;  
+    height: 40vh;   
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .table th {
+    background-color: #f44336;  /* Set table header background */
+    color: white;
+  }
+  
+  .table td i {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .admin-view-screen-table {
+      margin-left: 10px;   /* Reduce margin for smaller screens */
+      margin-right: 10px;
+    }
+  
+    .table th, .table td {
+      font-size: 12px;   /* Adjust font size for small screens */
+    }
+  
+    .table td i {
+      font-size: 18px;   /* Adjust icon size for small screens */
+    }
+  }
+  

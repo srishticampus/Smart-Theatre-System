@@ -3,16 +3,15 @@ import "../../Assets/Styles/AdminAddShow.css";
 import ion_switch_inside from "../../Assets/Images/ion_switch_inside.png";
 
 function AdminAddShowtime() {
-    // State for managing which day is open
-    const [openDay, setOpenDay] = useState(null); // null means no day is open
 
-    // Toggle function to handle each day
+    const [openDay, setOpenDay] = useState(null); 
+
     const toggleAccordion = (day) => {
-        setOpenDay(openDay === day ? null : day); // If the same day is clicked, it closes, else it opens
+        setOpenDay(openDay === day ? null : day);
     };
 
     return (
-        <div >
+        <div>
             <p className='add-show-time-head'>Add Show Time</p>
             <div className='add-show-time-container'>
                 {/* Sunday Accordion */}
@@ -216,13 +215,13 @@ function AdminAddShowtime() {
                     )}
                 </div>
 
+                
                 {/* Wednesday Accordion */}
                 <div className='admin-add-showtime'>
                     {openDay !== 'Wednesday' && (
                         <button className='btn btn-secondary w-100 mb-4 d-flex justify-content-between' onClick={() => toggleAccordion('Wednesday')}>
                             Wednesday <span>&darr;</span>
                         </button>
-
                     )}
 
                     {openDay === 'Wednesday' && (
@@ -230,6 +229,7 @@ function AdminAddShowtime() {
                             <div>
                                 <p>Wednesday</p>
                             </div>
+                            {/* Time input fields for Wednesday */}
                             <div className="row d-flex align-items-center">
                                 <div className="col-sm-5">
                                     <input type="time" value="09:00" className='admin-showtime-space' />
@@ -274,6 +274,7 @@ function AdminAddShowtime() {
                                     <input type="time" value="01:30" className='admin-showtime-space' />
                                 </div>
                             </div>
+
                             <div className="d-flex justify-content-end gap-3 mt-2">
                                 <button className="btn btn-outline-danger">Save</button>
                                 <button className="btn btn-danger">Update</button>
@@ -281,8 +282,6 @@ function AdminAddShowtime() {
                         </div>
                     )}
                 </div>
-
-                {/* Thursday Accordion */}
                 <div className='admin-add-showtime'>
                     {openDay !== 'Thursday' && (
                         <button className='btn btn-secondary w-100 mb-4 d-flex justify-content-between' onClick={() => toggleAccordion('Thursday')}>
@@ -480,9 +479,10 @@ function AdminAddShowtime() {
 
                     )}
                 </div>
+
+       
                 <button className='btn btn-danger mt-4'>Next</button>
             </div>
-
         </div>
     );
 }
