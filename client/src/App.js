@@ -13,8 +13,8 @@ import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
 import UserNavbar from './Components/Navbars/UserNavbar';
-import AdminSidebar from './Components/Admin/AdminSidebar';
-import AdminAddScreen from './Components/Admin/AdminAddScreen';
+
+
 
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
@@ -65,6 +65,12 @@ function App() {
             <Route path='/admin-view-staff' element={<AdminCall type='admin-view-staff' />} />
             <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
             <Route path='/admin-add-screen' element={<AdminCall type='admin-add-screen' />} />
+            <Route path='/admin-view-screen' element={<AdminCall type='admin-view-screen'/>}/>
+            <Route path='/admin-view-lounge'element={<AdminCall type='admin-view-lounge'/>}/>
+            <Route path='admin-edit-screen' element={<AdminCall type='admin-edit-screen'/>} />
+            <Route path='/admin-add-show' element={<AdminCall type='admin-add-show'/>}/>
+            <Route path='/admin-view-show-time'element={<AdminCall type='admin-view-show-time'/>}/>
+            <Route path='/admin-edit-show-time' element={<AdminCall type='admin-edit-show-time'/>}/>
 
 
 

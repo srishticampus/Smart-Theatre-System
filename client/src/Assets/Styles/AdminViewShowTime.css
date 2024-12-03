@@ -1,0 +1,44 @@
+.admin-view-show-head{
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px; 
+    margin-top: 10px;
+    margin-left: 50px;
+}
+.admin-view-showcard{
+    width: 446px;
+}
+.admin-view-showtime-space{
+    margin-top: 20px;
+}
+.row .col-sm-2 {
+    display: flex;
+    justify-content: center;
+}
+.text-center {
+    font-size: 18px; 
+}
+.admin-view-showtime{
+    width: 446px;
+ }
+ .add-view-show-time-head{
+    color: #000;
+font-family: Lato;
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: 14px;
+margin-top: 100px;
+margin-left: 100px;
+}
+.view-show-time-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin-top: 20vh;
+}
