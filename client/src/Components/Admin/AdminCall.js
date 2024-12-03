@@ -12,7 +12,12 @@ import AdminAddStaff from "./AdminAddStaff";
 import AdminViwAllStaff from "./AdminViwAllStaff";
 import AdminEditStaff from "./AdminEditStaff";
 import AdminAddScreen from "./AdminAddScreen";
-
+import AdminViewScreen from "./AdminViewScreen";
+import AdminViewLounge from "./AdminViewLounge";
+import AdminEditScreen from "./AdminEditScreen";
+import AdminAddShow from "./AdminAddShow";
+import AdminViewShowTime from "./AdminViewShowTime";
+import AdminEditShowTime from "./AdminEditShowTime";
 
 function AdminCall({ type }) {
 
@@ -52,6 +57,26 @@ function AdminCall({ type }) {
             type ==="admin-add-screen" ?(
             <AdminAddScreen/>
             ):
+            type ==="admin-view-screen" ? (
+              <AdminViewScreen/>
+            ):
+            type==="admin-view-lounge" ?(
+
+              <AdminViewLounge/>
+            ):
+            type==="admin-edit-screen"?(
+              <AdminEditScreen/>
+            ):
+            type === "admin-add-show" ? (
+              <AdminAddShow/>
+            ):
+            type === "admin-view-show-time"?(
+              <AdminViewShowTime/>
+            ):
+            type === "admin-edit-show-time"?(
+              <AdminEditShowTime/>
+            ):
+
             ""
           }
         </div>

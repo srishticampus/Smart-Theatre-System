@@ -44,13 +44,13 @@ const AdminAddScreen = () => {
         <input type='text' placeholder='Screen Name' className='admin-add-screen-sectionone-field-screenname' />
         <div className="dropdown">
           <button className="btn dropdown-toggle admin-add-screen-dropdown-button" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown Button
+           Format
             <i className="bi bi-chevron-down ms-auto"></i>
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+            <li><a className="dropdown-item" href="#">2D</a></li>
+            <li><a className="dropdown-item" href="#">3D</a></li>
+            <li><a className="dropdown-item" href="#">IMAX</a></li>
           </ul>
         </div>
       </div>
