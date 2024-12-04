@@ -1,0 +1,46 @@
+.admin-view-lounge-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+    margin-top: 20vh;
+    margin-left: 1vw;
+    width: 400px;
+    margin-bottom: 50px;
+}
+.admin-view-lounge-screen-buttonone,.admin-view-lounge-screen-buttontwo,.admin-view-lounge-screen-buttonthree{
+    border-radius: 0;
+    width: 300px;
+    border: 1px solid;
+
+}
+.admin-view-buttonfour{
+    margin-left: 150px;
+}
+.admin-view-buttonfive{
+    margin-left: 200px;
+}
+.admin-view-buttonsix{
+    margin-left: 180px;
+}
+.admin-view-buttonseven{
+    margin-left: 210px;
+}
+.admin-view-buttoneight{
+    margin-left: 170px;
+}
+.admin-view-lounge-container{
+    margin-left: 100px;
+}
+.view-previous-button{
+    margin-right: 20px;
+}
+.admin-view-lounge-screen-buttonone.selected,
+.admin-view-lounge-screen-buttontwo.selected,
+.admin-view-lounge-screen-buttonthree.selected {
+    background-color: red;
+    color: white; 
+    border-color: red; 
+}

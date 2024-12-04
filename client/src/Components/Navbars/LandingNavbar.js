@@ -14,16 +14,16 @@ function LandingNavbar() {
       </div>
       <div className="landing_nav_links">
         <div className="landing_nav_login">
-          <Link to='/home' className="nav-link"><p>Home</p></Link>
+          <Link to='/' className="nav-link"><p>Home</p></Link>
         </div>
         <div className="landing_nav_login">
-          <Link to='/about' className="nav-link"><p>About</p></Link>
+          <Link to='/aboutUs' className="nav-link"><p>About</p></Link>
         </div>
         <div className="landing_nav_login">
           <Link to='/contact' className="nav-link"><p>Contact</p></Link>
         </div>
         <div className="landing_nav_login">
-          <Link to='/user_login' className="nav-link nav-button"><p className="nav-button-p">Login</p></Link>
+          <Link to='/user-login' className="nav-link nav-button"><p className="nav-button-p">Login</p></Link>
         </div>
       </div>
     </div>

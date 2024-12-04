@@ -10,3 +10,51 @@
 .fs-16 {
     font-size: 16px;
   }
+
+  .profile-label-staff{
+    font-size: 34px;
+    color:white;
+    font-weight: bold;
+    text-align: center;
+  }
+  .staff-profile-container{
+    display: flex;
+width: 80%;
+height: 1024px;
+margin-top:-200px;
+margin-left:100px;
+align-items: center;
+  }
+
+  .staff-view-profile-text{
+background-color: white !important;
+  }
+  .staff-profile-label{
+    color: rgba(0, 0, 0, 0.50);
+font-family: Lato;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+
+  }
+  .staff-profile-data{
+    color: #000;
+font-family: Lato;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+
+  }
+
+  .col-space {
+    padding-left: 15px; /* Adjust as needed */
+    padding-right: 15px; /* Adjust as needed */
+}
+.staff-profile-img{
+    width: 150px;
+height: 150px;
+flex-shrink: 0;
+    border-radius: 75px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,232 @@
+/* General Styles */
+.admin-edit-screen-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.admin-edit-screen-fieldone, 
+.admin-edit-screen-fieldtwo {
+    height: 37px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #BDBDBD;
+}
+
+.admin-edit-screen-fieldone {
+    width: 470px;
+    margin-right: 50px;
+}
+
+.admin-edit-screen-fieldtwo {
+    width: 470px;
+}
+
+.format-field {
+    margin-left: 140px;
+}
+
+.admin-edit-screen-dropdown {
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+    width: 470px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #BDBDBD;
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.admin-edit-screen-top-next-button {
+    margin-top: 30px;
+    width: 88%;
+}
+
+.admin-edit-screen-haedtwo {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.admin-edit-screen-sectiontwo-buttonone, 
+.admin-edit-screen-sectiontwo-buttontwo, 
+.admin-edit-screen-sectiontwo-buttonthree {
+    margin-left: 100px;
+    border-radius: 0;
+    width: 300px;
+    border: 1px solid;
+}
+
+.admin-edit-screen-sectiontwo-numberofseat,
+.admin-edit-screen-sectiontwo-amount,
+.admin-edit-screen-sectiontwo-seatnumber {
+    display: flex;
+    width: 470px;
+    padding: 10.5px 26px;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #BDBDBD;
+    margin-top: 40px;
+}
+
+.admin-edit-screen-sectiontwo-numberofseat::placeholder, 
+.admin-edit-screen-sectiontwo-amount::placeholder,
+.admin-edit-screen-sectiontwo-seatnumber::placeholder {
+    color: #000;
+}
+
+.admin-edit-screen-sectiontwo-buttonfour {
+    float: right;
+    margin-right: 100px;
+    width: 100px;
+    margin-top: 50px;
+}
+
+.admin-edit-screen-sectiontwo-buttonprev {
+    float: right;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.bg-red {
+    background-color: red ;
+    color: white;
+}
+.admin-edit-screen-sectiontwo-seatnumber {
+    display: flex;
+    width: 470px;
+    padding: 10.5px 26px;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #BDBDBD;
+    margin-top: 25px;
+    margin-left: 120px; 
+}
+
+
+@media(max-width: 1200px) {
+    .admin-edit-screen-sectiontwo-seatnumber {
+        width: 100%;
+        margin-left: 50px;  
+    }
+    .admin-edit-screen-fieldone,
+    .admin-edit-screen-fieldtwo {
+        width: 100%;
+    }
+    .admin-edit-screen-dropdown {
+        width: 100%;
+    }
+    .admin-edit-screen-top-next-button {
+        width: 100%;
+    }
+    .admin-edit-screen-sectiontwo-buttonone, 
+    .admin-edit-screen-sectiontwo-buttontwo, 
+    .admin-edit-screen-sectiontwo-buttonthree {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    .admin-edit-screen-sectiontwo-numberofseat,
+    .admin-edit-screen-sectiontwo-amount,
+    .admin-edit-screen-sectiontwo-seatnumber {
+        width: 100%;
+        margin-left: 0px;
+    }
+    .admin-edit-screen-sectiontwo-buttonfour {
+        width: 100%;
+        margin-right: 0;
+    }
+    .admin-edit-screen-sectiontwo-buttonprev {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 768px) {
+    .admin-edit-screen-head {
+        font-size: 28px;
+        margin-left: 20px;
+        margin-top: 50px;
+    }
+
+    .admin-edit-screen-fieldone,
+    .admin-edit-screen-fieldtwo {
+        width: 100%;
+    }
+
+    .admin-edit-screen-dropdown {
+        width: 100%;
+    }
+
+    .admin-edit-screen-top-next-button {
+        width: 100%;
+    }
+
+    .admin-edit-screen-sectiontwo-buttonone, 
+    .admin-edit-screen-sectiontwo-buttontwo, 
+    .admin-edit-screen-sectiontwo-buttonthree {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .admin-edit-screen-sectiontwo-numberofseat,
+    .admin-edit-screen-sectiontwo-amount,
+    .admin-edit-screen-sectiontwo-seatnumber {
+        width: 100%;
+    }
+
+    .admin-edit-screen-sectiontwo-buttonfour {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+@media(max-width: 600px) {
+    .admin-edit-screen-fieldone,
+    .admin-edit-screen-fieldtwo {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .admin-edit-screen-dropdown {
+        width: 100%;
+        padding: 10px;
+
+    }
+
+    .admin-edit-screen-top-next-button {
+        width: 100%;
+    }
+
+    .admin-edit-screen-sectiontwo-buttonone,
+    .admin-edit-screen-sectiontwo-buttontwo, 
+    .admin-edit-screen-sectiontwo-buttonthree {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .admin-edit-screen-sectiontwo-numberofseat,
+    .admin-edit-screen-sectiontwo-amount,
+    .admin-edit-screen-sectiontwo-seatnumber {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .admin-edit-screen-sectiontwo-buttonfour {
+        width: 100%;
+    }
+}

@@ -1,72 +1,184 @@
 import React, { useEffect, useState } from "react";
-import UserLandingBanner from "./UserLandingBanner";
-import UserVideoCards from "./UserVideoCards";
+import UserLandingBanner from "./UserHomeNowShowing";
+// import UserVideoCards from "./UserVideoCards";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../Constants/BaseUrl";
-import SubscriptionBanner from "./SubscriptionBanner";
-import GenreCards from "./GenreCards";
+import { ViewById } from "../../Services/CommonServices";
+import { toast } from "react-toastify";
+import { IMG_BASE_URL } from '../../Services/BaseURL';
+import "../../Assets/Styles/LandingPage.css";
+import logo from "../../Assets/Images/Vector.png";
+import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import film1 from '../../Assets/Images/film1.png';
+import film2 from '../../Assets/Images/film2.png';
+import film3 from '../../Assets/Images/film3.png';
+import film4 from '../../Assets/Images/film4.png';
+import film5 from '../../Assets/Images/film5.png';
+import tamil from '../../Assets/Images/tamil.jpg';
+import telugu from '../../Assets/Images/telugu.jpg';
+import film6 from '../../Assets/Images/film6.png';
+import FooterLandingPage from "../Footers/FooterLandingPage";
 
+
+function Carousel({ cards, groupedCards }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % groupedCards.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex - 1 + groupedCards.length) % groupedCards.length);
+  };
+
+  return (
+    <div className="container mt-5">
+      <div id="carouselExampleIndicators2" className="carousel slide" data-ride="carousel">
+        <div className="carousel-inner">
+          {groupedCards.map((group, index) => (
+            <div
+              key={index}
+              className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
+            >
+              <div className="row">
+                {/* Previous Button */}
+                <button
+                  className="btn btn-primary mb-3 mr-1 carousel-control-prev"
+                  onClick={prevSlide}
+                >
+                  <i className="fa fa-arrow-left "></i>
+                </button>
+                {/* Cards */}
+                {group.map((card) => (
+                  <div key={card.id} className="col-sm-2 mb-3">
+                    <div className="card BootstrapCard">
+                      <img className="img-fluid" src={card.img} alt={`movie ${card.id}`} />
+                    </div>
+                  </div>
+                ))}
+                {/* Next Button */}
+                <button
+                  className="btn btn-primary mb-3 carousel-control-next"
+                  onClick={nextSlide}
+                >
+                  <i className="fa fa-arrow-right "></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 function UserHome() {
+
+
+  const cards = [
+    { id: 1, img: film1 },
+    { id: 2, img: film2 },
+    { id: 3, img: film3 },
+    { id: 4, img: film4 },
+    { id: 5, img: film5 },
+    { id: 6, img: film6 },
+    { id: 6, img: tamil },
+    { id: 7, img: telugu },
+  ];
+
+  // Group cards into sets of 6
+  const groupedCards = [];
+  for (let i = 0; i < cards.length; i += 6) {
+    groupedCards.push(cards.slice(i, i + 6));
+  }
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("userId") == null) {
+    if (localStorage.getItem("user") == null) {
       navigate("/");
     }
   });
 
-  const id = localStorage.getItem("userId");
+  const id = localStorage.getItem("user");
   const [userDetails, setUserDetails] = useState({});
   const [genre, setGenre] = useState([]);
 
-  useEffect(() => {
-    axiosInstance
-      .post(`/viewUserById/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          setUserDetails(res.data.data);
-          setGenre(res.data.data.preferredGenre);
+ 
+  const fetchData = async () => {
+    try {
+        const result = await ViewById('viewUserById', id);
+        if (result.success) {
+          setUserDetails(result.user||null);
+       
         } else {
-          console.log("Failed to fetch cast data");
+            toast.error(result.message);
         }
-      })
-      .catch(() => {
-        console.log("Failed to fetch cast data");
-      });
-  }, []);
+    } catch (error) {
+        toast.error('An unexpected error occurred during Data View');
+    }
+};
+
+useEffect(() => {
+    fetchData();
+}, []);
+
+ 
+ 
+ 
+
 
   return (
     <div>
-      <UserLandingBanner />
+      <UserLandingBanner className=' userLandingBanner'/>
+    
+    
 
-      <UserVideoCards title="Recently Played" />
-      {/* <GenreCall/> */}
-      <div className="container">
-        <div className="row">
-          {genre.length ? <h4 className="mt-3 text-light">Our Genres</h4> : ""}
-          {genre.length
-            ? genre.map((genre) => {
-                return (
-                  <div className="col-3">
-                    <GenreCards genre={genre} />
-                  </div>
-                );
-              })
-            : ""}
+      <div className="landing-sec2 ">
+        <p className="landing-div2 mt-5 mb-5">Now Showing movies</p>
+        <Carousel cards={cards} groupedCards={groupedCards} />
+      </div>
+
+      <div className="landing-sec3">
+        <p className="key_features">KEY FEATURES</p>
+        <p className="All_You_Need">All You Need for the Perfect Movie Experience</p>
+        <div className="container" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+          {/* Key features cards */}
+          <div className="card Sec3_Cards" style={{ flex: '1 1 22%' }}>
+            <div className="card-header Sec3_Cards_header">Book Tickets</div>
+            <p className="Sec3_Cards_Sec_header">"Secure Your Seat in Seconds"</p>
+            <div className="card-body Sec3_card_body"><p>Choose your favorite show, select your seats, and get ready for an incredible movie night—all without standing in line!</p></div>
+          </div>
+          <div className="card Sec3_Cards" style={{ flex: '1 1 22%' }}>
+            <div className="card-header Sec3_Cards_header">Order Snacks</div>
+            <p className="Sec3_Cards_Sec_header">"Snacks, Always Ready"</p>
+            <div className="card-body Sec3_card_body"><p>Pre-order your favorite movie snacks directly from the app. From popcorn to drinks, so you can enjoy the show.</p></div>
+          </div>
+          <div className="card Sec3_Cards" style={{ flex: '1 1 22%' }}>
+            <div className="card-header Sec3_Cards_header">Reserve Parking</div>
+            <p className="Sec3_Cards_Sec_header">"Park with Ease, Every Time"</p>
+            <div className="card-body Sec3_card_body"><p>Say goodbye to last-minute parking stress! Reserve your parking space in advance and ensure a smooth arrival.</p></div>
+          </div>
+          <div className="card Sec3_Cards" style={{ flex: '1 1 22%' }}>
+            <div className="card-header Sec3_Cards_header">Join Queue Slot</div>
+            <p className="Sec3_Cards_Sec_header">"Don't Miss Out"</p>
+            <div className="card-body Sec3_card_body"><p>If tickets are fully booked, simply reserve a queue slot to hold your place in line. So you never miss a show.</p></div>
+          </div>
         </div>
       </div>
-      <UserVideoCards title="For You" />
-      <UserVideoCards title="Top 10" />
-      <UserVideoCards title="New Releases" isSmall />
-      <UserVideoCards title="Action" isSmall />
-      <UserVideoCards title="Drama" isSmall />
-      <UserVideoCards title="Comedy" isSmall />
-      <UserVideoCards title="Horror" isSmall />
-      <UserVideoCards title="Romantic" isSmall />
-      <UserVideoCards title="Documentary" isSmall />
-      {userDetails.paymentStatus == false ? <SubscriptionBanner /> : ""}
+
+      <div className="landing_sec_4">
+        <p className="landing_sec_4_head mt-5 mb-5">Coming Soon movies</p>
+        <Carousel cards={cards} groupedCards={groupedCards} />
+      </div>
+      <div className="landing_sec_5">
+      <FooterLandingPage />
+      </div>
+     
+
+
     </div>
+
+
+
   );
 }
 

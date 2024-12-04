@@ -10,9 +10,12 @@ import LandingNavbar from './Components/Navbars/LandingNavbar'
 import LandingPage from './Components/Common/LandingPage'
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
+import Aboutus from './Components/Common/Aboutus';
+import UserNavbar from './Components/Navbars/UserNavbar';
+
+
+
 // import ForgotPassword from './Components/User/ForgotPassword'
-// import UserLogin from './Components/User/UserEditProfile'
-// import UserHome from './Components/User/UserHome'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
 // import UserAddReview from './Components/User/UserAddReview'
 // import UserEditProfile from './Components/User/UserEditProfile'
@@ -26,6 +29,9 @@ import Footer from './Components/Footers/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import UserLogin from './Components/User/UserLogin';
 import StaffMain from './Components/Staff/StaffMain';
+import UserHome from './Components/User/UserHome';
+import UserContact from './Components/User/UserContact';
+import UserAboutus from './Components/User/UserAboutUs';
 function App() {
   return (
     <div className="App">
@@ -33,33 +39,46 @@ function App() {
       <BrowserRouter basename="theatre">
         <ScrollToTop />
         <ToastContainer
-          autoClose={3000} 
-          hideProgressBar={true}  
-          position="top-right"  
+          autoClose={3000}
+          hideProgressBar={true}
+          position="top-right"
         />
         <div>
           <Routes>
             {/* Common routes */}
-            <Route path="/" element={[<LandingNavbar />, <LandingPage />, ]} />
-            <Route path="/ContactUs" element={[<LandingNavbar/>,<ContactUs />,]}/>
+            <Route path="/" element={[<LandingNavbar />, <LandingPage />,]} />
+            <Route path="/contact" element={[<LandingNavbar />, <ContactUs />,]} />
+            <Route path="/aboutUs" element={[<LandingNavbar />, <Aboutus />]} />
 
 
-     {/* Admin Routes */}
-     <Route path='/admin-login' element={<AdminLogin/>} />
-     <Route path='/admin-dashboard' element={<AdminCall type='admin_dashboard' />} />
-     <Route path='/admin_view_users' element={<AdminCall type='admin_view_users' />} />
-     <Route path='/admin_add_staff' element={<AdminCall type='admin_add_staff' />} />
-     <Route path='/admin-view-staff' element={<AdminCall type='admin-view-staff' />} />
-     <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
+
+
+            {/* Admin Routes */}
+            <Route path='/admin-login' element={<AdminLogin />} />
+            <Route path='/admin-dashboard' element={<AdminCall type='admin_dashboard' />} />
+            <Route path='/admin_view_users' element={<AdminCall type='admin_view_users' />} />
+            <Route path='/admin_add_staff' element={<AdminCall type='admin_add_staff' />} />
+            <Route path='/admin-view-staff' element={<AdminCall type='admin-view-staff' />} />
+            <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
+            <Route path='/admin-add-screen' element={<AdminCall type='admin-add-screen' />} />
+            <Route path='/admin-view-screen' element={<AdminCall type='admin-view-screen'/>}/>
+            <Route path='/admin-view-lounge'element={<AdminCall type='admin-view-lounge'/>}/>
+            <Route path='/admin-edit-screen' element={<AdminCall type='admin-edit-screen'/>} />
+            <Route path='/admin-add-show' element={<AdminCall type='admin-add-show'/>}/>
+            <Route path='/admin-view-show-time'element={<AdminCall type='admin-view-show-time'/>}/>
+            <Route path='/admin-edit-show-time' element={<AdminCall type='admin-edit-show-time'/>}/>
 
 
 
             {/* user */}
-            <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration/>]} />
-            <Route path='/user_login' element={[<LandingNavbar />, <UserLogin />]} />
-           {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
+            <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration />]} />
+            <Route path='/user-login' element={[<LandingNavbar />, <UserLogin />]} />
+            <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
+            <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
+            <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
+            {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
-            <Route path='/user_home' element={[<UserNavbar />, <UserHome />]} />
+           
 
             <Route path='/user_add_complaint' element={[<UserNavbar />, <UserAddComplaints />]} />
 
@@ -68,9 +87,11 @@ function App() {
 
             <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
 
-{/* STaff */}
+            {/* STaff */}
 
-<Route path='/staff-home' element={<StaffMain type='staff-home' />} />
+            <Route path='/staff-home' element={<StaffMain type='staff-home' />} />
+            <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
+            <Route path='/staff-edit-profile' element={<StaffMain type='staff-edit-profile' />} />
 
 
 
