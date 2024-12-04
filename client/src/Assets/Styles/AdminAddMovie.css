@@ -1,0 +1,183 @@
+.admin-add-movie-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+}
+
+.admin-add-movie-moviename {
+    display: flex;
+    width: 370px;
+    margin-top: 10px;
+    height: 37px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+}
+
+.admin-add-movie-card {
+    padding: 50px;
+    max-width: 850px;
+}
+
+/* .admin-add-movie-dropdown-language {
+    display: flex;
+    padding: 10px 22px 10px 10px;
+    align-items: center;
+    max-width: 310px;
+    gap: 210px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+}*/
+
+.admin-add-movie-dropdown-screen {
+    display: flex;
+    padding: 10px 22px 10px 10px;
+    align-items: center;
+    max-width: 320px;
+    gap: 210px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+}
+
+.admin-add-movie-dropdown {
+    display: flex;
+    padding: 10px 22px 10px 10px;
+    align-items: center;
+    max-width: 320px;
+    gap: 230px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+}
+
+
+@media (max-width: 576px) {
+    .d-flex {
+        flex-direction: column;
+    }
+    .admin-add-movie-dropdown {
+        max-width: 100%;
+    }
+}
+
+.admin-add-movie-dropdown-movie {
+    display: flex;
+    padding: 10px 22px 10px 10px;
+    align-items: center;
+    max-width: 320px;
+    gap: 210px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+}
+
+.admin-add-movie-startdate {
+    width: 160px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ADADAD;
+}
+
+.admin-add-movie-enddate {
+    width: 160px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.admin-add-movie-duration {
+    display: flex;
+    width: 370px;
+    margin-top: 10px;
+    height: 37px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+}
+
+.test {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    padding: 10px;
+}
+
+.admin-add-show-textarea {
+    width: 100%; 
+    max-width: 680px; 
+    background: #ADADAD;
+    height: 100px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    padding: 10px; 
+    resize: vertical;
+}
+.admin-add-movie-card-two {
+    color: #000;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 15px;
+    max-width: 755px;  
+    width: 100%;    
+    margin-top: 20px;   
+}
+
+
+.admin-add-movie-dropdown-cast{
+    display: flex;
+    padding: 10px 22px 10px 10px;
+    align-items: center;
+    max-width: 220px;
+    gap: 110px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    margin-top: 10px;
+}
+.admin-add-movie-dropdown-role{
+    display: flex;
+    padding: 10px 22px 10px 10px;
+    align-items: center;
+    max-width: 220px;
+    gap: 110px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    margin-top: 10px;
+}
+.admin-add-movie-dropdown-role:hover,
+.admin-add-movie-dropdown-cast:hover,
+.admin-add-movie-dropdown-movie:hover,
+.admin-add-movie-dropdown-screen:hover,
+.admin-add-movie-dropdown:hover {
+    background: #ADADAD;
+}
+.cneter-add-movie-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+.admin-add-movie-addmorebutton{
+    border-radius: 25px;
+    width: 150px;
+    margin-top: 10px;
+}
+.admin-add-movie-addbutton{
+    width: 150px;
+    margin-top: 20px;
+}
