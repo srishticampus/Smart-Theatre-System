@@ -1,6 +1,5 @@
 
 import './App.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'remixicon/fonts/remixicon.css';
@@ -23,12 +22,9 @@ import UserNavbar from './Components/Navbars/UserNavbar';
 import UserRegistration from './Components/User/UserRegistration'
 // import UserNavbar from './Components/Navbars/UserNavbar'
 // import UserProfile from './Components/User/UserProfile'
-
-
 import AdminLogin from './Components/Admin/AdminLogin'
 import AdminDashboard from './Components/Admin/AdminDashboard'
 import AdminCall from './Components/Admin/AdminCall'
-
 import Footer from './Components/Footers/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import UserLogin from './Components/User/UserLogin';

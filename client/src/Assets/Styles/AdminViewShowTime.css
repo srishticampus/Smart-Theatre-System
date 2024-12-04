@@ -39,6 +39,6 @@ margin-left: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60vh;
-    margin-top: 20vh;
+    /* height: 60vh; */
+    margin-top: 10vh;
 }
