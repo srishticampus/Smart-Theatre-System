@@ -12,7 +12,10 @@ function AdminAddShowtime() {
 
     return (
         <div>
-            <p className='add-show-time-head'>Add Show Time</p>
+            <div className='new' >
+                 <p className='add-show-time-head'>Add Show Time</p>
+            </div>
+           
             <div className='add-show-time-container'>
                 {/* Sunday Accordion */}
                 <div className='admin-add-showtime'>
@@ -24,7 +27,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Sunday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Sunday</p>
                             </div>
@@ -93,7 +96,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Monday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Monday</p>
                             </div>
@@ -159,7 +162,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Tuesday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Tuesday</p>
                             </div>
@@ -225,7 +228,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Wednesday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Wednesday</p>
                             </div>
@@ -291,7 +294,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Thursday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Thursday</p>
                             </div>
@@ -357,7 +360,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Friday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Friday</p>
                             </div>
@@ -423,7 +426,7 @@ function AdminAddShowtime() {
                     )}
 
                     {openDay === 'Saturday' && (
-                        <div className='card admin-add-showcard p-3'>
+                        <div className='card admin-add-showcard p-3 mb-3'>
                             <div>
                                 <p>Saturday</p>
                             </div>
