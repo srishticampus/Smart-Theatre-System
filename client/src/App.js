@@ -1,6 +1,5 @@
 
 import './App.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'remixicon/fonts/remixicon.css';
@@ -11,10 +10,8 @@ import LandingNavbar from './Components/Navbars/LandingNavbar'
 import LandingPage from './Components/Common/LandingPage'
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
-
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserLogin from './Components/User/UserEditProfile'
-
 // import UserHome from './Components/User/UserHome'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
 // import UserAddReview from './Components/User/UserAddReview'
@@ -22,12 +19,9 @@ import ContactUs from './Components/Common/ContactUs';
 import UserRegistration from './Components/User/UserRegistration'
 // import UserNavbar from './Components/Navbars/UserNavbar'
 // import UserProfile from './Components/User/UserProfile'
-
-
 import AdminLogin from './Components/Admin/AdminLogin'
 import AdminDashboard from './Components/Admin/AdminDashboard'
 import AdminCall from './Components/Admin/AdminCall'
-
 import Footer from './Components/Footers/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import UserLogin from './Components/User/UserLogin';
