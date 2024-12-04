@@ -7,10 +7,10 @@ const AdminAddScreen = () => {
   const [isPreviousVisible, setIsPreviousVisible] = useState(false);
 
   const handleLoungeClick = (lounge) => {
-    setSelectedLounge(lounge); // Set the selected lounge to the clicked lounge
+    setSelectedLounge(lounge);
   };
 
-  // Function to handle next button click
+
   const handleNextClick = () => {
     if (selectedLounge === 'gold') {
       setSelectedLounge('silver');
@@ -19,11 +19,11 @@ const AdminAddScreen = () => {
     } else if (selectedLounge === 'platinum') {
       setSelectedLounge('gold');
     }
-    // Make the "Previous" button visible after clicking "Next"
+
     setIsPreviousVisible(true);
   };
 
-  // Function to handle previous button click
+
   const handlePreviousClick = () => {
     if (selectedLounge === 'gold') {
       setSelectedLounge('platinum');
