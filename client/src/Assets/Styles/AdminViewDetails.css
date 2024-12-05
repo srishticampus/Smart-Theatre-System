@@ -1,0 +1,136 @@
+.admin-view-details-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    /* Optional: Adds some spacing from the left */
+}
+
+.admin-details-card {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    width: 100%;
+    /* Ensure the card fills its container or define a fixed width like 200px */
+    max-width: 300px;
+    /* Optionally set max width */
+    flex-shrink: 0;
+    /* Prevent card from shrinking */
+}
+
+.movie-head {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-left: 20px;
+    /* Optional: Adds some spacing from the left */
+}
+
+.admin-view-details-background {
+    display: flex;
+    background-color: #000;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+ 
+}
+
+.movie-details-2d-3d {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 20px;
+    width: 66px;
+    padding: 5px;
+    background-color: #ffffff31;
+}
+
+.movie-details-tamil {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 20px;
+    width: 110px;
+    padding: 5px;
+    background-color: #ffffff31;
+}
+
+.movie-details-genre {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 20px;
+}
+
+.movie-details-time {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-left: 20px;
+}
+
+.movie-details-description {
+    color: #000;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.movie-details-para{
+    color: #000;
+font-family: Lato;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 37px;
+}
+.movie-details-cast{
+    color: #000;
+font-family: Lato;
+font-size: 16px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.cast-name{
+    color: #000;
+font-family: Lato;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+.cast-designation{
+    color: #666;
+font-family: Lato;
+font-size: 11px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: left;
+}
+
