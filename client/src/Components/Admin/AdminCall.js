@@ -22,6 +22,9 @@ import AdminAddMovie from "./AdminAddMovie";
 import AdminEditMovie from "./AdminEditMovie";
 import AdminViewMovie from "./AdminViewMovie";
 import AdminViewDetailsMovie from "./AdminViewDetailsMovie";
+import AdminAddFood from "./AdminAddFood";
+import AdminViewFood from "./AdminViewFood";
+import AdminEditFood from "./AdminEditFood";
 
 function AdminCall({ type }) {
 
@@ -91,6 +94,15 @@ function AdminCall({ type }) {
              ):
              type === "admin-view-details" ? (
               <AdminViewDetailsMovie/>
+             ):
+             type === "admin-add-food" ? (
+              <AdminAddFood/>
+             ):
+             type === "admin-view-food" ? (
+              <AdminViewFood/>
+             ):
+             type === "admin-edit-food" ? (
+              <AdminEditFood/>
              ):
 
              ""
