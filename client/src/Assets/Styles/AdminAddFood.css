@@ -1,0 +1,63 @@
+.admin-add-food-category,
+.admin-add-food-category:hover {
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    padding-right: 25px;
+    /* Add padding on the right to make space for the icon */
+    text-align: left;
+    /* Ensure the text stays on the left */
+}
+
+.admin-add-food-category::after {
+    position: absolute;
+    right: 10px;
+    /* Move the caret to the right */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.admin-add-food-veg,
+.admin-add-food-veg:hover {
+    width: 100px;
+    background: #ADADAD;
+    margin-right: 27px;
+}
+
+.admin-add-food-nonveg,
+.admin-add-food-nonveg:hover {
+    background: #ADADAD;
+}
+
+.admin-food-uploadimg {
+    background: #ADADAD;
+    width: 370px;
+}
+
+.admin-add-food-amount {
+    background: #ADADAD;
+    width: 470px;
+}
+
+.admin-add-food-card {
+    max-width: 800px;
+    margin-top: 100px;
+}
+
+.admin-add-food-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+}
+.admin-add-food-field{
+    border-radius: 5px;
+border: 1px solid #000;
+background: #ADADAD;
+width: 300px;
+padding: 5px;
+margin-top: 50px;
+}

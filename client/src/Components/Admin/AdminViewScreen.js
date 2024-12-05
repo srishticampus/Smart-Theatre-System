@@ -9,7 +9,7 @@ function AdminViewScreen() {
       <div className="row">
         <div className="col-sm-12">
           <div className='admin-view-screen-table'>
-            <table className='table table-responsive admin-view-screen-table table-bordered'>
+            <table className='table admin-view-table table-responsive admin-view-screen-table table-bordered'>
               <thead>
                 <tr className='bg-danger text-white'>
                   <th>SI No:</th>
@@ -24,7 +24,7 @@ function AdminViewScreen() {
                   <td>1</td>
                   <td>Screen 1</td>
                   <td>2D</td>
-                  <td>64ft × 101.6ft</td>
+                  <td>64ft &times; 101.6ft</td>
                   <td>
                     <span><i className="fa-solid fa-eye" style={{ color: '#f10404' }}></i></span>
                     <span><i className="fa-regular fa-pen-to-square" style={{ color: '#e90c0c' }}></i></span>
@@ -35,7 +35,7 @@ function AdminViewScreen() {
                   <td>2</td>
                   <td>Screen 2</td>
                   <td>3D</td>
-                  <td>64ft × 101.6ft</td>
+                  <td>64ft &times; 101.6ft</td>
                   <td>
                     <span><i className="fa-solid fa-eye" style={{ color: '#f10404' }}></i></span>
                     <span><i className="fa-regular fa-pen-to-square" style={{ color: '#e90c0c' }}></i></span>
@@ -46,7 +46,7 @@ function AdminViewScreen() {
                   <td>3</td>
                   <td>Screen 3</td>
                   <td>IMAX</td>
-                  <td>64ft × 101.6ft</td>
+                  <td>64ft &times; 101.6ft</td>
                   <td>
                     <span><i className="fa-solid fa-eye" style={{ color: '#f10404' }}></i></span>
                     <span><i className="fa-regular fa-pen-to-square" style={{ color: '#e90c0c' }}></i></span>
@@ -57,7 +57,7 @@ function AdminViewScreen() {
                   <td>4</td>
                   <td>Screen 4</td>
                   <td>2D</td>
-                  <td>64ft × 101.6ft</td>
+                  <td>64ft &times; 101.6ft</td>
                   <td>
                     <span><i className="fa-solid fa-eye" style={{ color: '#f10404' }}></i></span>
                     <span><i className="fa-regular fa-pen-to-square" style={{ color: '#e90c0c' }}></i></span>

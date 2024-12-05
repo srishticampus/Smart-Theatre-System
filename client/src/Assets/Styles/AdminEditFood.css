@@ -1,0 +1,73 @@
+.admin-edit-food-category,
+.admin-edit-food-category:hover {
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    padding-right: 25px;
+    text-align: left;
+}
+
+.admin-edit-food-category::after {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.admin-edit-food-veg,
+.admin-edit-food-veg:hover {
+    width: 100px;
+    background: #ADADAD;
+    margin-right: 27px;
+}
+
+.admin-edit-food-nonveg,
+.admin-edit-food-nonveg:hover {
+    background: #ADADAD;
+}
+
+.admin-food-uploadimg {
+    background: #ADADAD;
+    width: 370px;
+}
+.admin-edit-food-amountone{
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background: #ADADAD;
+    width: 370px;
+    height: 35px;
+    border-radius: 5px;
+    border: 0;
+}
+.admin-edit-food-amount {
+    background: #ADADAD;
+    width: 370px;
+}
+
+.admin-edit-food-card {
+    max-width: 800px;
+    margin-top: 100px;
+}
+
+.admin-edit-food-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+}
+
+.admin-edit-food-field {
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    width: 300px;
+    padding: 5px;
+    margin-top: 50px;
+}
