@@ -1,27 +1,31 @@
-.admin-view-details-head {
-    color: #000;
-    font-family: Lato;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 37px;
-    margin-left: 20px;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    /* Optional: Adds some spacing from the left */
+.admin-view-details-background {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+    position: relative; /* Ensure relative positioning for child elements */
+}
+
+.background-img {
+    position: absolute;  /* Position the image behind the content */
+    top: 0;
+    left: 0;
+    width: 100%;  /* Ensure it covers the full width of the container */
+    height: 100%; /* Ensure it covers the full height of the container */
+    object-fit: cover; /* Ensure the full image is shown inside the container */
+    z-index: -1; /* Make sure the image stays behind the other content */
 }
 
 .admin-details-card {
     border: 0;
     display: flex;
     flex-direction: column;
-    background-color: #000;
+    background-color: transparent; 
     width: 100%;
-    /* Ensure the card fills its container or define a fixed width like 200px */
+    height: 500px;
     max-width: 300px;
-    /* Optionally set max width */
     flex-shrink: 0;
-    /* Prevent card from shrinking */
 }
 
 .movie-head {
@@ -32,17 +36,6 @@
     font-weight: 800;
     line-height: normal;
     margin-left: 20px;
-    /* Optional: Adds some spacing from the left */
-}
-
-.admin-view-details-background {
-    display: flex;
-    background-color: #000;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 30px;
- 
 }
 
 .movie-details-2d-3d {
@@ -99,38 +92,51 @@
     font-weight: 800;
     line-height: normal;
 }
-.movie-details-para{
-    color: #000;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
-font-weight: 700;
-line-height: 37px;
-}
-.movie-details-cast{
-    color: #000;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 800;
-line-height: normal;
-}
-.cast-name{
-    color: #000;
-font-family: Lato;
-font-size: 12px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
 
+.movie-details-para {
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
 }
-.cast-designation{
+
+.movie-details-cast {
+    color: #000;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.cast-name {
+    color: #000;
+    font-family: Lato;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cast-designation {
     color: #666;
+    font-family: Lato;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: left;
+}
+.admin-details-movie-data{
+    margin-top: 150px;
+}
+.admin-view-details-head{
+    color: #000;
 font-family: Lato;
-font-size: 11px;
+font-size: 36px;
 font-style: normal;
 font-weight: 700;
-line-height: normal;
-text-align: left;
+line-height: 37px; 
 }
-
