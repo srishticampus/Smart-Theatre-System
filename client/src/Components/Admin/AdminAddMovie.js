@@ -42,7 +42,7 @@ function AdminAddMovie() {
 
 
                     </div>
-                    <div className="d-flex flex-column flex-sm-row justify-content-evenly mt-3">
+                    <div className="d-flex flex-column flex-sm-row justify-content-evenly mt-2">
                         <div class="dropdown">
                             <button type="button" class="btn dropdown-toggle admin-add-movie-dropdown" data-bs-toggle="dropdown">
                                 Language
@@ -99,7 +99,7 @@ function AdminAddMovie() {
                         </div>
                     </div>
 
-                    <div className='d-flex justify-content-evenly mt-3'>
+                    <div className='d-flex justify-content-evenly mt-2'>
                         <input type='text' placeholder='Duration' className='admin-add-movie-duration'></input>
                         <label htmlFor="video" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px', width: '250px' }}>
                             Upload Trailer

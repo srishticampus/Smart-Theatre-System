@@ -18,8 +18,8 @@
 }
 
 .admin-add-movie-card {
-    padding: 50px;
-    max-width: 850px;
+    padding: 10px;
+    max-width: 800px;
 }
 
 /* .admin-add-movie-dropdown-language {
@@ -129,8 +129,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    padding: 15px;
-    max-width: 755px;  
+    padding: 5px;
+    max-width:680px;  
     width: 100%;    
     margin-top: 20px;   
 }
@@ -170,7 +170,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    /* height: 90vh; */
 }
 .admin-add-movie-addmorebutton{
     border-radius: 25px;
