@@ -12,7 +12,7 @@ import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
 import UserNavbar from './Components/Navbars/UserNavbar';
-
+import UserBookTickets from './Components/User/UserBookTickets';
 
 
 // import ForgotPassword from './Components/User/ForgotPassword'
@@ -86,6 +86,7 @@ function App() {
             <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
+            <Route path='/user-book-ticket' element={[<UserNavbar/>,<UserBookTickets/>]}/>
             {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
            
