@@ -1,0 +1,130 @@
+.user-ticket-payment-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+.user-ticket-payment-head-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.user-ticket-payment-card-header {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.user-ticket-payment-card-para {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user-ticket-payment-card-paratwo {
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.user-ticket-paymnet-card {
+    width: 500px;
+    padding: 30px;
+    height: auto;
+}
+
+.user-ticket-payment-cardtwo {
+    width: 500px;
+    padding: 30px;
+    height: auto;
+}
+
+.user-ticket-payment-seat {
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-ticket-payment-seat-sub {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Lato;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-ticket-payment-parafees {
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-ticket-payment-total {
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-book-ticket-payment-heading {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+}
+
+.user-book-ticket-cardtwo{
+ padding: 30px;
+}
+
+.payment-details-style {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+
+}
+.user-ticket-payment-cardtwo {
+    width: 100%;            
+    max-width: 500px;       
+    padding: 30px;
+    height: auto;
+}
+.payment-card-number{
+    min-width: 500px;
+}
+.payment-expiry-date{
+    min-width: 500px;
+}
+.payment-cvv-code{
+    min-width: 500px;
+}
+.payment-name-on-card{
+    min-width: 500px;
+}

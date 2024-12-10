@@ -13,6 +13,10 @@ import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
 import UserNavbar from './Components/Navbars/UserNavbar';
 import UserBookTickets from './Components/User/UserBookTickets';
+import UserBookTicketSeatCount from './Components/User/UserBookTicketSeatCount';
+import UserBookTicketSelectSeat from './Components/User/UserBookTicketSelectSeat';
+import UserBookTicketSelectedSeat from './Components/User/UserBookTicketSelectedSeat';
+import UserBookTicketsPayment from './Components/User/UserBookTicketsPayment';
 
 
 // import ForgotPassword from './Components/User/ForgotPassword'
@@ -87,6 +91,17 @@ function App() {
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
             <Route path='/user-book-ticket' element={[<UserNavbar/>,<UserBookTickets/>]}/>
+            <Route path='/user-book-ticket-seat' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
+            <Route path='/user-book-ticket-select-seat' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
+            <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
+            <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
+            
+
+
+
+
+
+
             {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
            
