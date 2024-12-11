@@ -54,7 +54,6 @@ else   if (!emailRegex.test(data.email)) {
           console.log(result);
           localStorage.setItem("user",result.user._id);
 
-          toast.success('Login successful!');
           navigate('/user-home');
 
 
