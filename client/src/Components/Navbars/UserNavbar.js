@@ -137,7 +137,7 @@ const handleLogin = async (e) => {
             console.log(result);
 
             toast.success('Profile Updated successfully !');
-            navigate('/cust-home');
+            navigate('/user-home');
 
 
         } else {
@@ -300,7 +300,7 @@ const handleLogin = async (e) => {
             </tbody>
           </table>
           <button
-    className="button_bg"   onClick={openEditModal}>Edit</button>
+    className="bg_red"   onClick={openEditModal}>Edit</button>
         </div>
        
       </div>
@@ -417,10 +417,10 @@ const handleLogin = async (e) => {
 
         {/* Footer Section */}
         <div className="modal-footer">
-          <button type="button" className="btn btn-primary" onClick={handleLogin}>Save</button>
+          <button type="button" className="bg_red" onClick={handleLogin}>Save</button>
           <button 
             type="button" 
-            className="btn btn-secondary" 
+            className="bg_red_outline" 
             onClick={closeEditModal}
           >
             Close

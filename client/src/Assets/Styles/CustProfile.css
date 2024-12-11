@@ -82,4 +82,26 @@
     justify-content: flex-end;
     gap: 0.5rem;
   }
-  
+  .bg_red {
+    border-radius: 5px;
+background: #CA0000;
+    width: 131px;
+    padding: 7px 10px;
+    justify-content: center;
+    border: 1px solid #CA0000;
+    align-items: center;
+    gap: 10px;
+  }
+  .bg_red_outline {
+    border: 1px solid #e50000;
+    color:#e50000;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background: #ffffff;
+        width: 131px;
+        padding: 7px 10px;
+        justify-content: center;
+        border: 1px solid #CA0000;
+        align-items: center;
+        gap: 10px;
+  }
