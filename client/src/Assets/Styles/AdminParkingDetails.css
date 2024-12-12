@@ -1,0 +1,20 @@
+.field-group {
+    position: relative;
+    border-radius: 25px; 
+    overflow: hidden; 
+  }
+  
+  .field-group .search-field {
+    padding-right: 35px; /* Make space for the icon inside the input */
+    border-radius: 25px; /* Apply 25px border-radius */
+  }
+  
+  .field-group .search-icon {
+    color: #000;
+    position: absolute;
+    right: 20px; /* Place icon at the right inside the input field */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the icon */
+    pointer-events: none; /* Prevent the icon from interfering with input text */
+  }
+  
