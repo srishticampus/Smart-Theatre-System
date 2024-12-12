@@ -108,7 +108,7 @@ function App() {
 
             <Route path='/user_add_complaint' element={[<UserNavbar />, <UserAddComplaints />]} />
 
-            <Route path='/user_profile' element={[<UserNavbar />, <UserProfile />]} />
+            // <Route path='/user_profile' element={[<UserNavbar />, <UserProfile />]} />
             <Route path='/user_edit_profile' element={[<UserNavbar />, <UserEditProfile />]} />
 
             <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
