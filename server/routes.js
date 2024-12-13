@@ -4,7 +4,8 @@ const router = express.Router();
 const Admin=require('./controllers/adminController')
 const User = require('./controllers/userController'); 
 const Staff = require('./controllers/staffController'); 
-
+const Screen = require('./controllers/screenController'); 
+const showtime=require('./controllers/showTimeController')
 
 // User routes
 
@@ -37,5 +38,16 @@ router.post('/activateStaffById/:id', Staff.activateStaffById);
 router.post('/editStaffById/:id',Staff.uploadSingle, Staff.editStaffById);
 router.post('/deleteStaffById/:id', Staff.deleteStaffById);
 router.post('/loginStaff', Staff.login);
+
+
+// Screens
+router.post('/addScreen',Screen.addScreen)
+router.post('/viewAllScreens',Screen.viewAllScreens)
+router.post('/editScreenById/:id',Screen.editScreenById)
+router.post('/deleteScreenById/:id',Screen.deleteScreenById)
+router.post('/viewScreenById/:id',Screen.viewScreenById)
+
+// show Time
+router.post('/addShowtime',showtime.addShowtime)
 
 module.exports = router;
