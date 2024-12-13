@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../../Assets/Styles/AdminAddScreen.css";
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
-import { registerWithFile } from '../../Services/CommonServices';
+import { register, registerWithFile } from '../../Services/CommonServices';
 const AdminAddScreen = () => {
   const [data, setData] = useState({
     screenSize: '',
@@ -125,13 +125,13 @@ const handleLogin = async (e) => {
     try {
         console.log(data);
         
-        const result = await registerWithFile(data, 'registerStaff');
+        const result = await register(data, 'addScreen');
 
         if (result.success) {
             console.log(result);
 
-            toast.success('Registration successful!');
-            navigate('/admin-view-staff');
+           
+            navigate(`/admin-add-show/${result.user._id}`);
 
 
         } else {
@@ -158,7 +158,7 @@ const handleLogin = async (e) => {
     name="screenFormat"
     onChange={handleChange}
     value={data.screenFormat}
-  >
+  > <option value="">Choose One</option>
     <option value="2D">2D</option>
     <option value="3D">3D</option>
     <option value="IMAX">IMAX</option>
@@ -168,37 +168,7 @@ const handleLogin = async (e) => {
       </div>
       <div className='admin-add-screen-sectiontwo'>
         <p className='admin-add-screen-haedtwo'>Set Lounge</p>
-        {/* <div className="btn-group">
-          <button
-            type="button"
-            className={`btn admin-add-screen-sectiontwo-buttonone ${selectedLounge === 'gold' ? 'bg-red' : ''}`}
-            onClick={() => handleLoungeClick('gold')}
-          >
-            GOLD
-          </button>
-          <button
-            type="button"
-            className={`btn admin-add-screen-sectiontwo-buttontwo ${selectedLounge === 'silver' ? 'bg-red' : ''}`}
-            onClick={() => handleLoungeClick('silver')}
-          >
-            SILVER
-          </button>
-          <button
-            type="button"
-            className={`btn admin-add-screen-sectiontwo-buttonthree ${selectedLounge === 'platinum' ? 'bg-red' : ''}`}
-            onClick={() => handleLoungeClick('platinum')}
-          >
-            PLATINUM
-          </button>
-        </div>
-        <br />
-        <div className='d-flex'>
-          <input type='text' placeholder='Number Of Seat' className='admin-add-screen-sectiontwo-numberofseat'  name="seatCount" onChange={handleChange} />
-          <input type='text' placeholder='Amount' className='admin-add-screen-sectiontwo-amount'  name="amount" onChange={handleChange}  />
-        </div>
-        <input type='text' placeholder='Seat Label' className='admin-add-screen-sectiontwo-seatnumber'  name="screenLabel" onChange={handleChange}  />
-         */}
-
+       
 <div className="btn-group">
         <button
           type="button"
