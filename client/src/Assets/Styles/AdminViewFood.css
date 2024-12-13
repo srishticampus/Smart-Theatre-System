@@ -38,9 +38,9 @@
     width: 100%;
 }
 
-.admin-view-table {
+.admin-view-food-table {
     width: 90%;
-    height: 40vh;
+
     border-collapse: collapse;
 }
 

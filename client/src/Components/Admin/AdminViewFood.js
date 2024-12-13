@@ -22,7 +22,7 @@ function AdminViewFood() {
             <div className="row">
                 <div className="col-sm-12">
                     <div className='admin-view-food-table'>
-                        <table className='table admin-view-table table-responsive admin-view-food-table table-bordered'>
+                        <table className='table admin-view-food-table table-responsive admin-view-food-table table-bordered'>
                             <thead>
                                 <tr className='bg-danger text-white'>
                                     <th>SI No:</th>
