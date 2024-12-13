@@ -10,14 +10,11 @@
 
 .admin-view-screen-table {
   margin-left: 50px;
-  margin-top: 50px;
-  overflow-x: auto;  /* Ensures table scrolls on small screens */
-  width: 100%;       /* Make sure the table takes full available width */
+  margin-top: 50px;    
 }
 
 .admin-view-table {
   width: 90%;  
-  height: 40vh;   
   border-collapse: collapse;
 }
 
@@ -39,15 +36,15 @@
 
 @media (max-width: 768px) {
   .admin-view-screen-table {
-      margin-left: 10px;   /* Reduce margin for smaller screens */
+      margin-left: 10px;  
       margin-right: 10px;
   }
 
   .admin-view-table th, .admin-view-table td {
-      font-size: 12px;   /* Adjust font size for small screens */
+      font-size: 12px;  
   }
 
   .admin-view-table td i {
-      font-size: 18px;   /* Adjust icon size for small screens */
+      font-size: 18px;  
   }
 }

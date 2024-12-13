@@ -9,7 +9,7 @@ function UserViewParking() {
     const [carParkingSpots, setCarParkingSpots] = useState([
         { id: 'D-1', isAvailable: false },
         { id: 'D-2', isAvailable: false },
-        { id: 'D-3', isAvailable: true },
+        { id: 'D-3', isAvailable: false },
         { id: 'D-4', isAvailable: true },
         { id: 'D-5', isAvailable: false },
         { id: 'D-6', isAvailable: true },
