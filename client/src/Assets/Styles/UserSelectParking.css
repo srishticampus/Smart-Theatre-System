@@ -1,8 +1,8 @@
-.user-view-parking {
+.user-select-parking {
     margin-top: 100px;
 }
 
-.customer-view-parking-head {
+.customer-select-parking-head {
     color: #000;
     font-family: Lato;
     font-size: 24px;
@@ -11,19 +11,17 @@
     line-height: 25px;
 }
 
-.user-view-parking-all-card-size {
+.user-select-parking-all-card-size {
     height: 100px;
     width: 124px;
     margin: 5px;
 }
 
-.user-view-parking-all-bikecard-size {
+.user-select-parking-all-bikecard-size {
     height: 45px;
     width: 124px;
     margin: 10px;
-
 }
-
 
 .parking-section {
     display: flex;
@@ -32,8 +30,6 @@
 .car-parking {
     flex-grow: 1;
 }
-
-
 
 .row {
     display: flex;
@@ -57,19 +53,17 @@
     /* Optional padding */
 }
 
-
 .bike-parking {
     margin-left: 0px;
     text-align: center;
 }
 .bike-parking .row {
     display: flex;
-    justify-content: center; /* Centers the cards horizontally within the row */
+    justify-content: center; 
     flex-wrap: wrap;
 }
 
-
-.user-view-parking-car-head {
+.user-select-parking-car-head {
     color: #000;
     font-family: Lato;
     font-size: 18px;
@@ -78,7 +72,7 @@
     line-height: 25px;
 }
 
-.user-view-parking-bike-head {
+.user-select-parking-bike-head {
     color: #000;
     font-family: Lato;
     font-size: 18px;
@@ -86,9 +80,38 @@
     font-weight: 700;
     line-height: 25px;
 }
+
 .bike-parking .row .col-sm-2:nth-child(even) {
     margin-right: 60px; 
 }
+
 .car-parking .row .col-sm-4:nth-child(odd) {
     margin-right: 10px; 
 }
+.user-select-parking-button{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    top: 500px;
+}
+.user-select-parking-popup-container{
+    display: flex;
+    justify-content: center;
+}
+.user-select-parking .dropdown-toggle {
+    border: 1px solid black; /* 1px solid black border */
+    background-color: transparent; /* No background color */
+  }
+
+  .user-select-parking .dropdown-item {
+    background-color: transparent; /* Remove background from items */
+    color: black; /* Text color */
+  }
+
+  /* Optional: Add hover effect to dropdown items */
+  .user-select-parking .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Slight hover effect */
+  }
