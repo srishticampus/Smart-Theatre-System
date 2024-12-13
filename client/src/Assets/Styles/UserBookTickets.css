@@ -1,0 +1,238 @@
+/* Container for the entire section */
+.user-book-ticket-section-one {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+}
+
+/* Image styling */
+.user-book-ticket-img {
+    height: 200px;
+}
+
+/* Title of the movie */
+.user-book-ticket-banner-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: normal;
+}
+
+/* 2D and Tamil badges */
+.user-book-ticket-2d,
+.user-book-ticket-tamil {
+    margin-right: 10px;
+    border-radius: 5px;
+    background: rgba(160, 160, 160, 0.42);
+    display: flex;
+    padding: 3px 13px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    color: #000;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* Genre and time */
+.user-book-ticket-genre,
+.user-book-ticket-time {
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* Calendar container */
+.calendar-carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    /* Prevents scroll overflow from being visible */
+}
+
+/* Scrollable calendar wrapper (hides scrollbar) */
+.calendar-wrapper {
+    display: flex;
+    overflow-x: scroll;
+    white-space: nowrap;
+    gap: 10px;
+    padding: 0 20px;
+    /* Optional: Add padding to left and right */
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    /* Enables snapping effect */
+    max-width: 320px;
+    /* Display only 3 buttons at a time */
+
+    /* Hide the horizontal scrollbar */
+    -ms-overflow-style: none;
+    /* For Internet Explorer */
+    scrollbar-width: none;
+    /* For Firefox */
+}
+
+.calendar-wrapper::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and newer Edge */
+}
+
+/* Calendar buttons */
+.user-book-ticket-calender {
+    width: 90px;
+    /* Width of each calendar button */
+    height: 120px;
+    /* Height of each calendar button */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    scroll-snap-align: start;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+
+.user-book-ticket-calender.selected {
+    background-color: red;
+    color: #fff;
+
+}
+
+
+.carousel-button {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.user-book-ticket-calender {
+    margin-right: 5px;
+}
+
+.card-header-align {
+    text-align: center;
+    color: #000;
+    text-align: center;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user-book-ticket-card-header {
+    border: 0;
+    background-color: white;
+}
+
+.user-book-ticket-show-time {
+    display: flex;
+    width: 200px;
+    height: 10px;
+    padding: 15px 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-family: Lato;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+.user-book-ticket-show-button {
+    height: 50px;
+    display: flex;               
+    flex-direction: column;       
+    justify-content: center;     
+    align-items: center;         
+    padding: 0 10px;  
+    border-radius: 5px;   
+    width: 200px;        
+  }
+  
+  .user-book-ticket-show-button p {
+    margin: 0;                   
+  }
+  
+  .user-book-ticket-show-time {
+    color: #6c757d;              
+  }
+  .user-book-ticket-section-two{
+  display: flex;
+  justify-content: center;
+
+  }
+  .section-two{
+    display: flex;
+    justify-content: center;
+
+
+  }
+  .user-book-ticket-card{
+    width: 1000px;
+  }
+  .user-book-ticket-cardbody{
+ justify-content: space-between;
+ display: flex;
+ flex-wrap: wrap; 
+ gap: 10px; 
+  }
+  @media (max-width: 768px) {
+    .user-book-ticket-card {
+        width: 100%;
+        padding: 0 20px; 
+    }
+
+    .user-book-ticket-cardbody {
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+    }
+
+    .user-book-ticket-show-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+
+    .calendar-wrapper {
+        max-width: 100%; 
+        padding: 0 10px; 
+    }
+
+    .user-book-ticket-calender {
+        width: 70px; 
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-book-ticket-card {
+        width: 100%;
+        padding: 0 15px; 
+    }
+
+    .user-book-ticket-show-button {
+        width: 100%;
+        margin-bottom: 8px; 
+    }
+}

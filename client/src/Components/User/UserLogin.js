@@ -24,11 +24,11 @@ function UserLogin() {
 
       newErrors.email = 'Email is required';
     }
-else   if (!emailRegex.test(data.email)) {
+    else if (!emailRegex.test(data.email)) {
 
 
-  newErrors.email = 'Enter a Valid E-Mail Id';
-}
+      newErrors.email = 'Enter a Valid E-Mail Id';
+    }
     if (!data.password) {
       newErrors.password = 'Password is required';
     }
@@ -37,7 +37,7 @@ else   if (!emailRegex.test(data.email)) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const onSubmit =async (values) => {
+  const onSubmit = async (values) => {
     values.preventDefault()
     console.log(values);
 
@@ -47,37 +47,36 @@ else   if (!emailRegex.test(data.email)) {
     }
     try {
       console.log(data);
-      
+
       const result = await login(data, 'loginUser');
 
       if (result.success) {
-          console.log(result);
-          localStorage.setItem("user",result.user._id);
+        console.log(result);
+        localStorage.setItem("user", result.user._id);
 
-          navigate('/user-home');
+        toast.success('Login successful!');
+        navigate('/user-home');
 
 
       } else {
-          console.error('Registration error:', result);
-          toast.error(result.message);
+        console.error('Registration error:', result);
+        toast.error(result.message);
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Unexpected error:', error);
       toast.error('An unexpected error occurred during Login');
-  }
-   
+    }
+
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
-    setData({
-        ...data,
-        [name]: value,
-    });
 
-  
-};
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
 
 
 
@@ -104,9 +103,9 @@ else   if (!emailRegex.test(data.email)) {
                         name="email"
                         value={data.email}
                         onChange={handleChange}
-                    
+
                       />
-                      {errors.email  && (
+                      {errors.email && (
                         <span className="text-danger">{errors.email}</span>
                       )}
                     </div>
@@ -120,9 +119,9 @@ else   if (!emailRegex.test(data.email)) {
                         name="password"
                         value={data.password}
                         onChange={handleChange}
-                     
+
                       />
-                        {errors.password && (
+                      {errors.password && (
                         <span className="text-danger">{errors.password}</span>
                       )}
                       <i

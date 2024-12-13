@@ -25,6 +25,7 @@ import AdminViewDetailsMovie from "./AdminViewDetailsMovie";
 import AdminAddFood from "./AdminAddFood";
 import AdminViewFood from "./AdminViewFood";
 import AdminEditFood from "./AdminEditFood";
+import AdminParkingDetails from "./AdminParkingDetails";
 
 function AdminCall({ type }) {
 
@@ -103,6 +104,9 @@ function AdminCall({ type }) {
              ):
              type === "admin-edit-food" ? (
               <AdminEditFood/>
+             ):
+             type === "admin-parking-details"?(
+              <AdminParkingDetails/>
              ):
 
              ""

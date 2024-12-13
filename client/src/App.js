@@ -12,8 +12,12 @@ import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
 import UserNavbar from './Components/Navbars/UserNavbar';
-
-
+import UserBookTickets from './Components/User/UserBookTickets';
+import UserBookTicketSeatCount from './Components/User/UserBookTicketSeatCount';
+import UserBookTicketSelectSeat from './Components/User/UserBookTicketSelectSeat';
+import UserBookTicketSelectedSeat from './Components/User/UserBookTicketSelectedSeat';
+import UserBookTicketsPayment from './Components/User/UserBookTicketsPayment';
+import UserViewParking from './Components/User/UserViewParking';
 
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
@@ -74,7 +78,7 @@ function App() {
             <Route path='/admin-add-food' element={<AdminCall type='admin-add-food'/>}/>
             <Route path='/admin-view-food' element={<AdminCall type='admin-view-food'/>}/>
             <Route path='/admin-edit-food' element={<AdminCall type='admin-edit-food'/>}/>
-
+            <Route path='/admin-parking-details' element={<AdminCall type='admin-parking-details'/>}/>
 
 
 
@@ -86,6 +90,18 @@ function App() {
             <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
+            <Route path='/user-book-ticket' element={[<UserNavbar/>,<UserBookTickets/>]}/>
+            <Route path='/user-book-ticket-seat' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
+            <Route path='/user-book-ticket-select-seat' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
+            <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
+            <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
+            <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
+
+
+
+
+
+
             {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
            
