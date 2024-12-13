@@ -1,20 +1,97 @@
 .field-group {
     position: relative;
-    border-radius: 25px; 
-    overflow: hidden; 
-  }
-  
-  .field-group .search-field {
-    padding-right: 35px; /* Make space for the icon inside the input */
-    border-radius: 25px; /* Apply 25px border-radius */
-  }
-  
-  .field-group .search-icon {
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.field-group .search-field {
+    padding-right: 35px;
+    /* Make space for the icon inside the input */
+    border-radius: 25px;
+    /* Apply 25px border-radius */
+}
+
+.field-group .search-icon {
     color: #000;
     position: absolute;
-    right: 20px; /* Place icon at the right inside the input field */
+    right: 20px;
+    /* Place icon at the right inside the input field */
     top: 50%;
-    transform: translateY(-50%); /* Vertically center the icon */
-    pointer-events: none; /* Prevent the icon from interfering with input text */
+    transform: translateY(-50%);
+    /* Vertically center the icon */
+    pointer-events: none;
+    /* Prevent the icon from interfering with input text */
+}
+
+.admin-parking-details-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+}
+
+.admin-parking-details-dropbutton {
+    display: flex;
+    width: 258px;
+    height: 37px;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #BDBDBD;
+}
+
+.admin-parking-details-table-head {
+    color: #FFF;
+    font-family: Lato;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 14px;
+    letter-spacing: -0.13px;
+}
+
+.table-head-column-size {
+    height: 40px;
+}
+
+.parking-details-transacction-id-sub {
+    color: rgba(0, 0, 0, 0.20);
+    font-family: Lato;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.11px;
+}
+ .admin-parking-details-td .admin-parking-details-p{
+    margin-bottom: 0; 
+}
+
+
+.custom-pagination-btn {
+    background-color: transparent;
+    border: 1px solid #ccc;        
+    color: #dc3545;                
+  }
+  
+  .custom-pagination-btn:hover {
+    background-color: #f8d7da; 
+    color: #dc3545;            
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #dc3545 !important; 
+    border-color: #dc3545 !important;     
+    color: white;                         
+  }
+  
+  .pagination .page-item.disabled .page-link {
+    background-color: #f8d7da; 
+    border-color: #f8d7da;     
+    color: #6c757d;            
   }
   

@@ -17,7 +17,7 @@ import UserBookTicketSeatCount from './Components/User/UserBookTicketSeatCount';
 import UserBookTicketSelectSeat from './Components/User/UserBookTicketSelectSeat';
 import UserBookTicketSelectedSeat from './Components/User/UserBookTicketSelectedSeat';
 import UserBookTicketsPayment from './Components/User/UserBookTicketsPayment';
-
+import UserViewParking from './Components/User/UserViewParking';
 
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
@@ -95,7 +95,7 @@ function App() {
             <Route path='/user-book-ticket-select-seat' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
             <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
             <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
-            
+            <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
 
 
 
