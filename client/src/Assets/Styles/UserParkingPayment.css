@@ -1,0 +1,91 @@
+.user-parking-payment-head {
+    margin-top: 100px;
+    color: #000;
+    font-family: Lato;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+    /* 115.625% */
+}
+
+.user-parking-payment-headtwo {
+    margin-top: 50px;
+    color: #000;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+    /* 205.556% */
+}
+
+.user-parking-payment-headtwo-sub {
+
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+}
+
+.user-parking-payment-headthree {
+    color: #000;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+    /* 205.556% */
+}
+
+.user-parking-payment-headthree-sub {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+}
+
+.user-parking-payment-allhead {
+    text-align: center;
+}
+
+
+
+
+.user-parking-ticket-cardtwo {
+    padding: 30px;
+}
+
+.user-parking-ticket-payment-heading {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+}
+.parking-payment-details-style {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+
+}
+.parking-payment-card-number{
+    min-width: 500px;
+}
+.parking-payment-expiry-date{
+    min-width: 500px;
+}
+.parking-payment-cvv-code{
+    min-width: 500px;
+}
+.parking-payment-name-on-card{
+    min-width: 500px;
+}
