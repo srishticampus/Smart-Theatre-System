@@ -6,7 +6,8 @@ const ScreenSchema = mongoose.Schema({
         required: true,
     },
     screenId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"screens",
        
         required: true,
     },

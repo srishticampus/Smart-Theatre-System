@@ -1,195 +1,473 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from 'react-router-dom';
+import { register, registerWithFile, registerWithFileforCaste,updateWithFile,ViewById } from '../../Services/CommonServices';
 import "../../Assets/Styles/AdminEditMovie.css";
 
 function AdminEditMovie() {
-  const [casts, setCasts] = useState([{
-    castName: "", 
-    role: "", 
-    castImage: null 
-  }]);
+ const {id}=useParams()
+  const [casts, setCasts] = useState([{ castName: "", role: "", castImage: null }]);
 
-  const handleAddCast = () => {
-    setCasts([...casts, { castName: "", role: "", castImage: null }]);
-  };
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+    // Function to add a new cast row
+    const handleAddCast = () => {
+        setCasts([...casts, { castName: "", role: "", castImage: null }]);
+    };
 
-  const handleCastChange = (index, field, value) => {
-    const updatedCasts = [...casts];
-    updatedCasts[index][field] = value;
-    setCasts(updatedCasts);
-  };
+    // Function to handle changes in cast fields
+    const handleCastChange = (index, field, value) => {
+        const updatedCasts = [...casts];
+        updatedCasts[index][field] = value;
+        setCasts(updatedCasts);
+    };
 
+    const [movieDetails, setMovieDetails] = useState({
+        movieName: "",
+        movieImage: null,
+        coverImage: null,
+        language: "",
+        screenType: "",
+        startDate: "",
+        endDate: "",
+        movieType: "",
+        duration: "",
+        trailer: null,
+        description: "",
+        cast: [] // Array of cast objects {name, role, image}
+    });
+
+    // Function to handle general form changes
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        console.log('in on cha', files);
+
+        if (files) {
+            setMovieDetails((prev) => ({
+                ...prev,
+                [name]: files[0]
+            }));
+        } else {
+            setMovieDetails((prev) => ({
+                ...prev,
+                [name]: value
+            }));
+        }
+    };
+    const handlechangeCoverImage = (e) => {
+        const file = e.target.files[0];
+        console.log("in cov");
+
+        setMovieDetails({
+            ...movieDetails,
+            coverImage: file,
+        });
+    };
+    const handlechangemovImage = (e) => {
+        const file = e.target.files[0];
+
+        setMovieDetails({
+            ...movieDetails,
+            movieImage: file,
+        });
+    };
+    const handlechangeTrailer = (e) => {
+        const file = e.target.files[0];
+
+        setMovieDetails({
+            ...movieDetails,
+            trailer: file,
+        });
+    };
+
+
+    const validate = () => {
+        const newErrors = {};
+
+
+        if (!movieDetails.movieName) {
+            newErrors.movieName = 'Movie Name size is required';
+        }
+
+        if (!movieDetails.movieImage) {
+            newErrors.movieImage = 'Image name is required';
+        }
+
+        if (!movieDetails.movieType) {
+            newErrors.movieType = 'Screen format is required';
+        }
+
+        if (!movieDetails.coverImage) {
+            newErrors.coverImage = 'coverImage  is required';
+        }
+
+        if (!movieDetails.trailer) {
+            newErrors.trailer = 'Trailer is required';
+        }
+
+        if (!movieDetails.duration) {
+            newErrors.duration = 'Duration is required';
+        }
+
+        if (!movieDetails.endDate) {
+            newErrors.endDate = 'End Date is required';
+        }
+
+        if (!movieDetails.startDate) {
+            newErrors.startDate = 'Start Date is required';
+        }
+
+        if (!movieDetails.movieType) {
+            newErrors.movieType = 'Movie Type is required';
+        }
+        if (!movieDetails.description) {
+            newErrors.description = 'Descriptionis required';
+        }
+        if (!movieDetails.language) {
+            newErrors.language = 'Language is required';
+        }
+
+
+
+
+
+
+
+
+
+
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Validation passes if there are no errors
+    };
+    // Function to handle the submission of the form
+    const handleSubmit =async (e) => {
+
+        e.preventDefault()
+        console.log(errors);
+
+        console.log("api called", validate());
+
+        // if (!validate()) {
+        //     toast.error('Please fix the errors in the form.');
+        //     return;
+        // }
+
+
+        
+
+        console.log("data", movieDetails);
+        console.log("casrs", casts);
+        const formData = new FormData();
+      casts.forEach((cast, index) => {
+    formData.append(`casts[${index}][castName]`, cast.castName);
+    formData.append(`casts[${index}][role]`, cast.role);
+    if (cast.castImage) {
+        formData.append(`casts[${index}][castImage]`, cast.castImage);
+    }
+});
+
+
+            //  try {
+            //       console.log("before",movieDetails);
+                  
+            //       const result = await updateWithFile(movieDetails, 'updateMovieById',id);
+            //       console.log(result);
+                  
+            //       if (result.success) {
+            //           console.log(result);
+        
+            //           toast.success('Movie Added successfully !');
+                   
+            //           try {
+                  
+            //             const result2 = await updateWithFile(formData, 'updateCast',id);
+            //             if (result2.success) {
+            //                 console.log(result2);
+              
+                         
+              
+            //                 navigate(`/admin-view-movie`);
+
+        
+            //             } else {
+            //                 console.error('Registration error:', result2);
+            //             }
+            //         } catch (error) {
+            //             console.error('Unexpected error:', error);
+            //             toast.error('An unexpected error occurred during Registration');
+            //         }
+                      
+
+            //       } else {
+            //           console.error('Registration error:', result);
+            //           toast.error(result.message);
+            //       }
+            //   } catch (error) {
+            //       console.error('Unexpected error:', error);
+            //       toast.error('An unexpected error occurred during Registration');
+            //   }
+
+              
+    };
+
+         const fetchData = async () => {
+                try {
+                    const result = await ViewById('viewMovieById',id);
+        
+                    if (result.success) {
+                        console.log(result);
+                        if (result.user) {
+                            setMovieDetails(result.user);
+                          
+                        } else {
+                          setMovieDetails(null);
+                           
+                        } 
+                    }else {
+                            console.error('Data error:', result);
+                            toast.error(result.message);
+                        }
+        
+                    } catch (error) {
+                        console.error('Unexpected error:', error);
+                        toast.error('An unexpected error occurred during Data View');
+                    }
+                };
+                useEffect(() => {
+        
+        
+                    fetchData(); // Call the async function
+                }, [id]);
+        
+                const fetchCastData = async () => {
+                    try {
+                        const result = await ViewById('viewCastByMovieId',id);
+            
+                        if (result.success) {
+                            console.log("cast",result);
+                            if (result.user.length>0) 
+                              setCasts(result.user||[]);
+                              
+                          
+                         } else {
+                                console.error('Data error:', result);
+                                toast.error(result.message);
+                            }
+            
+                        } catch (error) {
+                            console.error('Unexpected error:', error);
+                            toast.error('An unexpected error occurred during Data View');
+                        }
+                    };
+                    useEffect(() => {
+            
+            
+                        fetchCastData(); // Call the async function
+                    }, [id]);
   return (
     <div>
       <p className='admin-edit-movie-head'>Edit Movie</p>
       <div className='cneter-edit-movie-card'>
         <div className="card admin-edit-movie-card">
           <div className='d-flex justify-content-evenly '>
-            <input type='text' placeholder='Movie Name' style={{ height: '40px' }} className='admin-edit-movie-moviename' />
+            <input type='text' placeholder='Movie Name' style={{ height: '40px' }} className='admin-edit-movie-moviename' value={movieDetails.movieName} onChange={handleChange}/>
             <div>
-              <label htmlFor="movieImage" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px' }}>
-                Movie Image
-              </label>
-              <input type="file" id="movieImage" name="movieImage" accept="image/*" style={{ display: 'none' }} />
-              <label htmlFor="movieImage" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px' }}>
-                Cover Image
-              </label>
-              <input type="file" id="movieImage" name="movieImage" accept="image/*" style={{ display: 'none' }} />
-            </div>
-          </div>
+                            <label htmlFor="movieImage" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px' }}>
+                                Movie Image
+                            </label>
+                            <input
+                                type="file"
+                                id="movieImage"
+                                name="movieImage"
+                                accept="image/*"
+                                onChange={handlechangemovImage}
+                                style={{
+                                    display: 'none',
 
-          <div className="d-flex flex-column flex-sm-row justify-content-evenly mt-3">
-            <div className="dropdown">
-              <button type="button" className="btn dropdown-toggle admin-edit-movie-dropdown" data-bs-toggle="dropdown">
-                Language
-              </button>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Malayalam</a></li>
-                <li><a className="dropdown-item" href="#">Tamil</a></li>
-                <li><a className="dropdown-item" href="#">Telugu</a></li>
-              </ul>
-            </div>
+                                }}
 
-            <div className="dropdown">
-              <button type="button" className="btn dropdown-toggle admin-edit-movie-dropdown-screen" data-bs-toggle="dropdown">
-                Screen Type
-              </button>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">null</a></li>
-                <li><a className="dropdown-item" href="#">null</a></li>
-                <li><a className="dropdown-item" href="#">null</a></li>
-              </ul>
-            </div>
-          </div>
 
-          <div className='d-flex justify-content-evenly mt-3'>
-            <div className='d-flex'>
-              <input
-                type="text"
-                className="admin-edit-movie-startdate"
-                placeholder="Start Date"
-                style={{
-                  backgroundColor: '#ADADAD',
-                  padding: '10px',
-                  border: 'none',
-                  borderRadius: '4px',
-                  color: '#666',
-                  width: '159px',
-                  cursor: 'pointer'
-                }}
-                onFocus={(e) => e.target.type = 'date'}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.type = 'text';
-                  }
-                }}
-              />
-              <input
-                type="text"
-                className="admin-edit-movie-startdate"
-                placeholder="End Date"
-                style={{
-                  backgroundColor: '#ADADAD',
-                  padding: '10px',
-                  border: 'none',
-                  borderRadius: '4px',
-                  color: '#666',
-                  width: '159px',
-                  cursor: 'pointer'
-                }}
-                onFocus={(e) => e.target.type = 'date'}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.type = 'text';
-                  }
-                }}
-              />
-            </div>
+                            ></input>
+                            
+                            <label htmlFor="coverImage" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px' }}>
+                                Cover Image
+                            </label>
+                            <input
+                                type="file"
+                                id="coverImage"
+                                name="coverImage"
+                                accept="image/*"
+                                onChange={handlechangeCoverImage}
+                                style={{
+                                    display: 'none',
 
-            <div className="dropdown">
-              <button type="button" className="btn dropdown-toggle admin-edit-movie-dropdown-movie" data-bs-toggle="dropdown">
-                Movie Type
-              </button>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">null</a></li>
-                <li><a className="dropdown-item" href="#">null</a></li>
-                <li><a className="dropdown-item" href="#">null</a></li>
-              </ul>
-            </div>
-          </div>
+                                }}
+                            ></input>
+                           
+                        </div>
+                    </div>
 
-          <div className='d-flex justify-content-evenly mt-3'>
-            <input type='text' placeholder='Duration' className='admin-edit-movie-duration' />
-            <label htmlFor="video" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px', width: '250px' }}>
-              Upload Trailer
-            </label>
-            <input
-              type="file"
-              className='admin-edit-movie-trailer'
-              id="video"
-              name="movieImage"
-              accept="video/*"
-              style={{ display: 'none' }}
-            />
-          </div>
-          <div className='test'>
-            <textarea className='form-control admin-edit-show-textarea' placeholder='Description'></textarea>
-          </div>
+                    <div className="d-flex flex-column flex-sm-row justify-content-evenly mt-2">
+                        <div class="dropdown">
+
+                            <select
+                                name='language'
+                                value={movieDetails.language}
+                                onChange={handleChange}
+                                className='admin-add-movie-dropdown'
+                            >
+                                <option value="">Select Language</option>
+                                <option value="Malayalam">Malayalam</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Telugu">Telugu</option>
+                            </select>
+                        </div>
+                        {errors.language && (
+                            <div className="text-danger">{errors.language}</div>
+                        )}
+                        <select
+                            name='screenType'
+                            value={movieDetails.screenType}
+                            onChange={handleChange}
+                            className='admin-add-movie-dropdown'
+                        >
+                            <option value="">Select Screen Type</option>
+                            <option value="2D">2D</option>
+                            <option value="3D">3D</option>
+                            <option value="IMAX">IMAX</option>
+                        </select>
+                        {errors.screenType && (
+                            <div className="text-danger">{errors.screenType}</div>
+                        )}
+                    </div>
+
+                    <div className='d-flex justify-content-evenly mt-3'>
+                        <div className='d-flex'>
+                            <input
+                                type="date"
+                                onChange={handleChange}
+                                name="startDate"
+                                min={new Date().toISOString().split("T")[0]}
+                                value={movieDetails.startDate}
+                                className='admin-add-movie-enddate'
+                                placeholder="Start Date"
+                                style={{
+                                    backgroundColor: '#ADADAD',
+                                }}
+                            ></input>
+                            {errors.startDate && (
+                                <div className="text-danger">{errors.startDate}</div>
+                            )}
+                            <input
+                                type="date"
+                                onChange={handleChange}
+                                name="endDate"
+                                value={movieDetails.endDate}
+                                placeholder="End Date"
+                                min={new Date().toISOString().split("T")[0]}
+                                className='admin-add-movie-startdate'
+                                style={{
+
+                                    backgroundColor: '#ADADAD',
+
+                                }}></input>
+                            {errors.endDate && (
+                                <div className="text-danger">{errors.endDate}</div>
+                            )}
+                        </div>
+                        <select
+                            name='movieType'
+                            value={movieDetails.movieType}
+                            onChange={handleChange}
+                            className='admin-add-movie-dropdown'
+                        >
+                            <option value="">Select Type</option>
+                            <option value="Action">Action</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Romantic">Romantic</option>
+                            <option value="Documentary">Documentary</option>
+
+                        </select>
+                        {errors.movieType && (
+                            <div className="text-danger">{errors.movieType}</div>
+                        )}
+                    </div>
+
+                    <div className='d-flex justify-content-evenly mt-2'>
+                        <input type='text' value={movieDetails.duration} placeholder='Duration' className='admin-add-movie-duration' name="duration" onChange={handleChange}></input>
+                        {errors.duration && (
+                            <div className="text-danger">{errors.duration}</div>)}
+                        <label htmlFor="video" style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px', width: '250px' }}>
+                            Upload Trailer
+                        </label>
+                        <input
+                            type="file"
+                            className='admin-add-movie-trailer'
+                            id="video"
+                            name="trailer"
+                            onChange={handlechangeTrailer}
+                            accept="video/*"
+                            style={{ display: 'none' }}
+                        ></input>
+                       
+                    </div>
+                    <div className='test' >
+                        <textarea className='form-control admin-add-show-textarea' value={movieDetails.description} placeholder='Description'
+                            name='description' onChange={handleChange}></textarea>
+                        {errors.description && (
+                            <div className="text-danger">{errors.description}</div>
+                        )}
+                    </div>
+
+                </div>
+
+                {/* <div className="card admin-add-movie-card-two">
+                    <p className='admin-add-movie-card-two'>Cast</p>
+                    {casts.map((cast, index) => (
+                        <div className='d-flex justify-content-evenly' key={index}>
+                            <input
+                                type='text'
+                                placeholder='Cast Name'
+                                className='admin-add-movie-duration'
+                                value={cast.castName}
+                                name="castName"
+                                onChange={(e) => handleCastChange(index, "castName", e.target.value)}
+                            />
+
+
+                            <input
+                                type='text'
+                                placeholder='Cast Role'
+                                className='admin-add-movie-duration'
+                                value={cast.role}
+                                onChange={(e) => handleCastChange(index, "role", e.target.value)}
+                            />
+                            <label htmlFor={`castImage${index}`} style={{ cursor: 'pointer', padding: '10px', backgroundColor: '#BDBDBD', color: 'black', borderRadius: '5px', margin: '10px', fontWeight: 'normal' }}>
+                                Image
+                            </label>
+                            <input
+                                type="file"
+                                id={`castImage${index}`}
+                                accept="image/*"
+                                style={{ display: 'none' }}
+                                onChange={(e) => handleCastChange(index, "castImage", e.target.files[0])}
+                            />
+                        </div>
+                    ))}
+                    <div className='d-flex justify-content-center'>
+                        <button className='btn btn-outline-danger admin-add-movie-addmorebutton' type="button" onClick={handleAddCast}>ADD More</button>
+                    </div>
+                </div> */}
+
+                <div>
+                    <button className='btn btn-danger admin-add-movie-addbutton' onClick={handleSubmit}>Update</button>
+                </div>
+            </div>
         </div>
-
-        {/* Cast Section */}
-        <div className="card admin-edit-movie-card-two">
-          <p className='admin-edit-movie-card-two'>Cast</p>
-          {casts.map((cast, index) => (
-            <div key={index} className='d-flex justify-content-evenly'>
-              <div className="dropdown">
-                <button type="button" className="btn dropdown-toggle admin-edit-movie-dropdown-cast" data-bs-toggle="dropdown">
-                  {cast.castName || "Cast Name"}
-                </button>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() => handleCastChange(index, 'castName', 'name 1')}>name 1</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() => handleCastChange(index, 'castName', 'name 2')}>name 2</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() => handleCastChange(index, 'castName', 'name 3')}>name 3</a></li>
-                </ul>
-              </div>
-
-              <div className="dropdown">
-                <button type="button" className="btn dropdown-toggle admin-edit-movie-dropdown-role" data-bs-toggle="dropdown">
-                  {cast.role || "Role"}
-                </button>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() => handleCastChange(index, 'role', 'Role 1')}>Role 1</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() => handleCastChange(index, 'role', 'Role 2')}>Role 2</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() => handleCastChange(index, 'role', 'Role 3')}>Role 3</a></li>
-                </ul>
-              </div>
-
-              <label htmlFor={`castImage-${index}`} style={{ cursor: 'pointer', padding: '10px 20px', backgroundColor: '#BDBDBD', borderRadius: '5px', margin: '10px', fontWeight: 'normal' }}>
-                Upload Cast Image
-              </label>
-              <input
-                type="file"
-                id={`castImage-${index}`}
-                name={`castImage-${index}`}
-                accept="image/*"
-                style={{ display: 'none' }}
-                onChange={(e) => handleCastChange(index, 'castImage', e.target.files[0])}
-              />
-            </div>
-          ))}
-
-          <div className='d-flex justify-content-center'>
-            <button className='btn btn-outline-danger admin-edit-movie-editmorebutton' onClick={handleAddCast}>Add More</button>
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div>
-          <button className='btn btn-outline-danger admin-edit-movie-editbutton me-3'>Cancel</button>
-          <button className='btn btn-danger admin-edit-movie-editbutton'>Confirm</button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default AdminEditMovie;
