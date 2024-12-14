@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
-import { register, registerWithFile } from '../../Services/CommonServices';
+import { register, registerWithFile, registerWithFileforCaste } from '../../Services/CommonServices';
 import "../../Assets/Styles/AdminAddMovie.css"
 
 
@@ -141,37 +141,73 @@ function AdminAddMovie() {
         return Object.keys(newErrors).length === 0; // Validation passes if there are no errors
     };
     // Function to handle the submission of the form
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
 
         e.preventDefault()
         console.log(errors);
 
         console.log("api called", validate());
 
-        if (!validate()) {
-            toast.error('Please fix the errors in the form.');
-            return;
-        }
+        // if (!validate()) {
+        //     toast.error('Please fix the errors in the form.');
+        //     return;
+        // }
 
 
-        const formData = new FormData();
-        for (const key in movieDetails) {
-            if (key === "cast") {
-                movieDetails.cast.forEach((castMember, index) => {
-                    formData.append(`cast[${index}][name]`, castMember.castName);
-                    formData.append(`cast[${index}][role]`, castMember.role);
-                    formData.append(`cast[${index}][image]`, castMember.castImage);
-                });
-            } else {
-                formData.append(key, movieDetails[key]);
-            }
-        }
+        
+
         console.log("data", movieDetails);
         console.log("casrs", casts);
+        const formData = new FormData();
+      casts.forEach((cast, index) => {
+    formData.append(`casts[${index}][castName]`, cast.castName);
+    formData.append(`casts[${index}][role]`, cast.role);
+    if (cast.castImage) {
+        formData.append(`casts[${index}][castImage]`, cast.castImage);
+    }
+});
 
-        // Make API call to submit the form (example)
-        // axios.post('/api/movies', formData)
-        alert("Movie details submitted successfully!");
+
+             try {
+                  
+                  const result = await registerWithFile(movieDetails, 'createMovie');
+                  console.log(result);
+                  
+                  if (result.success) {
+                      console.log(result);
+        
+                      toast.success('Movie Added successfully !');
+                   
+                      try {
+                  
+                        const result2 = await registerWithFileforCaste(formData, 'createCast',result.user._id);
+                        if (result2.success) {
+                            console.log(result2);
+              
+                         
+              
+                            navigate(`/admin-view-movie`);
+
+        
+                        } else {
+                            console.error('Registration error:', result2);
+                        }
+                    } catch (error) {
+                        console.error('Unexpected error:', error);
+                        toast.error('An unexpected error occurred during Registration');
+                    }
+                      
+
+                  } else {
+                      console.error('Registration error:', result);
+                      toast.error(result.message);
+                  }
+              } catch (error) {
+                  console.error('Unexpected error:', error);
+                  toast.error('An unexpected error occurred during Registration');
+              }
+
+              
     };
     return (
         <div>

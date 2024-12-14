@@ -10,13 +10,13 @@ const movieSchema=mongoose.Schema({
        
     },
     movieImage: {
-        type:String,
+        type:Object,
        
         required:true,
        
     },
     coverImage:{
-        type:String,
+        type:Object,
        
         required:true,
        
@@ -58,7 +58,7 @@ const movieSchema=mongoose.Schema({
        
     },
     trailer: {
-        type:String,
+        type:Object,
        
         required:true,
        
@@ -76,8 +76,7 @@ const movieSchema=mongoose.Schema({
     },
     
     
-  
-      
+
 });
 
 module.exports=mongoose.model('movies',movieSchema)
