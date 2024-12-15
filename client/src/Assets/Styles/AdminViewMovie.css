@@ -81,3 +81,8 @@
     font-weight: 400;
     line-height: normal;
 }
+.admin-view-movie-img{
+    border-radius: 18.835px;
+    width: 182.699px;
+    height: 274.312px;
+    flex-shrink: 0;}
