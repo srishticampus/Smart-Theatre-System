@@ -7,6 +7,8 @@ const Staff = require('./controllers/staffController');
 const Screen = require('./controllers/screenController'); 
 const showtime=require('./controllers/showTimeController')
 const Movie=require('./controllers/movieController')
+const Food=require('./controllers/foodController')
+
 // User routes
 
 router.post('/registerUser', User.uploadSingle, User.registerUser);
@@ -62,4 +64,13 @@ router.post('/updateMovieById/:id',Movie.upload,Movie.updateMovieById)
 router.post('/updateCast/:id',Movie.updateCast,Movie.updateCast)
 router.post('/nowShowingMovies',Movie.nowShowingMovies)
 router.post('/comingSonnMovies',Movie.comingSoonMovies)
+
+
+// Food
+router.post('/addFood',Food.uploadSingle,Food.registerFood)
+router.post('/viewAllFood',Food.viewAllFood)
+router.post('/viewFoodById/:id',Food.viewFoodById)
+router.post('/deleteFoodById/:id',Food.deleteFoodById)
+router.post('/editFoodById/:id',Food.uploadSingle,Food.editFoodById)
+
 module.exports = router;
