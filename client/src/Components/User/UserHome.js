@@ -96,7 +96,7 @@ function UserHome() {
 
   const fetchData3 = async () => {
     try {
-      const result = await viewCount('comingSoonMoviews');
+      const result = await viewCount('comingSonnMovies');
 
       if (result.success) {
         console.log(result);

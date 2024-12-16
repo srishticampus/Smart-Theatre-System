@@ -282,36 +282,76 @@ const deactivateMovieById = async (req, res) => {
 };
 
 const nowShowingMovies = (req, res) => {
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1); // Subtract one day
-  
-  // Query movies with releaseDate greater than or equal to today
-  Movie.find({endDate:{$lt:yesterday}})
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to the beginning of today
+
+  Movie.find({})
     .exec()
-    .then(movies => {
-      return res.status(200).json({ msg: 'Upcoming movies', data: movies });
+    .then((movies) => {
+      console.log("Movies from DB:", movies);
+      console.log("Today:", today);
+
+      if (!movies.length) {
+        return res.status(404).json({ msg: 'No movies are currently showing', data: [] });
+      } else {
+        // Filter movies that have started and are still running
+        const nowShowing = movies.filter((movie) => {
+          const startDate = new Date(movie.startDate); // Convert startDate to Date
+          const endDate = new Date(movie.endDate);     // Convert endDate to Date
+
+          // Check if the movie is currently showing
+          return startDate <= today && endDate >= today;
+        });
+
+        if (!nowShowing.length) {
+          return res.status(404).json({ msg: 'No movies are currently showing', data: [] });
+        }
+
+        return res.status(200).json({ msg: 'Now showing movies', data: nowShowing });
+      }
     })
-    .catch(err => {
-      console.error(err);
+    .catch((err) => {
+      console.error('Error fetching movies:', err);
       return res.status(500).json({ msg: 'Failed to fetch movies', error: err.message });
     });
 };
 
-const comingSonnMovies = (req, res) => {
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1); // Subtract one day
-  
-  // Query movies with releaseDate greater than or equal to today
-  Movie.find({startDate:{$gt:yesterday}})
+
+
+const comingSoonMovies = (req, res) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to the beginning of today
+
+  Movie.find({})
     .exec()
-    .then(movies => {
-      return res.status(200).json({ msg: 'Upcoming movies', data: movies });
+    .then((movies) => {
+      console.log("Movies from DB:", movies);
+      console.log("Today:", today);
+
+      if (!movies.length) {
+        return res.status(404).json({ msg: 'No upcoming movies found', data: [] });
+      } else {
+        // Filter movies with a startDate greater than today
+        const upcomingMovies = movies.filter((movie) => {
+          const movieDate = new Date(movie.startDate); // Ensure it's a Date object
+          console.log("Movie Date:", movieDate);
+
+          return movieDate > today; // Check if movieDate is in the future
+        });
+
+        if (!upcomingMovies.length) {
+          return res.status(404).json({ msg: 'No upcoming movies found', data: [] });
+        }
+
+        return res.status(200).json({ msg: 'Upcoming movies', data: upcomingMovies });
+      }
     })
-    .catch(err => {
-      console.error(err);
+    .catch((err) => {
+      console.error('Error fetching movies:', err);
       return res.status(500).json({ msg: 'Failed to fetch movies', error: err.message });
     });
 };
+
 
 module.exports = {
   createMovie,
@@ -326,5 +366,6 @@ module.exports = {
   createCast,
   viewCastByMovieId,
   updateCast,
-  nowShowingMovies
+  comingSoonMovies,
+    nowShowingMovies
 };
