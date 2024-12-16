@@ -196,24 +196,23 @@ function AdminAddMovie() {
       <p className="admin-add-movie-head">Add Movie</p>
       <div className="cneter-add-movie-card">
         <div className="card admin-add-movie-card">
-
-        <div className="row">
+          <div className="row">
             <div className="col-6">
-            <input
-              type="text"
-              placeholder="Movie Name"
-              name="movieName"
-              style={{ height: "40px",width:'100%' }}
-              className="admin-add-movie-moviename"
-              onChange={handleChange}
-            ></input>
-            
-            {errors.movieName && (
-              <div className="text-danger">{errors.movieName}</div>
-            )}
+              <input
+                type="text"
+                placeholder="Movie Name"
+                name="movieName"
+                style={{ height: "40px", width: "100%" }}
+                className="admin-add-movie-moviename"
+                onChange={handleChange}
+              ></input>
+
+              {errors.movieName && (
+                <div className="text-danger">{errors.movieName}</div>
+              )}
             </div>
             <div className="col-3">
-            <label
+              <label
                 htmlFor="movieImage"
                 style={{
                   cursor: "pointer",
@@ -222,8 +221,7 @@ function AdminAddMovie() {
                   color: "black",
                   borderRadius: "5px",
                   margin: "10px 10px 0 10px",
-                  width:'100%'
-
+                  width: "100%",
                 }}
               >
                 Image
@@ -243,7 +241,7 @@ function AdminAddMovie() {
               )}
             </div>
             <div className="col-3">
-            <label
+              <label
                 htmlFor="coverImage"
                 style={{
                   cursor: "pointer",
@@ -270,51 +268,48 @@ function AdminAddMovie() {
                 <div className="text-danger">{errors.coverImage}</div>
               )}
             </div>
-        </div>
+          </div>
 
-
-
-              <div className="row mt-2">
-                <div className="col-6">
-                <div class="dropdown">
+          <div className="row mt-2">
+            <div className="col-6">
+              <div class="dropdown">
+                <select
+                  name="language"
+                  value={movieDetails.language}
+                  onChange={handleChange}
+                  className="admin-add-movie-dropdown"
+                >
+                  <option value="">Select Language</option>
+                  <option value="Malayalam">Malayalam</option>
+                  <option value="Tamil">Tamil</option>
+                  <option value="Telugu">Telugu</option>
+                </select>
+              </div>
+              {errors.language && (
+                <div className="text-danger">{errors.language}</div>
+              )}
+            </div>
+            <div className="col-6">
               <select
-                name="language"
-                value={movieDetails.language}
+                name="screenType"
+                value={movieDetails.screenType}
                 onChange={handleChange}
                 className="admin-add-movie-dropdown"
               >
-                <option value="">Select Language</option>
-                <option value="Malayalam">Malayalam</option>
-                <option value="Tamil">Tamil</option>
-                <option value="Telugu">Telugu</option>
+                <option value="">Select Screen Type</option>
+                <option value="2D">2D</option>
+                <option value="3D">3D</option>
+                <option value="IMAX">IMAX</option>
               </select>
+              {errors.screenType && (
+                <div className="text-danger">{errors.screenType}</div>
+              )}
             </div>
-            {errors.language && (
-              <div className="text-danger">{errors.language}</div>
-            )}
-                </div>
-                <div className="col-6">
-                <select
-              name="screenType"
-              value={movieDetails.screenType}
-              onChange={handleChange}
-              className="admin-add-movie-dropdown"
-            >
-              <option value="">Select Screen Type</option>
-              <option value="2D">2D</option>
-              <option value="3D">3D</option>
-              <option value="IMAX">IMAX</option>
-            </select>
-            {errors.screenType && (
-              <div className="text-danger">{errors.screenType}</div>
-            )}
-                </div>
-              </div>
+          </div>
 
-
-            <div className="row mt-2">
-                <div className="col-4">
-                <input
+          <div className="row mt-2">
+            <div className="col-4">
+              <input
                 type="date"
                 onChange={handleChange}
                 name="startDate"
@@ -323,15 +318,15 @@ function AdminAddMovie() {
                 placeholder="Start Date"
                 style={{
                   backgroundColor: "#ADADAD",
-                  width:'100%'
+                  width: "100%",
                 }}
               ></input>
               {errors.startDate && (
                 <div className="text-danger">{errors.startDate}</div>
               )}
-                </div>
-                <div className="col-4">
-                <input
+            </div>
+            <div className="col-4">
+              <input
                 type="date"
                 onChange={handleChange}
                 name="endDate"
@@ -340,97 +335,91 @@ function AdminAddMovie() {
                 className="admin-add-movie-startdate"
                 style={{
                   backgroundColor: "#ADADAD",
-                  width:'100%'
+                  width: "100%",
                 }}
               ></input>
               {errors.endDate && (
                 <div className="text-danger">{errors.endDate}</div>
               )}
-                </div>
-                <div className="col-4">
-                <select
-              name="movieType"
-              value={movieDetails.movieType}
-              onChange={handleChange}
-              className="admin-add-movie-dropdown"
-              style={{width:'100%'}}
-            >
-              <option value="">Select Type</option>
-              <option value="Action">Action</option>
-              <option value="Drama">Drama</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Horror">Horror</option>
-              <option value="Romantic">Romantic</option>
-              <option value="Documentary">Documentary</option>
-            </select>
-            {errors.movieType && (
-              <div className="text-danger">{errors.movieType}</div>
-            )}
-                </div>
             </div>
-
-
-
-            <div className="row">
-                <div className="col-6">
-                <input
-              type="text"
-              placeholder="Duration"
-              className="admin-add-movie-duration"
-              name="duration"
-              onChange={handleChange}
-              style={{width:'100%'}}
-            ></input>
-            {errors.duration && (
-              <div className="text-danger">{errors.duration}</div>
-            )}
-                </div>
-                <div className="col-6">
-                <label
-              htmlFor="video"
-              style={{
-                cursor: "pointer",
-                padding: "10px 20px",
-                backgroundColor: "#BDBDBD",
-                color: "black",
-                borderRadius: "5px",
-                margin: "10px",
-                width: "97%",
-              }}
-            >
-              Upload Trailer
-            </label>
-            <input
-              type="file"
-              className="admin-add-movie-trailer"
-              id="video"
-              name="trailer"
-              onChange={handlechangeTrailer}
-              accept="video/*"
-              style={{ display: "none" }}
-            ></input>
-            {errors.trailer && (
-              <div className="text-danger">{errors.trailer}</div>
-            )}
-                </div>
+            <div className="col-4">
+              <select
+                name="movieType"
+                value={movieDetails.movieType}
+                onChange={handleChange}
+                className="admin-add-movie-dropdown"
+                style={{ width: "100%" }}
+              >
+                <option value="">Select Type</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Horror">Horror</option>
+                <option value="Romantic">Romantic</option>
+                <option value="Documentary">Documentary</option>
+              </select>
+              {errors.movieType && (
+                <div className="text-danger">{errors.movieType}</div>
+              )}
             </div>
+          </div>
 
+          <div className="row">
+            <div className="col-6">
+              <input
+                type="text"
+                placeholder="Duration"
+                className="admin-add-movie-duration"
+                name="duration"
+                onChange={handleChange}
+                style={{ width: "100%" }}
+              ></input>
+              {errors.duration && (
+                <div className="text-danger">{errors.duration}</div>
+              )}
+            </div>
+            <div className="col-6">
+              <label
+                htmlFor="video"
+                style={{
+                  cursor: "pointer",
+                  padding: "10px 20px",
+                  backgroundColor: "#BDBDBD",
+                  color: "black",
+                  borderRadius: "5px",
+                  margin: "10px",
+                  width: "97%",
+                }}
+              >
+                Upload Trailer
+              </label>
+              <input
+                type="file"
+                className="admin-add-movie-trailer"
+                id="video"
+                name="trailer"
+                onChange={handlechangeTrailer}
+                accept="video/*"
+                style={{ display: "none" }}
+              ></input>
+              {errors.trailer && (
+                <div className="text-danger">{errors.trailer}</div>
+              )}
+            </div>
+          </div>
 
-
-       
           <div className="row">
             <div className="col-12">
-            <textarea
-              className="form-control admin-add-show-textarea"
-              placeholder="Description"
-              name="description"
-              onChange={handleChange}
-            ></textarea>
-            {errors.description && (
-              <div className="text-danger">{errors.description}</div>
-            )}
+              <textarea
+                className="form-control admin-add-show-textarea"
+                placeholder="Description"
+                name="description"
+                onChange={handleChange}
+              ></textarea>
+              {errors.description && (
+                <div className="text-danger">{errors.description}</div>
+              )}
             </div>
-            
           </div>
         </div>
 
