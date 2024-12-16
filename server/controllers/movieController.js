@@ -281,6 +281,38 @@ const deactivateMovieById = async (req, res) => {
   }
 };
 
+const nowShowingMovies = (req, res) => {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1); // Subtract one day
+  
+  // Query movies with releaseDate greater than or equal to today
+  Movie.find({endDate:{$lt:yesterday}})
+    .exec()
+    .then(movies => {
+      return res.status(200).json({ msg: 'Upcoming movies', data: movies });
+    })
+    .catch(err => {
+      console.error(err);
+      return res.status(500).json({ msg: 'Failed to fetch movies', error: err.message });
+    });
+};
+
+const comingSonnMovies = (req, res) => {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1); // Subtract one day
+  
+  // Query movies with releaseDate greater than or equal to today
+  Movie.find({startDate:{$gt:yesterday}})
+    .exec()
+    .then(movies => {
+      return res.status(200).json({ msg: 'Upcoming movies', data: movies });
+    })
+    .catch(err => {
+      console.error(err);
+      return res.status(500).json({ msg: 'Failed to fetch movies', error: err.message });
+    });
+};
+
 module.exports = {
   createMovie,
   updateMovieById,
@@ -293,5 +325,6 @@ module.exports = {
   deactivateMovieById,
   createCast,
   viewCastByMovieId,
-  updateCast
+  updateCast,
+  nowShowingMovies
 };

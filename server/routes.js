@@ -60,5 +60,6 @@ router.post('/viewMovieById/:id',Movie.viewMovieById)
 router.post('/viewCastByMovieId/:id',Movie.viewCastByMovieId)
 router.post('/updateMovieById/:id',Movie.upload,Movie.updateMovieById)
 router.post('/updateCast/:id',Movie.updateCast,Movie.updateCast)
+router.post('/nowShowingMovies',Movie.nowShowingMovies)
 
 module.exports = router;
