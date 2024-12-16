@@ -159,42 +159,48 @@ function AdminEditMovie() {
       }
     });
 
-    //  try {
-    //       console.log("before",movieDetails);
+             try {
+                  console.log("before",movieDetails);
+                  
+                  const result = await updateWithFile(movieDetails, 'updateMovieById',id);
+                  console.log(result);
+                  
+                  if (result.success) {
+                      console.log(result);
+        
+                      toast.success('Movie Added successfully !');
+                   
+                      try {
+                  
+                        const result2 = await updateWithFile(formData, 'updateCast',id);
+                        if (result2.success) {
+                            console.log(result2);
+              
+                         
+              
+                            navigate(`/admin-view-movie`);
 
-    //       const result = await updateWithFile(movieDetails, 'updateMovieById',id);
-    //       console.log(result);
+        
+                        } else {
+                            console.error('Registration error:', result2);
+                        }
+                    } catch (error) {
+                        console.error('Unexpected error:', error);
+                        toast.error('An unexpected error occurred during Registration');
+                    }
+                      
 
-    //       if (result.success) {
-    //           console.log(result);
+                  } else {
+                      console.error('Registration error:', result);
+                      toast.error(result.message);
+                  }
+              } catch (error) {
+                  console.error('Unexpected error:', error);
+                  toast.error('An unexpected error occurred during Registration');
+              }
 
-    //           toast.success('Movie Added successfully !');
-
-    //           try {
-
-    //             const result2 = await updateWithFile(formData, 'updateCast',id);
-    //             if (result2.success) {
-    //                 console.log(result2);
-
-    //                 navigate(`/admin-view-movie`);
-
-    //             } else {
-    //                 console.error('Registration error:', result2);
-    //             }
-    //         } catch (error) {
-    //             console.error('Unexpected error:', error);
-    //             toast.error('An unexpected error occurred during Registration');
-    //         }
-
-    //       } else {
-    //           console.error('Registration error:', result);
-    //           toast.error(result.message);
-    //       }
-    //   } catch (error) {
-    //       console.error('Unexpected error:', error);
-    //       toast.error('An unexpected error occurred during Registration');
-    //   }
-  };
+              
+    };
 
   const fetchData = async () => {
     try {

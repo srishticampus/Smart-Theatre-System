@@ -79,7 +79,7 @@ function App() {
             <Route path='/admin-view-movie-details/:id' element={<AdminCall type='admin-view-details'/>}/>
             <Route path='/admin-add-food' element={<AdminCall type='admin-add-food'/>}/>
             <Route path='/admin-view-food' element={<AdminCall type='admin-view-food'/>}/>
-            <Route path='/admin-edit-food' element={<AdminCall type='admin-edit-food'/>}/>
+            <Route path='/admin-edit-food/:id' element={<AdminCall type='admin-edit-food'/>}/>
             <Route path='/admin-parking-details' element={<AdminCall type='admin-parking-details'/>}/>
 
 
