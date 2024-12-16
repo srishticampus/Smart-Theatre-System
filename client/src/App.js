@@ -12,8 +12,14 @@ import ScrollToTop from './Components/Common/ScrollToTop';
 import ContactUs from './Components/Common/ContactUs';
 import Aboutus from './Components/Common/Aboutus';
 import UserNavbar from './Components/Navbars/UserNavbar';
-
-
+import UserBookTickets from './Components/User/UserBookTickets';
+import UserBookTicketSeatCount from './Components/User/UserBookTicketSeatCount';
+import UserBookTicketSelectSeat from './Components/User/UserBookTicketSelectSeat';
+import UserBookTicketSelectedSeat from './Components/User/UserBookTicketSelectedSeat';
+import UserBookTicketsPayment from './Components/User/UserBookTicketsPayment';
+import UserViewParking from './Components/User/UserViewParking';
+import UserSelectParking from './Components/User/UserSelectParking';
+import UserParkingPayment from './Components/User/UserParkingPayment';
 
 // import ForgotPassword from './Components/User/ForgotPassword'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
@@ -62,11 +68,21 @@ function App() {
             <Route path='/admin-edit-staff/:id' element={<AdminCall type='admin-edit-staff' />} />
             <Route path='/admin-add-screen' element={<AdminCall type='admin-add-screen' />} />
             <Route path='/admin-view-screen' element={<AdminCall type='admin-view-screen'/>}/>
-            <Route path='/admin-view-lounge'element={<AdminCall type='admin-view-lounge'/>}/>
-            <Route path='/admin-edit-screen' element={<AdminCall type='admin-edit-screen'/>} />
-            <Route path='/admin-add-show' element={<AdminCall type='admin-add-show'/>}/>
+            <Route path='/admin-view-lounge/:id'element={<AdminCall type='admin-view-lounge'/>}/>
+            <Route path='/admin-edit-screen/:id' element={<AdminCall type='admin-edit-screen'/>} />
+            <Route path='/admin-add-show/:id' element={<AdminCall type='admin-add-show'/>}/>
             <Route path='/admin-view-show-time'element={<AdminCall type='admin-view-show-time'/>}/>
             <Route path='/admin-edit-show-time' element={<AdminCall type='admin-edit-show-time'/>}/>
+            <Route path='/admin-add-movie' element={<AdminCall type='admin-add-movie'/>}/>
+            <Route path='/admin-edit-movie/:id' element={<AdminCall type='admin-edit-movie'/>}/>
+            <Route path='/admin-view-movie' element={<AdminCall type='admin-view-movie'/>}/>
+            <Route path='/admin-view-movie-details/:id' element={<AdminCall type='admin-view-details'/>}/>
+            <Route path='/admin-add-food' element={<AdminCall type='admin-add-food'/>}/>
+            <Route path='/admin-view-food' element={<AdminCall type='admin-view-food'/>}/>
+            <Route path='/admin-edit-food' element={<AdminCall type='admin-edit-food'/>}/>
+            <Route path='/admin-parking-details' element={<AdminCall type='admin-parking-details'/>}/>
+
+
 
 
 
@@ -76,13 +92,25 @@ function App() {
             <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
+            <Route path='/user-book-ticket' element={[<UserNavbar/>,<UserBookTickets/>]}/>
+            <Route path='/user-book-ticket-seat' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
+            <Route path='/user-book-ticket-select-seat' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
+            <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
+            <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
+            <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
+            <Route path='/user-select-parking' element={[<UserNavbar/>,<UserSelectParking/>]}/>
+            <Route path='/user-parking-payment' element={[<UserNavbar/>,<UserParkingPayment/>]}/>
+
+
+
+
             {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
            
 
             <Route path='/user_add_complaint' element={[<UserNavbar />, <UserAddComplaints />]} />
 
-            <Route path='/user_profile' element={[<UserNavbar />, <UserProfile />]} />
+            // <Route path='/user_profile' element={[<UserNavbar />, <UserProfile />]} />
             <Route path='/user_edit_profile' element={[<UserNavbar />, <UserEditProfile />]} />
 
             <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}

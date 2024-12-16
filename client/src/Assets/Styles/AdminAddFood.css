@@ -1,0 +1,167 @@
+/* General Styles */
+.admin-add-food-category,
+.admin-add-food-category:hover {
+    width: 370px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    padding-right: 25px;
+    text-align: left;
+}
+
+.admin-add-food-category::after {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.admin-add-food-veg,
+.admin-add-food-veg:hover {
+    width: 100px;
+    background: #ADADAD;
+    margin-right: 27px;
+}
+
+.admin-add-food-nonveg,
+.admin-add-food-nonveg:hover {
+    background: #ADADAD;
+}
+
+.admin-food-uploadimg {
+    background: #ADADAD;
+    width: 370px;
+}
+
+.admin-add-food-amount {
+    background: #ADADAD;
+    min-width: 350px;
+}
+
+.admin-add-food-card {
+    width: 800px;
+    margin-top: 100px;
+}
+
+.admin-add-food-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 37px;
+}
+
+.admin-add-food-field {
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ADADAD;
+    width: 300px;
+    padding: 5px;
+    margin-top: 50px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For small screens (mobiles) */
+@media (max-width: 576px) {
+    .admin-add-food-category,
+    .admin-food-uploadimg,
+    .admin-add-food-amount,
+    .admin-add-food-field {
+        width: 100% !important; /* Ensure full width on mobile */
+        margin-bottom: 10px;
+    }
+
+    .admin-add-food-card {
+        width: 100%;
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .admin-add-food-head {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .admin-add-food-veg,
+    .admin-add-food-nonveg {
+        width: 150px;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* For medium screens (tablets) */
+@media (max-width: 768px) {
+    .admin-add-food-card {
+        width: 100%;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    .admin-add-food-head {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .admin-add-food-category {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .admin-add-food-veg,
+    .admin-add-food-nonveg {
+        width: 150px;
+        margin-bottom: 10px;
+    }
+
+    .admin-food-uploadimg,
+    .admin-add-food-amount {
+        width: 100%;
+    }
+
+    .admin-add-food-field {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+}
+
+/* For larger screens (desktops) */
+@media (min-width: 992px) {
+    .admin-add-food-card {
+        width: 800px;
+    }
+
+    .admin-add-food-head {
+        font-size: 36px;
+    }
+
+    .admin-add-food-category {
+        width: 370px;
+    }
+
+    .admin-add-food-veg,
+    .admin-add-food-nonveg {
+        width: 150px;
+        margin-right: 27px;
+    }
+
+    .admin-food-uploadimg {
+        width: 370px;
+    }
+
+    .admin-add-food-amount {
+        width: 470px;
+    }
+
+    .admin-add-food-field {
+        width: 300px;
+    }
+}

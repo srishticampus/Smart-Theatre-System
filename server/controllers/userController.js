@@ -61,8 +61,9 @@ const registerUser = async (req, res) => {
 
 // Update User by ID
 const editUserById = async (req, res) => {
-    const { email, contact } = req.body;
+    const { email, contact ,name} = req.body;
     const userId = req.params.id;
+console.log("here");
 
     try {
         const existingUser = await User.findById(userId);
@@ -73,6 +74,7 @@ const editUserById = async (req, res) => {
                 data: null
             });
         }
+console.log(userId);
 
         const duplicateContact = await User.findOne({ contact });
         if (duplicateContact && duplicateContact._id.toString() !== userId) {
@@ -86,6 +88,7 @@ const editUserById = async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(userId, {
             email,
             contact,
+            name,
             profilePic: req.file, // Optionally update profilePic if provided
         }, { new: true });
 

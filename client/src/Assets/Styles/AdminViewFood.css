@@ -1,0 +1,80 @@
+.search-container {
+    position: relative;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 100%;
+    padding-right: 35px;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    box-sizing: border-box;
+    border-radius: 27px;
+    background: #BDBDBD;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.admin-view-food-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+}
+
+.admin-view-food-table {
+    margin-left: 50px;
+    margin-top: 50px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.admin-view-food-table {
+    width: 90%;
+
+    border-collapse: collapse;
+}
+
+.admin-view-table th,
+.admin-view-table td {
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.admin-view-table th {
+    background-color: #f44336;
+    color: white;
+}
+
+.admin-view-table td i {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .admin-view-food-table {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .admin-view-table th,
+    .admin-view-table td {
+        font-size: 12px;
+       
+    }
+
+    .admin-view-table td i {
+        font-size: 18px;
+       
+    }
+}

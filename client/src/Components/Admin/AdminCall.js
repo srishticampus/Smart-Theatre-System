@@ -18,10 +18,18 @@ import AdminEditScreen from "./AdminEditScreen";
 import AdminAddShow from "./AdminAddShow";
 import AdminViewShowTime from "./AdminViewShowTime";
 import AdminEditShowTime from "./AdminEditShowTime";
+import AdminAddMovie from "./AdminAddMovie";
+import AdminEditMovie from "./AdminEditMovie";
+import AdminViewMovie from "./AdminViewMovie";
+import AdminViewDetailsMovie from "./AdminViewDetailsMovie";
+import AdminAddFood from "./AdminAddFood";
+import AdminViewFood from "./AdminViewFood";
+import AdminEditFood from "./AdminEditFood";
+import AdminParkingDetails from "./AdminParkingDetails";
 
 function AdminCall({ type }) {
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (localStorage.getItem("admin") == 0) {
@@ -41,43 +49,67 @@ function AdminCall({ type }) {
         <div className=" col-lg-9 col-md-6 col-sm-12 adminmain-content">
           {type === "admin_dashboard" ? (
             <AdminDashboard />
-          )  : type === "view_complaints" ? (
-            <AdminViewComplaints  />
+          ) : type === "view_complaints" ? (
+            <AdminViewComplaints />
           ) : type === "admin_view_users" ? (
-            <AdminViewAllUsers  />
+            <AdminViewAllUsers />
           ) : type === "view_review" ? (
-            <ViewReviews  />
+            <ViewReviews />
           ) : type === "admin_add_staff" ? (
-            <AdminAddStaff  />
+            <AdminAddStaff />
           ) : type === "admin-view-staff" ? (
-            <AdminViwAllStaff  />
+            <AdminViwAllStaff />
           ) : type === "admin-edit-staff" ? (
-            <AdminEditStaff  />
-          ) : 
-            type ==="admin-add-screen" ?(
-            <AdminAddScreen/>
-            ):
-            type ==="admin-view-screen" ? (
-              <AdminViewScreen/>
-            ):
-            type==="admin-view-lounge" ?(
+            <AdminEditStaff />
+          ) :
+            type === "admin-add-screen" ? (
+              <AdminAddScreen />
+            ) :
+              type === "admin-view-screen" ? (
+                <AdminViewScreen />
+            ) :
+            type === "admin-view-lounge" ? (
 
-              <AdminViewLounge/>
-            ):
-            type==="admin-edit-screen"?(
-              <AdminEditScreen/>
-            ):
-            type === "admin-add-show" ? (
-              <AdminAddShow/>
-            ):
-            type === "admin-view-show-time"?(
-              <AdminViewShowTime/>
-            ):
-            type === "admin-edit-show-time"?(
-              <AdminEditShowTime/>
-            ):
+              <AdminViewLounge />
+            ) :
+             type === "admin-edit-screen" ? (
+               <AdminEditScreen />
+             ) :
+             type === "admin-add-show" ? (
+              <AdminAddShow />
+               ) :
+                type === "admin-view-show-time" ? (
+                  <AdminViewShowTime />
+               ) :
+            type === "admin-edit-show-time" ? (
+                 <AdminEditShowTime />
+           ) :
+                 type === "admin-add-movie" ? (
+               <AdminAddMovie />
+             ) :
+             type === "admin-edit-movie" ? (
+              <AdminEditMovie/>
+             ):
+             type === "admin-view-movie" ?(
+              <AdminViewMovie/>
+             ):
+             type === "admin-view-details" ? (
+              <AdminViewDetailsMovie/>
+             ):
+             type === "admin-add-food" ? (
+              <AdminAddFood/>
+             ):
+             type === "admin-view-food" ? (
+              <AdminViewFood/>
+             ):
+             type === "admin-edit-food" ? (
+              <AdminEditFood/>
+             ):
+             type === "admin-parking-details"?(
+              <AdminParkingDetails/>
+             ):
 
-            ""
+             ""
           }
         </div>
       </div>

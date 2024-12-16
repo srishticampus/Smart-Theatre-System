@@ -1,0 +1,94 @@
+.user-view-parking {
+    margin-top: 100px;
+}
+
+.customer-view-parking-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+.user-view-parking-all-card-size {
+    height: 100px;
+    width: 124px;
+    margin: 5px;
+}
+
+.user-view-parking-all-bikecard-size {
+    height: 45px;
+    width: 124px;
+    margin: 10px;
+
+}
+
+
+.parking-section {
+    display: flex;
+}
+
+.car-parking {
+    flex-grow: 1;
+}
+
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    /* Ensures wrapping of cards when there's not enough space */
+}
+
+/* Adjusted grid for 3 car cards per row */
+.col-sm-4 {
+    width: 30.3%;
+    /* 3 items per row in a 12 column grid */
+    padding: 0 10px;
+    /* Optional padding */
+}
+
+/* Adjusted grid for 5 bike cards per row */
+.col-sm-2 {
+    width: 10%;
+    /* 5 items per row in a 12 column grid */
+    padding: 0 10px;
+    /* Optional padding */
+}
+
+
+.bike-parking {
+    margin-left: 0px;
+    text-align: center;
+}
+.bike-parking .row {
+    display: flex;
+    justify-content: center; /* Centers the cards horizontally within the row */
+    flex-wrap: wrap;
+}
+
+
+.user-view-parking-car-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+.user-view-parking-bike-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+.bike-parking .row .col-sm-2:nth-child(even) {
+    margin-right: 60px; 
+}
+.car-parking .row .col-sm-4:nth-child(odd) {
+    margin-right: 10px; 
+}

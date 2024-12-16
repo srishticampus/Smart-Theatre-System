@@ -1,0 +1,88 @@
+.movie-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Optional for spacing from the top */
+}
+
+.view-details-rows {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Optional for spacing between cards */
+}
+
+.admin-view-card {
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-container {
+    position: relative;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 100%;
+    padding-right: 35px;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    box-sizing: border-box;
+    border-radius: 27px;
+    background: #BDBDBD;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.admin-view-card-footer {
+    background-color: #ffffff;
+}
+
+.admin-view-movie-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
+}
+
+.admin-view-card-footer-head {
+    color: #000;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.admin-view-card-footer-description {
+    color: #666;
+    font-family: Lato;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.admin-view-card-footer-duration {
+    color: #A0A0A0;
+    font-family: Lato;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.admin-view-movie-img{
+    border-radius: 18.835px;
+    width: 182.699px;
+    height: 274.312px;
+    flex-shrink: 0;}

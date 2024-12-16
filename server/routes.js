@@ -4,8 +4,9 @@ const router = express.Router();
 const Admin=require('./controllers/adminController')
 const User = require('./controllers/userController'); 
 const Staff = require('./controllers/staffController'); 
-
-
+const Screen = require('./controllers/screenController'); 
+const showtime=require('./controllers/showTimeController')
+const Movie=require('./controllers/movieController')
 // User routes
 
 router.post('/registerUser', User.uploadSingle, User.registerUser);
@@ -37,5 +38,27 @@ router.post('/activateStaffById/:id', Staff.activateStaffById);
 router.post('/editStaffById/:id',Staff.uploadSingle, Staff.editStaffById);
 router.post('/deleteStaffById/:id', Staff.deleteStaffById);
 router.post('/loginStaff', Staff.login);
+
+
+// Screens
+router.post('/addScreen',Screen.addScreen)
+router.post('/viewAllScreens',Screen.viewAllScreens)
+router.post('/editScreenById/:id',Screen.editScreenById)
+router.post('/deleteScreenById/:id',Screen.deleteScreenById)
+router.post('/viewScreenById/:id',Screen.viewScreenById)
+
+// show Time
+router.post('/addShowtime',showtime.addShowtime)
+
+
+
+//movies
+router.post('/createMovie',Movie.upload,Movie.createMovie)
+router.post('/createCast/:id',Movie.uploadCaste,Movie.createCast)
+router.post('/viewAllMovies',Movie.viewAllMovies)
+router.post('/viewMovieById/:id',Movie.viewMovieById)
+router.post('/viewCastByMovieId/:id',Movie.viewCastByMovieId)
+router.post('/updateMovieById/:id',Movie.upload,Movie.updateMovieById)
+router.post('/updateCast/:id',Movie.updateCast,Movie.updateCast)
 
 module.exports = router;
