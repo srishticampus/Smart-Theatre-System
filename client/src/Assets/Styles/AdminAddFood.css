@@ -1,7 +1,7 @@
 /* General Styles */
 .admin-add-food-category,
 .admin-add-food-category:hover {
-    width: 370px;
+    width: 550px;
     border-radius: 5px;
     border: 1px solid #000;
     background: #ADADAD;

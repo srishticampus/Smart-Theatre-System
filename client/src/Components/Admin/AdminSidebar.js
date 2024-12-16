@@ -116,18 +116,18 @@ const handleClose = () => {
                 </div>
               )}
                 <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
-                <label className="label-sub">Movies</label>
+                <label className="label-sub">Manage Food</label>
               </div>
               {showSubscription && (
                 <div className="custom-dropdown-menu">
-                  <Link to={'/admin_add_subscription_plan'}>
+                  <Link to={'/admin-add-food'}>
                     <div className="custom-dropdown-item">
-                      <label className="label-sub">Add Subscription</label>
+                      <label className="label-sub">Add Food</label>
                     </div>
                   </Link>
-                  <Link to={'/admin_view_subscription_plan'}>
+                  <Link to={'/admin-view-food'}>
                     <div className="custom-dropdown-item">
-                      <label className="label-sub">View Subscription</label>
+                      <label className="label-sub">View Food</label>
                     </div>
                   </Link>
                 </div>
