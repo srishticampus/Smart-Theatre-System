@@ -75,7 +75,7 @@ console.log("here");
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setSelectedImage(event.target.result); // Update the image preview
+        setSelectedImage(event.target.result);
       };
       reader.readAsDataURL(file);
       console.log("Selected file:", file);

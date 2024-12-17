@@ -51,6 +51,7 @@ const createMovie = async (req, res) => {
         startDate,
         endDate,
         movieType,
+        screenId,
         duration,
         trailer,
         description,

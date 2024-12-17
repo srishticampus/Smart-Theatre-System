@@ -90,6 +90,8 @@ console.log("data",data);
                                 <select className='form-control p-2 admin-add-food-category' name='category' onChange={handleChange} value={data.category}>
                                     <option value="">Select Food Type</option>
                                     <option value="Snacks">Snacks</option>
+                                    <option value="Puffs">Puffs</option> 
+                                    <option value="Deserts">Deserts</option>
                                     <option value="Beverages">Beverages</option>
                                 </select>
                                 {errors.category && <span className="text-danger">{errors.category}</span>}

@@ -38,6 +38,9 @@ import StaffMain from './Components/Staff/StaffMain';
 import UserHome from './Components/User/UserHome';
 import UserContact from './Components/User/UserContact';
 import UserAboutus from './Components/User/UserAboutUs';
+import UserHomeNowShowing from './Components/User/UserHomeNowShowing';
+import UserMovieDetails from './Components/User/UserMovieDetails';
+import UserNowShowing from './Components/User/UserNowShowing';
 function App() {
   return (
     <div className="App">
@@ -92,7 +95,7 @@ function App() {
             <Route path='/user-home' element={[<UserNavbar />, <UserHome />]} />
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
-            <Route path='/user-book-ticket' element={[<UserNavbar/>,<UserBookTickets/>]}/>
+            <Route path='/user-book-ticket/:id' element={[<UserNavbar/>,<UserBookTickets/>]}/>
             <Route path='/user-book-ticket-seat' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
             <Route path='/user-book-ticket-select-seat' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
             <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
@@ -100,6 +103,8 @@ function App() {
             <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
             <Route path='/user-select-parking' element={[<UserNavbar/>,<UserSelectParking/>]}/>
             <Route path='/user-parking-payment' element={[<UserNavbar/>,<UserParkingPayment/>]}/>
+            <Route path='/user-movie-details/:id' element={[<UserNavbar/>,<UserMovieDetails/>]}/>
+            <Route path='/user-now-showing' element={[<UserNavbar/>,<UserNowShowing/>]}/>
 
 
 
@@ -120,6 +125,7 @@ function App() {
             <Route path='/staff-home' element={<StaffMain type='staff-home' />} />
             <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
             <Route path='/staff-edit-profile' element={<StaffMain type='staff-edit-profile' />} />
+            <Route path='/staff-view-food' element={<StaffMain type='staff-view-food' />} />
 
 
 

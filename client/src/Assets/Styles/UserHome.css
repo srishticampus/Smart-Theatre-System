@@ -1,0 +1,40 @@
+
+.screen2-Content {
+   
+    width: cover;
+    margin: auto;
+  }
+  .screen2-text{
+    position: relative;
+    z-index: 1;
+    color:white;
+    margin-left: 20px;
+    font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  }
+  .user-data-container{
+padding-top:60px;
+  }
+  .user-movie-head1{
+    color: #000;
+font-family: Lato;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+  .user-movie-head2{
+    color: #000;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px; /* 264.286% */
+  }
+  .cast-img{
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;  }

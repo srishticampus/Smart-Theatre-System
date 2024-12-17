@@ -63,6 +63,13 @@ const movieSchema=mongoose.Schema({
         required:true,
        
     },
+    screenId: {
+        type:mongoose.Types.ObjectId,
+        ref:'screens',
+       
+        required:true,
+       
+    },
     description:{
         type:String,
        

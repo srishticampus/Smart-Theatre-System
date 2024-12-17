@@ -158,7 +158,7 @@ function UserHome() {
 
 
   return (
-    <div>
+    <div className="userLandingBanner">
       <UserLandingBanner className=' userLandingBanner' />
 
 
