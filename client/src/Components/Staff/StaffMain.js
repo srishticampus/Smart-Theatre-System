@@ -8,6 +8,7 @@ import StaffSidebar from "./StaffSidebar";
 import StaffDashboard from "./StaffDashboard";
 import StaffViewProfile from "./StaffViewProfile";
 import StaffEditProfile from "./StaffEditProfile";
+import StaffViewFood from "./StaffViewFood";
 
 
 
@@ -38,6 +39,8 @@ function StaffMain({ type }) {
             <StaffViewProfile  />
           )  : type === "staff-edit-profile" ? (
             <StaffEditProfile  />
+          )  : type === "staff-view-food" ? (
+            <StaffViewFood  />
           ) : (
             ""
           )}

@@ -123,7 +123,7 @@ function AdminViewDetailsMovie() {
                 {castdata.map(item=>{
                     return(
                         <div className="col-sm-2 d-flex flex-column align-items-center">
-                        <img src={`${IMG_BASE_URL}/${item.castImage[0].filename}`} alt="priya" style={{ maxWidth: '100%', height: 'auto' }} />
+                        <img src={`${IMG_BASE_URL}/${item.castImage[0].filename}`}  className="cast-img"  alt="priya"  />
                         <p className='cast-name'>{item.castName}</p>
                         <p className='cast-designation'>{item.role}</p>
                     </div>

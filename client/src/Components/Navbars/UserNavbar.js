@@ -75,7 +75,7 @@ console.log("here");
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setSelectedImage(event.target.result); // Update the image preview
+        setSelectedImage(event.target.result);
       };
       reader.readAsDataURL(file);
       console.log("Selected file:", file);
@@ -204,7 +204,7 @@ const handleLogin = async (e) => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-light" to="/user_chat">
+          <Link className="nav-link text-light" to="/user-now-showing">
             Book Ticket
           </Link>
         </li>

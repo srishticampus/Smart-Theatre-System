@@ -158,7 +158,7 @@ function UserHome() {
 
 
   return (
-    <div>
+    <div className="">
       <UserLandingBanner className=' userLandingBanner' />
 
 
@@ -182,7 +182,7 @@ function UserHome() {
           </div>
 
         </div>
-        <div className="landing-sec3">
+        <div className="landing-sec3 mt-5">
           <p className="key_features">KEY FEATURES</p>
           <p className="All_You_Need">All You Need for the Perfect Movie Experience</p>
           <div className="container" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
@@ -211,8 +211,9 @@ function UserHome() {
         </div>
 
         <div className="landing_sec_4">
-          <p className="landing_sec_4_head mt-5 mb-5">Coming Soon movies</p>
-
+       {data2.length>0?
+       <>
+        <p className="landing_sec_4_head mt-5 mb-5">Coming Soon movies</p>
           <div className="row g-4">
           {data2.map((item, index) => {
             return (
@@ -226,6 +227,7 @@ function UserHome() {
             )
           })}
           </div>
+          </>:''} 
         </div>
         <div className="landing_sec_5">
           <FooterLandingPage />

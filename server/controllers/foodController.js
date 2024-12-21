@@ -61,7 +61,17 @@ const viewAllFood = (req, res) => {
             res.status(500).json({ msg: "No data obtained", Error: err });
         });
 };
-
+// View all food items
+const viewFoodByCategory = (req, res) => {
+    Food.find({})
+        .exec()
+        .then(data => {
+            res.status(200).json({ msg: "Data obtained successfully", data: data });
+        })
+        .catch(err => {
+            res.status(500).json({ msg: "No data obtained", Error: err });
+        });
+};
 // View food item by ID
 const viewFoodById = (req, res) => {
     Food.findById(req.params.id)

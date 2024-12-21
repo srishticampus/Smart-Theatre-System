@@ -27,12 +27,7 @@ const movieSchema=mongoose.Schema({
         required:true,
        
     },
-    screenType: {
-        type:String,
-       
-        required:true,
-       
-    },
+ 
     startDate: {
         type:String,
        
@@ -59,6 +54,13 @@ const movieSchema=mongoose.Schema({
     },
     trailer: {
         type:Object,
+       
+        required:true,
+       
+    },
+    screenId: {
+        type:mongoose.Types.ObjectId,
+        ref:'screens',
        
         required:true,
        

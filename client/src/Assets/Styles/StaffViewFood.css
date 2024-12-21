@@ -1,0 +1,102 @@
+.staff-view-food-head{
+    color: #000;
+text-align: left;
+font-family: Lato;
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: 37px; /* 102.778% */
+}
+
+.staff-view-food-main{
+    margin:20px;
+    margin-left: 30px;
+
+}
+.staff-view-food-subhead{
+    color: #000;
+font-family: Lato;
+font-size: 21.244px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.staff-view-food-options {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Makes sure all options are in a row */
+    gap: 15px; /* Optional, you can adjust this as per your requirement */
+}
+
+.staff-food-option {
+    border-radius: 20.998px;
+    border: 1px solid #CA0000;
+    width: 136.485px;
+    height: 31.497px;
+    padding: 5.249px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.staff-food-option:hover {
+    background-color: #CA0000;
+    color: white;
+}
+
+.selected {
+    background-color: #CA0000;
+    color: white;
+}
+
+.staff-food-option2 {
+    border-radius: 20.998px;
+    border: 1px solid #CA0000;
+    width: 136.485px;
+    height: 31.497px;
+    padding: 5.249px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.staff-food-option2:hover {
+    background-color: #CA0000;
+    color: white;
+}
+.staff-view-food-options{
+    padding: 10px;
+}
+.staff-view-food-item{
+
+    height: 200px;
+    border-radius: 12.504px;
+}
+
+.food-img{
+    width: 120.828px;
+height: 181.906px;
+border-radius: 15px;
+}
+.food_item-data{
+    color: rgba(0, 0, 0, 0.50);
+
+font-family: Lato;
+font-size: 10.622px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.food_item-price{
+    color: #000;
+
+font-family: Lato;
+font-size: 11.95px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}

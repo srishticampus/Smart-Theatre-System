@@ -73,9 +73,29 @@ const handleClose = () => {
                 </div>
             
                 <div className="adjust-space">
-              <Link className="adjust-space" to={'/admin_view_users'}>
-                <label className="label-sub">Food Orders</label>
-                </Link>
+                  <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
+                             <label className="label-sub">Food Orders</label>
+                           </div>
+                           {showSubscription && (
+                             <div className="custom-dropdown-menu">
+                               <Link to={'/staff-view-food'}>
+                                 <div className="custom-dropdown-item">
+                                   <label className="label-sub">Food Items</label>
+                                 </div>
+                               </Link>
+                               <Link to={'/admin-view-food'}>
+                                 <div className="custom-dropdown-item">
+                                   <label className="label-sub">Food Ordered</label>
+                                 </div>
+                               </Link>
+
+                               <Link to={'/admin-view-food'}>
+                                 <div className="custom-dropdown-item">
+                                   <label className="label-sub">Food Delivered</label>
+                                 </div>
+                               </Link>
+                             </div>
+                           )}
                 </div>
                 <div className="adjust-space">
                 <Link to={'/admin_view_users'}>

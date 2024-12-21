@@ -1,15 +1,8 @@
 #userNavbar{
-    position: fixed;
-    top: 0;
-    /* background-color: rgb(17, 17, 17);
-    width: 100%; */
+   
+  
     height: 30px;
-    /* padding: 20px; */
-    /* display: flex;
-    align-items: center;
-    padding: 40px;
-    justify-content: space-between; */
-    z-index: 2;
+  
 }
 
 .userNavbarLogo{
