@@ -26,11 +26,11 @@ const upload = multer({ storage: storage }).fields([
 ]);
 const uploadCaste = multer({ storage: storage }).fields([
     { name: 'casts[0][castImage]' },
-    { name: 'casts[1][castImage]' }, // Adjust for the number of expected images dynamically
+    { name: 'casts[1][castImage]' }, 
 ]);
 // Create new Movie
 const createMovie = async (req, res) => {
-    const { movieName, language, screenType, startDate, endDate, movieType, duration, description } = req.body;
+    const { movieName, language,  startDate, endDate,screenId, movieType, duration, description } = req.body;
   
     // Handle files for movie and trailer
     const movieImage = req.files['movieImage'][0]
@@ -47,7 +47,6 @@ const createMovie = async (req, res) => {
         movieImage,
         coverImage,
         language,
-        screenType,
         startDate,
         endDate,
         movieType,
@@ -181,6 +180,7 @@ const viewMovieById = (req, res) => {
   const movieId = req.params.id;
 
   Movie.findById(movieId)
+  .populate('screenId')
     .exec()
     .then(movie => {
       if (!movie) {
@@ -284,23 +284,30 @@ const deactivateMovieById = async (req, res) => {
 
 const nowShowingMovies = (req, res) => {
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Set time to the beginning of today
+  today.setHours(0, 0, 0, 0); // Set today's time to midnight
+
+  console.log("Today (normalized):", today);
 
   Movie.find({})
     .exec()
     .then((movies) => {
       console.log("Movies from DB:", movies);
-      console.log("Today:", today);
 
       if (!movies.length) {
         return res.status(404).json({ msg: 'No movies are currently showing', data: [] });
       } else {
-        // Filter movies that have started and are still running
+        // Filter movies that are currently showing
         const nowShowing = movies.filter((movie) => {
-          const startDate = new Date(movie.startDate); // Convert startDate to Date
-          const endDate = new Date(movie.endDate);     // Convert endDate to Date
+          const startDate = new Date(movie.startDate);
+          startDate.setHours(0, 0, 0, 0); // Normalize startDate to midnight
 
-          // Check if the movie is currently showing
+          const endDate = new Date(movie.endDate);
+          endDate.setHours(0, 0, 0, 0); // Normalize endDate to midnight
+
+          console.log(`Checking movie: ${movie.movieName}`);
+          console.log(`Start Date: ${startDate}, End Date: ${endDate}, Today: ${today}`);
+
+          // Check if today's date falls between startDate and endDate
           return startDate <= today && endDate >= today;
         });
 
@@ -319,8 +326,10 @@ const nowShowingMovies = (req, res) => {
 
 
 
+
 const comingSoonMovies = (req, res) => {
   const today = new Date();
+ 
   today.setHours(0, 0, 0, 0); // Set time to the beginning of today
 
   Movie.find({})
@@ -330,19 +339,17 @@ const comingSoonMovies = (req, res) => {
       console.log("Today:", today);
 
       if (!movies.length) {
-        return res.status(404).json({ msg: 'No upcoming movies found', data: [] });
+        return res.status(404).json({ msg: 'No movies found', data: [] });
       } else {
         // Filter movies with a startDate greater than today
         const upcomingMovies = movies.filter((movie) => {
           const movieDate = new Date(movie.startDate); // Ensure it's a Date object
           console.log("Movie Date:", movieDate);
 
-          return movieDate > today; // Check if movieDate is in the future
+          return movieDate >= today; // Check if movieDate is in the future
         });
 
-        if (!upcomingMovies.length) {
-          return res.status(404).json({ msg: 'No upcoming movies found', data: [] });
-        }
+       
 
         return res.status(200).json({ msg: 'Upcoming movies', data: upcomingMovies });
       }

@@ -8,6 +8,7 @@ import test2 from "../../Assets/Images/paniTitle.png";
 import test3 from "../../Assets/Images/kanguva 2.avif";
 import logo from "../../Assets/Images/Vector.png";
 import { Link } from "react-router-dom";
+import { IMG_BASE_URL } from "../../Services/BaseURL";
 function UserHomeNowShowing() {
   const settings = {
     dots: true,
@@ -57,7 +58,7 @@ function UserHomeNowShowing() {
         <div className="movieSlide">
       
        <div className="screen2Content">
-            <div className="imageContainer">
+            <div className="imageContainer"  >
               <img src={test2}  alt="Screen 2 Left" />
               <div className="screen2-text">
               <h4>Pani</h4>

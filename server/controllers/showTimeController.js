@@ -18,8 +18,42 @@ const addShowtime= async (req, res) => {
     }
 };
 
+// View Staff by ID
+const viewShowsByScreenIdForDay = (req, res) => {
+    console.log("screenId",req.params.id,req.body.day);
+    
+    Showtime.find({screenId:req.params.id,day:req.body.day})
 
+        .exec()
+        .then(data => {
+            console.log("datat  ",data);
+            
+           
+            res.status(200).json({ msg: "Data obtained successfully", data: data });
+        })
+        .catch(err => {
+            res.status(500).json({ msg: "Error fetching data", Error: err });
+        });
+};
+const viewShowsById = (req, res) => {
+    console.log("screenId",req.params.id);
+    
+    Showtime.findById({_id:req.params.id})
+
+        .exec()
+        .then(data => {
+            console.log("datat  ",data);
+            
+           
+            res.status(200).json({ msg: "Data obtained successfully", data: data });
+        })
+        .catch(err => {
+            res.status(500).json({ msg: "Error fetching data", Error: err });
+        });
+};
 
 module.exports={
-    addShowtime
+    addShowtime,
+    viewShowsByScreenIdForDay,
+    viewShowsById
 }

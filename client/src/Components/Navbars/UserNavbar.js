@@ -204,7 +204,7 @@ const handleLogin = async (e) => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-light" to="/user_chat">
+          <Link className="nav-link text-light" to="/user-now-showing">
             Book Ticket
           </Link>
         </li>

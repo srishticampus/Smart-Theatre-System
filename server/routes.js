@@ -52,6 +52,8 @@ router.post('/viewScreenById/:id',Screen.viewScreenById)
 // show Time
 router.post('/addShowtime',showtime.addShowtime)
 
+router.post('/viewShowsByScreenIdForDay/:id',showtime.viewShowsByScreenIdForDay)
+router.post('/viewShowsById/:id',showtime.viewShowsById)
 
 
 //movies

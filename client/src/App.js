@@ -96,8 +96,8 @@ function App() {
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
             <Route path='/user-book-ticket/:id' element={[<UserNavbar/>,<UserBookTickets/>]}/>
-            <Route path='/user-book-ticket-seat' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
-            <Route path='/user-book-ticket-select-seat' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
+            <Route path='/user-book-ticket-seat/:mId/:showId' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
+            <Route path='/user-book-ticket-select-seat/:mId/:showId/:count' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
             <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
             <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
             <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>

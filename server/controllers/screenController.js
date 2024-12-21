@@ -152,6 +152,8 @@ const viewScreenById = async (req, res) => {
     }
 };
 
+
+
 // View all screens
 const viewAllScreens = async (req, res) => {
     try {

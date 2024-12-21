@@ -1,20 +1,89 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState, useRef } from "react";
+import { viewCount, approveById } from '../../Services/AdminService';
+import { IMG_BASE_URL } from '../../Services/BaseURL'
+import { toast } from "react-toastify";
+import { resetPassword, ViewById } from "../../Services/CommonServices";
+import FooterLandingPage from "../Footers/FooterLandingPage";
+import '../../Assets/Styles/UserHome.css'
+import { Link, redirect, useNavigate, useParams } from "react-router-dom";
 import "../../Assets/Styles/UserBookTicketSeatCount.css";
 
 function UserBookTicketSeatCount() {
     const [selectedSeat, setSelectedSeat] = useState(null);
-
+  const { mId } = useParams()
+  const {showId}= useParams()
+   const [showData, setShowData] = useState({
+      day:'',
+      startTime:'',
+      endTime:'',
+      
+    });
+     const navigate = useNavigate()
+    const [data, setData] = useState({
+        movieImage: { filename: '' },
+        coverImage: { filename: '' },
+        screenId: {
+          _id: '',
+          screenName: '',
+        }
+      });
+  const [movieId, setMovieId] = useState(mId);
     // Handle button click event
     const handleButtonClick = (seatNumber) => {
         setSelectedSeat(seatNumber);
+        console.log(seatNumber);
+        
     };
+  const fetchData = async () => {
+    try {
+      const result = await ViewById('viewMovieById', movieId);
+      if (result.success) {
+        console.log("mov", result.user);
 
+        setData(result.user || null);
+
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred during Data View');
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [movieId]);
+  const fetchShowData = async () => {
+    try {
+      const result = await ViewById('viewShowsById', showId);
+      if (result.success) {
+        console.log("shows", result.user);
+
+        setShowData(result.user || null);
+
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred during Data View');
+    }
+  };
+
+  useEffect(() => {
+    fetchShowData();
+  }, [showId]);
+  const redirect = (id) => {
+
+
+    navigate(`/user-book-ticket-select-seat/${movieId}/${showId}/${selectedSeat}`)
+  }
     return (
         <div>
             <div className='user-book-ticket-seat-count-sectionone container'>
-                <p className='user-book-ticket-seat-count-header'>Demonte Colony 2</p>
-                <p className='user--book-ticket-seat-genre'>Horror, Comedy</p>
-                <p className='user-book-ticket-seat-date'>Maxus Cinemas | Tuesday, November, 7:00 AM</p>
+                <p className='user-book-ticket-seat-count-header'>{data.movieName}</p>
+                <p className='user--book-ticket-seat-genre'>{data.movieType}</p>
+                <p className='user-book-ticket-seat-date'>Maxus Cinemas | {showData.day},{showData.startTime}</p>
                 <hr />
             </div>
             <div className='d-flex justify-content-center mt-5'>
@@ -35,7 +104,7 @@ function UserBookTicketSeatCount() {
                      
                     </div>
                     <div className='d-flex justify-content-center mb-3'>
-                    <button className='btn btn-danger user-book-seat-select-button'>Select Seats</button>
+                    <button className='btn btn-danger user-book-seat-select-button' onClick={redirect}>Select Seats</button>
                     </div>
                     
                 </div>

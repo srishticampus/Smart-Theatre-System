@@ -27,12 +27,7 @@ const movieSchema=mongoose.Schema({
         required:true,
        
     },
-    screenType: {
-        type:String,
-       
-        required:true,
-       
-    },
+ 
     startDate: {
         type:String,
        

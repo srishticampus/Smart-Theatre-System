@@ -10,9 +10,11 @@ function UserMovieDetails() {
   const userId = localStorage.getItem("user");
   const {id}=useParams()
   const [movieId, setMovieId] = useState(id);
+  
   const [data, setData2] = useState({
     movieImage:{filename:''},
-    coverImage:{filename:''}
+    coverImage:{filename:''},
+    screenId:{sreenName:''}
   });
   const [genre, setGenre] = useState([]);
   const [castdata,setCastData]=useState([])
@@ -47,7 +49,25 @@ const [data2, setData] = useState([]);
     fetchData2(); // Call the async function
   }, [movieId]);
 
+  const fetchData3 = async () => {
+    try {
+      const result = await ViewById('viewMovieById', movieId);
+      if (result.success) {
+        console.log("mov",result.user);
+        
+        setData2(result.user || null);
 
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred during Data View');
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [movieId]);
       const fetchData = async () => {
         try {
           const result = await ViewById('viewMovieById', movieId);
@@ -107,14 +127,22 @@ const [data2, setData] = useState([]);
             
 
                 <div className="mt-10">
-                 
-                    <div className="imageContainer mt-5">
+                 {console.log(`${IMG_BASE_URL}${data.coverImage.filename}`)
+                 }
+                    <div className="imageContainer2 mt-5" 
+                     style={{
+                     
+                        backgroundImage: `url(${data.coverImage?.filename ? `${IMG_BASE_URL}/${encodeURIComponent(data.coverImage.filename)}` : "https://via.placeholder.com/400"})`,
+                    
+                                         
+                     
+                    }}>
                         <img src={`${IMG_BASE_URL}/${data.movieImage.filename}`} alt="Screen 2 Left" />
                         <div className="screen2-text">
                             <h4>{data.movieName}</h4>
                             <h5>{data.movieType}</h5>
                             <h5>{data.duration}</h5>
-                            <div className="screen2-lang">{data.screenType}</div> <div className="screen2-lang">{data.language}</div>
+                            <div className="screen2-lang">{data.screenId.screenName}</div> <div className="screen2-lang">{data.language}</div>
                             <br />
                             <div className="screen2-btn" onClick={book}>Book Now</div>
                         </div>

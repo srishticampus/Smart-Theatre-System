@@ -1,40 +1,108 @@
 import "../../Assets/Styles/UserBookTickets.css";
 import demonte from "../../Assets/Images/demonte.png";
-import React, { useEffect, useState,useRef } from "react";
+
+import React, { useEffect, useState, useRef } from "react";
 import { viewCount, approveById } from '../../Services/AdminService';
 import { IMG_BASE_URL } from '../../Services/BaseURL'
 import { toast } from "react-toastify";
-import { ViewById } from "../../Services/CommonServices";
+import { resetPassword, ViewById } from "../../Services/CommonServices";
 import FooterLandingPage from "../Footers/FooterLandingPage";
 import '../../Assets/Styles/UserHome.css'
 import { Link, useNavigate, useParams } from "react-router-dom";
 function UserBookTickets() {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState({
+    date:new Date().getDate(),
+    month:new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
+    day:new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date())
+  });
 
-const userId = localStorage.getItem("user");
-  const {id}=useParams()
+  const userId = localStorage.getItem("user");
+  const { id } = useParams()
   const [movieId, setMovieId] = useState(id);
   const [data, setData2] = useState({
-    movieImage:{filename:''},
-    coverImage:{filename:''}
+    movieImage: { filename: '' },
+    coverImage: { filename: '' },
+    screenId: {
+      _id: '',
+      screenName: '',
+    }
   });
   const [genre, setGenre] = useState([]);
-  const [castdata,setCastData]=useState([])
+  const [castdata, setCastData] = useState([])
 
-const [data2, setData] = useState([]);
- const navigate=useNavigate()
+  const [showTime, setShowtime] = useState([]);
+  const navigate = useNavigate()
 
-  const fetchData2 = async () => {
+
+
+  const fetchScreen = async () => {
     try {
-      const result = await viewCount('nowShowingMovies');
+      console.log("id", data.screenId._id);
+
+      const result = await resetPassword({day:selectedDate.day},'viewShowsByScreenIdForDay', data.screenId._id);
 
       if (result.success) {
         console.log(result);
         if (result.user.length > 0) {
-          setData(result.user);
+          setShowtime(result.user);
         } else {
-          setData([]);
+          setShowtime([]);
         }
+      } else {
+        console.error('Data error:', result);
+      }
+
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.error('An unexpected error occurred during Data View');
+    }
+  };
+  useEffect(() => {
+
+
+    fetchScreen(); // Call the async function
+  }, [selectedDate]);
+
+
+  const fetchData = async () => {
+    try {
+      const result = await ViewById('viewMovieById', movieId);
+      if (result.success) {
+        console.log("mov", result.user);
+
+        setData2(result.user || null);
+
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred during Data View');
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [movieId]);
+  const movieDetailView = (id) => {
+    console.log("data", id);
+    setMovieId(id)
+    navigate(`/user-movie-details/${id}`)
+  }
+  const redirect = (id) => {
+
+
+    navigate(`/user-book-ticket-seat/${movieId}/${id}`)
+  }
+  const fetchCastData = async () => {
+    try {
+      const result = await ViewById('viewCastByMovieId', id);
+
+      if (result.success) {
+        console.log("cast", result);
+        if (result.user.length > 0)
+          setCastData(result.user || []);
+
+
       } else {
         console.error('Data error:', result);
         toast.error(result.message);
@@ -48,64 +116,8 @@ const [data2, setData] = useState([]);
   useEffect(() => {
 
 
-    fetchData2(); // Call the async function
+    fetchCastData(); // Call the async function
   }, [movieId]);
-
-
-      const fetchData = async () => {
-        try {
-          const result = await ViewById('viewMovieById', movieId);
-          if (result.success) {
-            console.log("mov",result.user);
-            
-            setData2(result.user || null);
-    
-          } else {
-            toast.error(result.message);
-          }
-        } catch (error) {
-          toast.error('An unexpected error occurred during Data View');
-        }
-      };
-    
-      useEffect(() => {
-        fetchData();
-      }, [movieId]);
-      const movieDetailView=(id)=>{
-        console.log("data",id);
-        setMovieId(id)
-        navigate(`/user-movie-details/${id}`)
-    }
-    const book=(id)=>{
- 
-    
-        navigate(`/user-book-ticket/${movieId}`)
-    }
-                const fetchCastData = async () => {
-                    try {
-                        const result = await ViewById('viewCastByMovieId',id);
-            
-                        if (result.success) {
-                            console.log("cast",result);
-                            if (result.user.length>0) 
-                                setCastData(result.user||[]);
-                              
-                          
-                         } else {
-                                console.error('Data error:', result);
-                                toast.error(result.message);
-                            }
-            
-                        } catch (error) {
-                            console.error('Unexpected error:', error);
-                            toast.error('An unexpected error occurred during Data View');
-                        }
-                    };
-                    useEffect(() => {
-            
-            
-                        fetchCastData(); // Call the async function
-                    }, [movieId]);
 
 
 
@@ -129,23 +141,29 @@ const [data2, setData] = useState([]);
   };
 
   // Handle selecting a calendar button
-  const handleSelectDate = (date) => {
-    setSelectedDate(date);
+  const handleSelectDate = (date,month,day) => {
+    setSelectedDate({ date, month ,day});
+
+    console.log(day);
+    
   };
 
+  const filteredShowTimes = showTime.filter(
+    (show) => show.day === selectedDate.day
+  );
   return (
     <div className='container'>
       <div className='user-book-ticket-section-one d-flex'>
         <div className='d-flex'>
-          <img src={demonte} alt='demonteimg' className='user-book-ticket-img' />
+          <img src={`${IMG_BASE_URL}/${data.movieImage.filename}`} alt='demonteimg' className='user-book-ticket-img' />
           <div className='mt-4 ms-2'>
-            <p className='user-book-ticket-banner-head'>Demonte Colony 2</p>
+            <p className='user-book-ticket-banner-head'>{data.movieName}</p>
             <div className='d-flex'>
-              <p className='user-book-ticket-2d'>2D</p>
-              <p className='user-book-ticket-tamil'>Tamil</p>
+              <p className='user-book-ticket-2d'>{data.screenId.screenName}</p>
+              <p className='user-book-ticket-tamil'>{data.language}</p>
             </div>
-            <p className='user-book-ticket-genre'>Horror, Comedy</p>
-            <p className="user-book-ticket-time">2hr 26min</p>
+            <p className='user-book-ticket-genre'>{data.movieType}</p>
+            <p className="user-book-ticket-time">{data.duration}</p>
           </div>
         </div>
 
@@ -155,52 +173,98 @@ const [data2, setData] = useState([]);
 
           <div className="calendar-wrapper" ref={calendarRef}>
             <button
-              className={`btn user-book-ticket-calender ${selectedDate === '20' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate('20')}
+              className={`btn user-book-ticket-calender `}
+              onClick={() => handleSelectDate(new Date().getDate(),new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
+              new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                new Date(new Date().setDate(new Date().getDate()))),
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate()))))}
             >
-              <p>20</p>
-              <p>November</p>
-              <p>&#40;Monday&#41;</p>
+              <p>{new Date().getDate()}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
+              <p>{
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate()))
+                )
+              }</p>              </button>
+            <button
+              className={`btn user-book-ticket-calender`}
+              onClick={() => handleSelectDate(new Date().getDate()+1,
+                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 1))
+                ))}
+            >
+              <p>{new Date().getDate() + 1}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
+              <p>{
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 1))
+                )
+              }</p>             </button>
+            <button
+              className={`btn user-book-ticket-calender ${selectedDate === new Date().getDate()+2 ? 'selected' : ''}`}
+              onClick={() => handleSelectDate(new Date().getDate()+2,
+                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())
+              ,new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                new Date(new Date().setDate(new Date().getDate() + 2))
+              ))}
+            >
+              <p>{new Date().getDate() + 2}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
+              <p>{
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 2))
+                )
+              }</p>            </button>
+            <button
+              // className={`btn user-book-ticket-calender ${selectedDate === '23' ? 'selected' : ''}`}
+              onClick={() => handleSelectDate(new Date().getDate()+3,
+                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())
+              , new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                new Date(new Date().setDate(new Date().getDate()+3))))}
+            >
+              <p>{new Date().getDate() + 3}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
+              <p>{
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() +3))
+                )
+              }</p>
             </button>
             <button
-              className={`btn user-book-ticket-calender ${selectedDate === '21' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate('21')}
+              // className={`btn user-book-ticket-calender ${selectedDate === '24' ? 'selected' : ''}`}
+              onClick={() => handleSelectDate(new Date().getDate()+4,
+                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 4))
+                ))}
             >
-              <p>21</p>
-              <p>November</p>
-              <p>&#40;Tuesday&#41;</p>
+              <p>{new Date().getDate() + 4}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
+              <p>{
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 4))
+                )
+              }</p>
             </button>
             <button
-              className={`btn user-book-ticket-calender ${selectedDate === '22' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate('22')}
+              // className={`btn user-book-ticket-calender ${selectedDate === '25' ? 'selected' : ''}`}
+              onClick={() => handleSelectDate(new Date().getDate()+5,
+                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 5))
+                ))
+                
+              }
             >
-              <p>22</p>
-              <p>November</p>
-              <p>&#40;Wednesday&#41;</p>
-            </button>
-            <button
-              className={`btn user-book-ticket-calender ${selectedDate === '23' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate('23')}
-            >
-              <p>23</p>
-              <p>November</p>
-              <p>&#40;Thursday&#41;</p>
-            </button>
-            <button
-              className={`btn user-book-ticket-calender ${selectedDate === '24' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate('24')}
-            >
-              <p>24</p>
-              <p>November</p>
-              <p>&#40;Friday&#41;</p>
-            </button>
-            <button
-              className={`btn user-book-ticket-calender ${selectedDate === '25' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate('25')}
-            >
-              <p>25</p>
-              <p>November</p>
-              <p>&#40;Saturday&#41;</p>
+              <p>{new Date().getDate() + 5}</p>
+              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
+              <p>{
+                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 5))
+                )
+              }</p>
             </button>
           </div>
 
@@ -213,11 +277,12 @@ const [data2, setData] = useState([]);
           <div className="section-two">
             <div className="card user-book-ticket-card">
               <div className="card-header user-book-ticket-card-header">
-                <p className='card-header-align'>Novermber 28th</p>
+                <p className='card-header-align'><p> {selectedDate.date} {selectedDate.month}</p>
+                </p>
               </div>
               <div className="card-body d-flex user-book-ticket-cardbody" >
                 <p className='user-book-ticket-time'>Show time</p>
-                <button className='user-book-ticket-show-button'>
+                {/* <button className='user-book-ticket-show-button'>
                   <p>07:00 AM</p>
                   <p className='text-muted user-book-ticket-show-time'>Closed</p>
                 </button>
@@ -228,7 +293,24 @@ const [data2, setData] = useState([]);
                 <button className='user-book-ticket-show-button'>
                   <p>04:00 PM</p>
 
-                </button>
+                </button> */}
+                  {filteredShowTimes.length > 0 ? (
+                  filteredShowTimes.map((show, index) => (
+                    <button
+                      key={index}
+                      className="user-book-ticket-show-button"
+                      disabled={show.status === 'Closed'}
+                      onClick={()=>{redirect(show._id)}}
+                    >
+                      <p>{show.startTime}</p>
+                      <p className="text-muted user-book-ticket-show-time">
+                        {show.status}
+                      </p>
+                    </button>
+                  ))
+                ) : (
+                  <p>No shows available for this date.</p>
+                )}
               </div>
             </div>
           </div>
