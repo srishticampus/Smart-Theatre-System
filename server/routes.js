@@ -8,6 +8,10 @@ const Screen = require('./controllers/screenController');
 const showtime=require('./controllers/showTimeController')
 const Movie=require('./controllers/movieController')
 const Food=require('./controllers/foodController')
+const Ticket=require('./controllers/ticketController')
+const foodBooking=require('./controllers/foodBookController')
+const parking=require('./controllers/parkingController')
+const queue=require('./controllers/queueController')
 
 // User routes
 
@@ -74,5 +78,32 @@ router.post('/viewAllFood',Food.viewAllFood)
 router.post('/viewFoodById/:id',Food.viewFoodById)
 router.post('/deleteFoodById/:id',Food.deleteFoodById)
 router.post('/editFoodById/:id',Food.uploadSingle,Food.editFoodById)
+
+// Tickets
+router.post('/addTicket',Ticket.addTicket)
+router.post('/deleteTicketById/:id',Ticket.deleteTicketById)
+router.post('/viewTicketById/:id',Ticket.viewTicketById)
+router.post('/viewAllTickets',Ticket.viewAllTickets)
+router.post('/viewTicketsByUserId/:id',Ticket.viewTicketsByUserId)
+
+
+//foodBooking
+router.post('/addFoodBooking',foodBooking.addFoodBooking)
+router.post('/viewAllFoodBookings',foodBooking.viewAllFoodBookings)
+router.post('/viewFoodBookingById/:id',foodBooking.viewFoodBookingById)
+router.post('/viewFoodBookingByUserId/:id',foodBooking.viewFoodBookingByUserId)
+router.post('/deleteFoodBookingById/:id',foodBooking.deleteFoodBookingById)
+
+
+// parking
+router.post('/addParking',parking.addParking)
+router.post('/viewAllParking',parking.viewAllParking)
+router.post('/viewParkingById/:id',parking.viewParkingById)
+
+// queue
+router.post('/addQueue',queue.addQueue)
+router.post('/viewAllQueues',queue.viewAllQueues)
+router.post('/viewQueueById/:id',queue.viewQueueById)
+router.post('/deleteQueueById/:id',queue.deleteQueueById)
 
 module.exports = router;

@@ -39,6 +39,13 @@
     border-radius: 5px;
     margin-right: 5px;
 }
+.user-book-ticket-seat-select-seatbuttons-selected{
+    width: 45px;
+    height: 40px;
+    background-color: green;
+    border-radius: 5px;
+    margin-right: 5px;
+}
 .user-book-ticket-seat-buttonspace{
     margin-right: 50px;
 }
@@ -60,3 +67,104 @@
 
 
 
+.book-seat-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .movie-poster {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .movie-details {
+    flex-grow: 1;
+  }
+  
+  .seat-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .seat-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .seat-tier {
+    text-align: center;
+  }
+  
+  .seat-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .seat-button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .seat-button.seat-available {
+    background-color: #f0f0f0;
+  }
+  
+  .seat-button.seat-selected {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .seat-button.legend-available {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+  
+  .seat-button.legend-selected {
+    background-color: #4caf50;
+    cursor: not-allowed;
+  }
+  
+  .seat-button.legend-sold {
+    background-color: #9e9e9e;
+    cursor: not-allowed;
+  }
+  
+  .selected-seats-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .proceed-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .proceed-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
