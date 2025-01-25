@@ -2,44 +2,53 @@ import "../../Assets/Styles/UserBookTickets.css";
 import demonte from "../../Assets/Images/demonte.png";
 
 import React, { useEffect, useState, useRef } from "react";
-import { viewCount, approveById } from '../../Services/AdminService';
-import { IMG_BASE_URL } from '../../Services/BaseURL'
+import { viewCount, approveById } from "../../Services/AdminService";
+import { IMG_BASE_URL } from "../../Services/BaseURL";
 import { toast } from "react-toastify";
 import { resetPassword, ViewById } from "../../Services/CommonServices";
 import FooterLandingPage from "../Footers/FooterLandingPage";
-import '../../Assets/Styles/UserHome.css'
+import "../../Assets/Styles/UserHome.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
+
+
+
 function UserBookTickets() {
   const [selectedDate, setSelectedDate] = useState({
-    date:new Date().getDate(),
-    month:new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
-    day:new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date())
+    date: new Date().getDate(),
+    month: new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+      new Date()
+    ),
+    day: new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+      new Date()
+    ),
   });
 
   const userId = localStorage.getItem("user");
-  const { id } = useParams()
+  const { id } = useParams();
   const [movieId, setMovieId] = useState(id);
   const [data, setData2] = useState({
-    movieImage: { filename: '' },
-    coverImage: { filename: '' },
+    movieImage: { filename: "" },
+    coverImage: { filename: "" },
     screenId: {
-      _id: '',
-      screenName: '',
-    }
+      _id: "",
+      screenName: "",
+    },
   });
   const [genre, setGenre] = useState([]);
-  const [castdata, setCastData] = useState([])
+  const [castdata, setCastData] = useState([]);
 
   const [showTime, setShowtime] = useState([]);
-  const navigate = useNavigate()
-
-
+  const navigate = useNavigate();
 
   const fetchScreen = async () => {
     try {
       console.log("id", data.screenId._id);
 
-      const result = await resetPassword({day:selectedDate.day},'viewShowsByScreenIdForDay', data.screenId._id);
+      const result = await resetPassword(
+        { day: selectedDate.day },
+        "viewShowsByScreenIdForDay",
+        data.screenId._id
+      );
 
       if (result.success) {
         console.log(result);
@@ -49,34 +58,29 @@ function UserBookTickets() {
           setShowtime([]);
         }
       } else {
-        console.error('Data error:', result);
+        console.error("Data error:", result);
       }
-
     } catch (error) {
-      console.error('Unexpected error:', error);
-      toast.error('An unexpected error occurred during Data View');
+      console.error("Unexpected error:", error);
+      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
-
-
     fetchScreen(); // Call the async function
   }, [selectedDate]);
 
-
   const fetchData = async () => {
     try {
-      const result = await ViewById('viewMovieById', movieId);
+      const result = await ViewById("viewMovieById", movieId);
       if (result.success) {
         console.log("mov", result.user);
 
         setData2(result.user || null);
-
       } else {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error('An unexpected error occurred during Data View');
+      toast.error("An unexpected error occurred during Data View");
     }
   };
 
@@ -85,42 +89,31 @@ function UserBookTickets() {
   }, [movieId]);
   const movieDetailView = (id) => {
     console.log("data", id);
-    setMovieId(id)
-    navigate(`/user-movie-details/${id}`)
-  }
+    setMovieId(id);
+    navigate(`/user-movie-details/${id}`);
+  };
   const redirect = (id) => {
-
-
-    navigate(`/user-book-ticket-seat/${movieId}/${id}`)
-  }
+    navigate(`/user-book-ticket-seat/${movieId}/${id}/${movieDate}`);
+  };
   const fetchCastData = async () => {
     try {
-      const result = await ViewById('viewCastByMovieId', id);
+      const result = await ViewById("viewCastByMovieId", id);
 
       if (result.success) {
         console.log("cast", result);
-        if (result.user.length > 0)
-          setCastData(result.user || []);
-
-
+        if (result.user.length > 0) setCastData(result.user || []);
       } else {
-        console.error('Data error:', result);
+        console.error("Data error:", result);
         toast.error(result.message);
       }
-
     } catch (error) {
-      console.error('Unexpected error:', error);
-      toast.error('An unexpected error occurred during Data View');
+      console.error("Unexpected error:", error);
+      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
-
-
     fetchCastData(); // Call the async function
   }, [movieId]);
-
-
-
 
   const calendarRef = useRef();
 
@@ -128,7 +121,7 @@ function UserBookTickets() {
   const scrollLeft = () => {
     calendarRef.current.scrollBy({
       left: -150, // Adjust the scroll amount as needed
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -136,139 +129,229 @@ function UserBookTickets() {
   const scrollRight = () => {
     calendarRef.current.scrollBy({
       left: 150, // Adjust the scroll amount as needed
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
-  // Handle selecting a calendar button
-  const handleSelectDate = (date,month,day) => {
-    setSelectedDate({ date, month ,day});
+  const [movieDate, setMovieDate] = useState("");
+
+  const handleSelectDate = (date, month, day) => {
+    // Get the current year
+    const year = new Date().getFullYear();
+
+    // Create a new Date object explicitly setting the time to noon to avoid time zone issues
+    const selectedFullDate = new Date(`${month} ${date}, ${year} 12:00:00`);
+
+    // Format the date to YYYY-MM-DD
+    const formattedDate = `${selectedFullDate.getFullYear()}-${String(
+      selectedFullDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(selectedFullDate.getDate()).padStart(2, "0")}`;
+
+    // Update states
+    setSelectedDate({ date, month, day });
+    setMovieDate(formattedDate);
 
     console.log(day);
-    
+    console.log(date);
+    console.log("Formatted Date:", formattedDate);
   };
 
   const filteredShowTimes = showTime.filter(
     (show) => show.day === selectedDate.day
   );
   return (
-    <div className='container'>
-      <div className='user-book-ticket-section-one d-flex'>
-        <div className='d-flex'>
-          <img src={`${IMG_BASE_URL}/${data.movieImage.filename}`} alt='demonteimg' className='user-book-ticket-img' />
-          <div className='mt-4 ms-2'>
-            <p className='user-book-ticket-banner-head'>{data.movieName}</p>
-            <div className='d-flex'>
-              <p className='user-book-ticket-2d'>{data.screenId.screenName}</p>
-              <p className='user-book-ticket-tamil'>{data.language}</p>
+    <div className="container">
+      <div className="user-book-ticket-section-one d-flex">
+        <div className="d-flex">
+          <img
+            src={`${IMG_BASE_URL}/${data.movieImage.filename}`}
+            alt="demonteimg"
+            className="user-book-ticket-img"
+          />
+          <div className="mt-4 ms-2">
+            <p className="user-book-ticket-banner-head">{data.movieName}</p>
+            <div className="d-flex">
+              <p className="user-book-ticket-2d">{data.screenId.screenName}</p>
+              <p className="user-book-ticket-tamil">{data.language}</p>
             </div>
-            <p className='user-book-ticket-genre'>{data.movieType}</p>
+            <p className="user-book-ticket-genre">{data.movieType}</p>
             <p className="user-book-ticket-time">{data.duration}</p>
           </div>
         </div>
 
         {/* Calendar Carousel */}
-        <div className='ms-auto calendar-carousel-container'>
-          <button onClick={scrollLeft} className="carousel-button left">&#8592;</button>
+        <div className="ms-auto calendar-carousel-container">
+          <button onClick={scrollLeft} className="carousel-button left">
+            &#8592;
+          </button>
 
           <div className="calendar-wrapper" ref={calendarRef}>
             <button
               className={`btn user-book-ticket-calender `}
-              onClick={() => handleSelectDate(new Date().getDate(),new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
-              new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                new Date(new Date().setDate(new Date().getDate()))),
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                  new Date(new Date().setDate(new Date().getDate()))))}
+              onClick={() =>
+                handleSelectDate(
+                  new Date().getDate(),
+                  new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                    new Date()
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate()))
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate()))
+                  )
+                )
+              }
             >
               <p>{new Date().getDate()}</p>
-              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
-              <p>{
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+              <p>
+                {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  new Date()
+                )}
+              </p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
                   new Date(new Date().setDate(new Date().getDate()))
-                )
-              }</p>              </button>
+                )}
+              </p>{" "}
+            </button>
             <button
               className={`btn user-book-ticket-calender`}
-              onClick={() => handleSelectDate(new Date().getDate()+1,
-                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                  new Date(new Date().setDate(new Date().getDate() + 1))
-                ))}
+              onClick={() =>
+                handleSelectDate(
+                  new Date().getDate() + 1,
+                  new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                    new Date()
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate() + 1))
+                  )
+                )
+              }
             >
               <p>{new Date().getDate() + 1}</p>
-              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
-              <p>{
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+              <p>
+                {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  new Date()
+                )}
+              </p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
                   new Date(new Date().setDate(new Date().getDate() + 1))
-                )
-              }</p>             </button>
+                )}
+              </p>{" "}
+            </button>
             <button
-              className={`btn user-book-ticket-calender ${selectedDate === new Date().getDate()+2 ? 'selected' : ''}`}
-              onClick={() => handleSelectDate(new Date().getDate()+2,
-                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())
-              ,new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                new Date(new Date().setDate(new Date().getDate() + 2))
-              ))}
+              className={`btn user-book-ticket-calender ${
+                selectedDate === new Date().getDate() + 2 ? "selected" : ""
+              }`}
+              onClick={() =>
+                handleSelectDate(
+                  new Date().getDate() + 2,
+                  new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                    new Date()
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate() + 2))
+                  )
+                )
+              }
             >
               <p>{new Date().getDate() + 2}</p>
-              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
-              <p>{
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+              <p>
+                {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  new Date()
+                )}
+              </p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
                   new Date(new Date().setDate(new Date().getDate() + 2))
-                )
-              }</p>            </button>
+                )}
+              </p>{" "}
+            </button>
             <button
               // className={`btn user-book-ticket-calender ${selectedDate === '23' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate(new Date().getDate()+3,
-                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())
-              , new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                new Date(new Date().setDate(new Date().getDate()+3))))}
+              onClick={() =>
+                handleSelectDate(
+                  new Date().getDate() + 3,
+                  new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                    new Date()
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate() + 3))
+                  )
+                )
+              }
             >
               <p>{new Date().getDate() + 3}</p>
-              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
-              <p>{
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                  new Date(new Date().setDate(new Date().getDate() +3))
-                )
-              }</p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  new Date()
+                )}
+              </p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                  new Date(new Date().setDate(new Date().getDate() + 3))
+                )}
+              </p>
             </button>
             <button
               // className={`btn user-book-ticket-calender ${selectedDate === '24' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate(new Date().getDate()+4,
-                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                  new Date(new Date().setDate(new Date().getDate() + 4))
-                ))}
+              onClick={() =>
+                handleSelectDate(
+                  new Date().getDate() + 4,
+                  new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                    new Date()
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate() + 4))
+                  )
+                )
+              }
             >
               <p>{new Date().getDate() + 4}</p>
-              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
-              <p>{
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+              <p>
+                {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  new Date()
+                )}
+              </p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
                   new Date(new Date().setDate(new Date().getDate() + 4))
-                )
-              }</p>
+                )}
+              </p>
             </button>
             <button
               // className={`btn user-book-ticket-calender ${selectedDate === '25' ? 'selected' : ''}`}
-              onClick={() => handleSelectDate(new Date().getDate()+5,
-                new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
-                  new Date(new Date().setDate(new Date().getDate() + 5))
-                ))
-                
+              onClick={() =>
+                handleSelectDate(
+                  new Date().getDate() + 5,
+                  new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                    new Date()
+                  ),
+                  new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
+                    new Date(new Date().setDate(new Date().getDate() + 5))
+                  )
+                )
               }
             >
               <p>{new Date().getDate() + 5}</p>
-              <p>{new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())}</p>
-              <p>{
-                new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(
+              <p>
+                {new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+                  new Date()
+                )}
+              </p>
+              <p>
+                {new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(
                   new Date(new Date().setDate(new Date().getDate() + 5))
-                )
-              }</p>
+                )}
+              </p>
             </button>
           </div>
 
-          <button onClick={scrollRight} className="carousel-button right">&#8594;</button>
+          <button onClick={scrollRight} className="carousel-button right">
+            &#8594;
+          </button>
         </div>
       </div>
       <hr></hr>
@@ -277,37 +360,133 @@ function UserBookTickets() {
           <div className="section-two">
             <div className="card user-book-ticket-card">
               <div className="card-header user-book-ticket-card-header">
-                <p className='card-header-align'><p> {selectedDate.date} {selectedDate.month}</p>
+                <p className="card-header-align">
+                  <p>
+                    {" "}
+                    {selectedDate.date} {selectedDate.month}
+                  </p>
                 </p>
               </div>
-              <div className="card-body d-flex user-book-ticket-cardbody" >
-                <p className='user-book-ticket-time'>Show time</p>
-                {/* <button className='user-book-ticket-show-button'>
-                  <p>07:00 AM</p>
-                  <p className='text-muted user-book-ticket-show-time'>Closed</p>
-                </button>
-                <button className='user-book-ticket-show-button'>
-                  <p>12:00 PM</p>
 
-                </button>
-                <button className='user-book-ticket-show-button'>
-                  <p>04:00 PM</p>
+              {/* -------No time limitation in booking code------- */}
 
-                </button> */}
-                  {filteredShowTimes.length > 0 ? (
-                  filteredShowTimes.map((show, index) => (
-                    <button
-                      key={index}
-                      className="user-book-ticket-show-button"
-                      disabled={show.status === 'Closed'}
-                      onClick={()=>{redirect(show._id)}}
-                    >
-                      <p>{show.startTime}</p>
-                      <p className="text-muted user-book-ticket-show-time">
-                        {show.status}
-                      </p>
-                    </button>
-                  ))
+              {/* <div className="card-body d-flex user-book-ticket-cardbody">
+                <p className="user-book-ticket-time">Show time</p>
+
+                {filteredShowTimes.length > 0 ? (
+                  filteredShowTimes.map((show, index) => {
+                    // Parse the startTime and compare with current time
+                    const showTime = new Date(
+                      `${selectedDate.date} ${
+                        selectedDate.month
+                      } ${new Date().getFullYear()} ${show.startTime}`
+                    );
+                    const currentTime = new Date();
+
+                    // Calculate the time difference in minutes
+                    const timeDiffInMinutes =
+                      (showTime - currentTime) / (1000 * 60);
+
+                    // If the show time is in the past, disable the button
+                    const isPast = showTime < currentTime;
+
+                    return (
+                      <button
+                        key={index}
+                        className="user-book-ticket-show-button"
+                        disabled={isPast || show.status === "Closed"}
+                        onClick={() => {
+                          if (
+                            timeDiffInMinutes > 0 &&
+                            timeDiffInMinutes <= 15
+                          ) {
+                            navigate(`/book-virtual-queue/${show._id}`);
+                          } else {
+                            redirect(show._id);
+                          }
+                        }}
+                      >
+                        <p>{show.startTime}</p>
+
+                        {timeDiffInMinutes > 0 && timeDiffInMinutes <= 15 && (
+                          <Link
+                            to={`/book-virtual-queue/${show._id}`}
+                            className="text-danger"
+                            onClick={(e) => e.stopPropagation()} // Prevents button click propagation
+                          >
+                            Book Virtual Queue
+                          </Link>
+                        )}
+
+                        <p className="text-muted user-book-ticket-show-time">
+                          {isPast ? "Time Passed" : show.status}
+                        </p>
+                      </button>
+                    );
+                  })
+                ) : (
+                  <p>No shows available for this date.</p>
+                )}
+              </div> */}
+
+              {/* -------No time limitation in booking code------- */}
+
+              <div className="card-body d-flex user-book-ticket-cardbody">
+                <p className="user-book-ticket-time">Show time</p>
+
+                {filteredShowTimes.length > 0 ? (
+                  filteredShowTimes.map((show, index) => {
+                    // Parse the startTime and compare with current time
+                    const showTime = new Date(
+                      `${selectedDate.date} ${
+                        selectedDate.month
+                      } ${new Date().getFullYear()} ${show.startTime}`
+                    );
+                    const currentTime = new Date();
+
+                    // Calculate the time difference in minutes
+                    const timeDiffInMinutes =
+                      (showTime - currentTime) / (1000 * 60);
+
+                    // If the show time is in the past or within 5 minutes of starting, disable the button
+                    const isBookingClosed = timeDiffInMinutes <= 5;
+                    const isPast = showTime < currentTime || isBookingClosed;
+
+                    return (
+                      <button
+                        key={index}
+                        className="user-book-ticket-show-button"
+                        disabled={isPast || show.status === "Closed"}
+                        onClick={() => {
+                          if (
+                            timeDiffInMinutes > 5 &&
+                            timeDiffInMinutes <= 15
+                          ) {
+                            navigate(`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`);
+                          } else {
+                            redirect(show._id);
+                          }
+                        }}
+                      >
+                        <p>{show.startTime}</p>
+
+                        {/* Display a link if the show starts within 15 minutes but booking is still open */}
+                        {timeDiffInMinutes > 5 && timeDiffInMinutes <= 15 && (
+                          <Link
+                            to={`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`}
+                            className="text-danger"
+                            onClick={(e) => e.stopPropagation()} // Prevents button click propagation
+                          >
+                            Book Virtual Queue
+                          </Link>
+                        )}
+
+                        <p className="text-muted user-book-ticket-show-time">
+                          {isPast ? "Booking Closed" : show.status}
+                        </p>
+                      </button>
+                    );
+                  })
                 ) : (
                   <p>No shows available for this date.</p>
                 )}

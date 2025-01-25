@@ -1,4 +1,5 @@
-const Queue = require("../models/queueModel");
+const Queue = require("../models/queueBooking");
+// const Queue = require("../models/queueModel");
 
 // Add a new queue entry
 const addQueue = async (req, res) => {

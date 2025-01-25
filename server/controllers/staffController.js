@@ -20,7 +20,7 @@ const uploadSingle = multer({ storage: storage }).single('profilePic');
 // Register Staff
 const registerStaff = async (req, res) => {
     try {
-        const { email, contact, password, fname, lname, role, doj } = req.body;
+        const { email, contact, password, fname, lname, role, doj, address } = req.body;
 
         const newStaff = new Staff({
             email,

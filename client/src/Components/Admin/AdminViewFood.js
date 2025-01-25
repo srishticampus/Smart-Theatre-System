@@ -8,8 +8,8 @@ import { ViewById } from "../../Services/CommonServices";
 
 function AdminViewFood() {
     const [data, setData] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); // State for search query
-    const [filteredData, setFilteredData] = useState([]); // State for filtered food data
+    const [searchQuery, setSearchQuery] = useState(""); 
+    const [filteredData, setFilteredData] = useState([]); 
 
     const fetchData = async () => {
         try {
@@ -18,7 +18,7 @@ function AdminViewFood() {
                 console.log(result);
                 if (result.user.length > 0) {
                     setData(result.user);
-                    setFilteredData(result.user); // Initially display all food items
+                    setFilteredData(result.user); 
                 } else {
                     setData([]);
                     setFilteredData([]);
@@ -72,7 +72,7 @@ function AdminViewFood() {
                    toast.warn('Removal Failed')
                 }
             } else {
-                console.error('Data error:', result);
+                console.error('Data error:', result); 
                 toast.error(result.message);
             }
         } catch (error) {

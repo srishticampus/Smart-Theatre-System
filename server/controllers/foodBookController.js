@@ -1,4 +1,5 @@
-const FoodBooking = require("../models/foodBookingModel");
+// const FoodBooking = require("../models/foodBookingModel");
+const FoodBooking = require("../models/foodBooking");
 
 // Add a new food booking
 const addFoodBooking = async (req, res) => {
