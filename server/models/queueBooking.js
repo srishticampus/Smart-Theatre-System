@@ -30,7 +30,7 @@ const schema = mongoose.Schema({
     },
     paymentStatus: {
         type: Boolean,
-        default: false
+        default: true
     }
 });
 module.exports = mongoose.model('queue', schema)

@@ -209,7 +209,7 @@ const handleLogin = async (e) => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-light" to="/user_add_complaint">
+          <Link className="nav-link text-light" to="/user-view-bookings">
             My Bookings
           </Link>
         </li>

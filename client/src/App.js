@@ -41,6 +41,11 @@ import UserAboutus from './Components/User/UserAboutUs';
 import UserHomeNowShowing from './Components/User/UserHomeNowShowing';
 import UserMovieDetails from './Components/User/UserMovieDetails';
 import UserNowShowing from './Components/User/UserNowShowing';
+import UserViewBookings from './Components/User/UserViewBookings';
+import UserBookVirtualQueue from './Components/User/UserBookVirtualQueue';
+import UserFoodBanner from './Components/User/UserFoodBanner';
+import UserViewFoods from './Components/User/UserViewFoods';
+import UserPreOrderFood from './Components/User/UserPreOrderFood';
 function App() {
   return (
     <div className="App">
@@ -96,15 +101,19 @@ function App() {
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
             <Route path='/user-book-ticket/:id' element={[<UserNavbar/>,<UserBookTickets/>]}/>
-            <Route path='/user-book-ticket-seat/:mId/:showId' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
-            <Route path='/user-book-ticket-select-seat/:mId/:showId/:count' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
-            <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/>
+            <Route path='/user-book-ticket-seat/:mId/:showId/:movieDate' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
+            <Route path='/user-book-ticket-select-seat/:mId/:showId/:count/:movieDate' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
+            {/* <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/> */}
             <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
             <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
             <Route path='/user-select-parking' element={[<UserNavbar/>,<UserSelectParking/>]}/>
             <Route path='/user-parking-payment' element={[<UserNavbar/>,<UserParkingPayment/>]}/>
             <Route path='/user-movie-details/:id' element={[<UserNavbar/>,<UserMovieDetails/>]}/>
             <Route path='/user-now-showing' element={[<UserNavbar/>,<UserNowShowing/>]}/>
+            <Route path='/user-view-bookings' element={[<UserNavbar/>,<UserViewBookings/>]}/>
+            <Route path='/user-book-virtualqueue/:mId/:showId/:movieDate' element={[<UserNavbar/>,<UserBookVirtualQueue/>]}/>
+            <Route path='/user-view-foods' element={[<UserNavbar/>,<UserFoodBanner/>,<UserViewFoods/>]}/>
+            <Route path='/user-view-pre-order-food' element={[<UserNavbar/>,<UserPreOrderFood/>]}/>
 
 
 

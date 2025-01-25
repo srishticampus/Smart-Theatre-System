@@ -1,0 +1,48 @@
+.user_order_food_head {
+  margin-top: 6rem;
+}
+
+.user_order_food_head h1 {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+}
+
+.user_order_food_card {
+  min-height: 15vh;
+  width: 100%;
+  /* background-color: aqua; */
+  border-radius: 12px;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.user_order_food_details {
+    display: flex;
+}
+
+.user_order_food_details_img{
+    display: flex;
+    align-items: center;
+}
+
+.user_order_food_details_img img {
+  width: 74.71px;
+  height: 100px;
+  border-radius: 5px 0px 0px 0px;
+
+}
+.user_order_food_details_titile p{
+    font-family: Lato;
+font-size: 14px;
+font-weight: 400;
+line-height: 16.8px;
+text-align: center;
+color: grey;
+
+
+}

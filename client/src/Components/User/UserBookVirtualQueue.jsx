@@ -1,48 +1,43 @@
 import React, { useEffect, useState } from "react";
-import "../../Assets/Styles/UserBookTicketPayment.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ViewById } from "../../Services/CommonServices";
 import axios from "axios";
 import { API_BASE_URL } from "../../Services/BaseURL";
 
-function UserBookTicketsPayment() {
-  const location = useLocation();
-  const { mId, showId, count, seats, totalPrice, movieDate } =
-    location.state || {};
-  console.log(movieDate);
+function UserBookVirtualQueue() {
+  const { mId, showId, movieDate } = useParams();
 
   const [showData, setShowData] = useState({
-    day: "",
-    startTime: "",
-    endTime: "",
-  });
+      day: "",
+      startTime: "",
+      endTime: "",
+    });
 
-  const navigate = useNavigate();
   const [data, setData] = useState({
-    movieName: "",
-    movieImage: { filename: "" },
-    coverImage: { filename: "" },
-    screenId: {
-      _id: "",
-      screenName: "",
-      gold: {
-        seatCount: 0,
-        amount: 0,
-        seatLabel: "",
+      movieName: "",
+      movieImage: { filename: "" },
+      coverImage: { filename: "" },
+      screenId: {
+        _id: "",
+        screenName: "",
+        gold: {
+          seatCount: 0,
+          amount: 0,
+          seatLabel: "",
+        },
+        silver: {
+          seatCount: 0,
+          amount: 0,
+          seatLabel: "",
+        },
+        platinum: {
+          seatCount: 0,
+          amount: 0,
+          seatLabel: "",
+        },
       },
-      silver: {
-        seatCount: 0,
-        amount: 0,
-        seatLabel: "",
-      },
-      platinum: {
-        seatCount: 0,
-        amount: 0,
-        seatLabel: "",
-      },
-    },
-  });
+    });
   const [movieId, setMovieId] = useState(mId);
   // Handle button click event
 
@@ -147,20 +142,34 @@ function UserBookTicketsPayment() {
     setFormData({ ...formData, [id]: value });
   };
 
+  const queueStartTime = (() => {
+    if (showData.startTime) {
+      const showDateTime = new Date(
+        `${movieDate}T${showData.startTime}`
+      ); // Assuming `movieDate` is in YYYY-MM-DD format
+      const queueStart = new Date(showDateTime.getTime() - 15 * 60 * 1000); // Subtract 15 minutes
+      return queueStart.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      });
+    }
+    return "N/A"; // Default if showData.startTime is unavailable
+  })();
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
       console.log("Payment Successful");
 
       axios
-        .post(`${API_BASE_URL}/addTicket`, {
+        .post(`${API_BASE_URL}/addQueue`, {
           userId: localStorage.getItem("user"),
           movieId: mId,
           screenId:data.screenId._id,
           showId: showId,
-          seatCount: count,
-          bookingDate: new Date().toISOString().split("T")[0],
-          movieDate: movieDate,
+          date: movieDate,
         })
         .then((res) => {
           console.log(res);
@@ -176,9 +185,6 @@ function UserBookTicketsPayment() {
     }
   };
 
-  console.log(data);
-  
-
   return (
     <div>
       <div className="user-ticket-payment-head-container">
@@ -193,16 +199,13 @@ function UserBookTicketsPayment() {
             {data.movieType} | {data.language}
           </p>
           <p className="user-ticket-payment-card-paratwo">
-            Maxus Cinemas | {showData.day}, {showData.endTime}
+            Maxus Cinemas | {showData.day}, {showData.startTime}
           </p>{" "}
         </div>
         <div className="card user-ticket-payment-cardtwo">
           <div className="d-flex justify-content-between">
-            {/* <p className='user-ticket-payment-seat'>
-                            Seats - {seats.map(seat => `${seat.type}-${seat.number}`).join(", ")} 
-                            <span className='user-ticket-payment-seat-sub'>({count} Tickets)</span>
-                        </p> */}
-            <p className="user-ticket-payment-seat">
+           
+            {/* <p className="user-ticket-payment-seat">
               Seats -{" "}
               {seats
                 .map((seat) => {
@@ -221,85 +224,30 @@ function UserBookTicketsPayment() {
               <span className="user-ticket-payment-seat-sub">
                 ({count} Tickets)
               </span>
-            </p>
-            <p className="user-ticket-payment-payone">&#8377;{totalPrice}/-</p>
+            </p> */}
+            <p className="user-ticket-payment-seat">Available Seat</p>
+            <p className="user-ticket-payment-payone">25</p>
           </div>
           <div className="d-flex justify-content-between">
-            <p className="user-ticket-payment-parafees">Convenience fees</p>
-            <p className="user-ticket-payment-paytwo">&#8377;60/- </p>
+            <p className="user-ticket-payment-parafees">Your Queue Position</p>
+            <p className="user-ticket-payment-paytwo">10 </p>
           </div>
+          <div className="d-flex justify-content-between">
+  <p className="user-ticket-payment-parafees">Queue Starting Time</p>
+  <p className="user-ticket-payment-paytwo">Today, {queueStartTime}</p>
+</div>
+
           <hr></hr>
           <div className="d-flex justify-content-between">
-            <p className="user-ticket-payment-total">Total</p>
+            <p className="user-ticket-payment-total">Amount</p>
             <p className="user-ticket-payment-total-amount">
-              <b>&#8377;{totalPrice + 60}/-</b>
+              <b>&#8377;20/-</b>
             </p>
           </div>
         </div>
       </div>
 
-      {/* <div className="d-flex justify-content-center mt-4 mb-3">
-        <div className="card user-book-ticket-cardtwo">
-          <div className="d-flex justify-content-center user-book-ticket-payment-heading">
-            <p className="payment-details-style">Payment Details</p>
-          </div>
-          <div className="container">
-            <div className="row justify-content-center mt-4">
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label htmlFor="creditCardNumber">Credit Card Number</label>
-                  <input
-                    type="text"
-                    className="form-control payment-card-number"
-                    id="creditCardNumber"
-                    placeholder="Enter Credit Card Number"
-                  />
-                </div>
-              </div>
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label htmlFor="expiryDate">Expiry Date</label>
-                  <input
-                    type="text"
-                    className="form-control payment-expiry-date"
-                    id="expiryDate"
-                    placeholder="Enter MM/YY"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row justify-content-center mt-4">
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label htmlFor="cvvCode">CVV Code</label>
-                  <input
-                    type="text"
-                    className="form-control payment-cvv-code"
-                    id="cvvCode"
-                    placeholder="Enter CVV Code"
-                  />
-                </div>
-              </div>
-              <div className="col-sm-6">
-                <div className="form-group">
-                  <label htmlFor="nameOnCard">Name On Credit Card</label>
-                  <input
-                    type="text"
-                    className="form-control payment-name-on-card"
-                    id="nameOnCard"
-                    placeholder="Enter Name On Card"
-                  />
-                </div>
-              </div>
-              <div className="text-center mt-4">
-                <button className="btn btn-danger">
-                  Pay &#8377;{totalPrice + 60}/-
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+    
       <div className="d-flex justify-content-center mt-4 mb-3">
         <div className="card user-book-ticket-cardtwo">
           <div className="d-flex justify-content-center user-book-ticket-payment-heading">
@@ -379,7 +327,7 @@ function UserBookTicketsPayment() {
               </div>
               <div className="text-center mt-4">
                 <button type="submit" className="btn btn-danger">
-                  Pay &#8377;{totalPrice + 60}/-
+                  Pay &#8377;20/-
                 </button>
               </div>
             </form>
@@ -387,7 +335,9 @@ function UserBookTicketsPayment() {
         </div>
       </div>
     </div>
-  );
+  )
+  
+  
 }
 
-export default UserBookTicketsPayment;
+export default UserBookVirtualQueue;

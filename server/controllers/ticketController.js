@@ -142,9 +142,11 @@ const viewTicketById = async (req, res) => {
 
 const viewTicketsByUserId = async (req, res) => {
     const userId = req.params.id;
-
+    console.log(userId);
+        
     try {
-        const ticket = await Ticket.find({userid:userId}).populate('movieId screenId showId')
+        const ticket = await Ticket.find({userId:userId})
+        .populate('movieId screenId showId')
         .sort({createdAt:-1})
 
         if (!ticket) {
@@ -154,6 +156,7 @@ const viewTicketsByUserId = async (req, res) => {
                 data: null,
             });
         }
+        console.log(ticket);
 
         return res.status(200).json({
             status: 200,
@@ -189,6 +192,24 @@ const viewAllTickets = async (req, res) => {
     }
 };
 
+
+const showBookedSeats=((req,res)=>{
+    Ticket.find({showId:req.body.showId})
+    .then((result)=>{
+        console.log(result);
+        
+        res.json({
+            msg:"success",
+            status:200,
+            data:result
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+        
+    })
+})
+
 module.exports = {
     addTicket,
     editTicketById,
@@ -196,4 +217,5 @@ module.exports = {
     viewTicketById,
     viewTicketsByUserId,
     viewAllTickets,
+    showBookedSeats
 };
