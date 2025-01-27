@@ -40,6 +40,17 @@ function UserViewFoods() {
     }
 };
 
+const handleCategoryFilter = (category) => {
+  if (category === "All") {
+    // Show all items if "All" is selected
+    setFilteredData(data);
+  } else {
+    // Filter items by selected category
+    const filteredItems = data.filter((item) => item.category === category);
+    setFilteredData(filteredItems);
+  }
+};
+
   return (
     <div>
       <div className="container">
@@ -60,7 +71,7 @@ function UserViewFoods() {
             </div>
           </div>
         </div>
-        <div className="category_button_container">
+        {/* <div className="category_button_container">
           <div className="user_food_category_button">
             <button className="btn btn-outline-danger rounded-5 w-75">
               All
@@ -83,6 +94,48 @@ function UserViewFoods() {
           </div>
           <div className="user_food_category_button">
             <button className="btn btn-outline-danger rounded-5 w-75">
+              Beverages
+            </button>
+          </div>
+        </div> */}
+        <div className="category_button_container">
+          <div className="user_food_category_button">
+            <button
+              className="btn btn-outline-danger rounded-5 w-75"
+              onClick={() => handleCategoryFilter("All")}
+            >
+              All
+            </button>
+          </div>
+          <div className="user_food_category_button">
+            <button
+              className="btn btn-outline-danger rounded-5 w-75"
+              onClick={() => handleCategoryFilter("Snacks")}
+            >
+              Snacks
+            </button>
+          </div>
+          <div className="user_food_category_button">
+            <button
+              className="btn btn-outline-danger rounded-5 w-75"
+              onClick={() => handleCategoryFilter("Puffs")}
+            >
+              Puffs
+            </button>
+          </div>
+          <div className="user_food_category_button">
+            <button
+              className="btn btn-outline-danger rounded-5 w-75"
+              onClick={() => handleCategoryFilter("Deserts")}
+            >
+              Deserts
+            </button>
+          </div>
+          <div className="user_food_category_button">
+            <button
+              className="btn btn-outline-danger rounded-5 w-75"
+              onClick={() => handleCategoryFilter("Beverages")}
+            >
               Beverages
             </button>
           </div>
