@@ -3,14 +3,14 @@ const Ticket = require("../models/ticketModel");
 // Add a new ticket
 const addTicket = async (req, res) => {
     try {
-        const { userId, movieId, screenId, showId, seatCount, paymentStatus, status, bookingDate, movieDate } = req.body;
+        const { userId, movieId, screenId, showId, seatNumber, paymentStatus, status, bookingDate, movieDate } = req.body;
 
         const newTicket = new Ticket({
             userId,
             movieId,
-            screenId,
+            screenId, 
             showId,
-            seatCount,
+            seatNumber,
             paymentStatus,
             status,
             bookingDate,
@@ -36,7 +36,7 @@ const addTicket = async (req, res) => {
 // Edit a ticket by ID
 const editTicketById = async (req, res) => {
     const ticketId = req.params.id;
-    const { userId, movieId, screenId, showId, seatCount, paymentStatus, status, bookingDate, movieDate } = req.body;
+    const { userId, movieId, screenId, showId, seatNumber, paymentStatus, status, bookingDate, movieDate } = req.body;
 
     try {
         const existingTicket = await Ticket.findById(ticketId);
@@ -55,7 +55,7 @@ const editTicketById = async (req, res) => {
                 movieId,
                 screenId,
                 showId,
-                seatCount,
+                seatNumber,
                 paymentStatus,
                 status,
                 bookingDate,
@@ -193,22 +193,43 @@ const viewAllTickets = async (req, res) => {
 };
 
 
-const showBookedSeats=((req,res)=>{
-    Ticket.find({showId:req.body.showId})
-    .then((result)=>{
-        console.log(result);
+
+
+
+const getBookedSeats = async (req, res) => {
+    try {
+        const { screenId, showId } = req.body; 
         
-        res.json({
-            msg:"success",
-            status:200,
-            data:result
-        })
-    })
-    .catch((err)=>{
-        console.log(err);
-        
-    })
-})
+        if (!screenId || !showId) {
+            return res.status(400).json({
+                status: 400,
+                msg: "screenId and showId are required.",
+            });
+        }
+
+        const tickets = await Ticket.find({ screenId, showId });
+
+        const bookedSeats = tickets.map(ticket => ticket.seatNumber); 
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Booked seats get successfully!",
+            data: {
+                screenId,
+                showId,
+                bookedSeats,
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to get booked seats.",
+            error: error.message,
+        });
+    }
+};
+
 
 module.exports = {
     addTicket,
@@ -217,5 +238,5 @@ module.exports = {
     viewTicketById,
     viewTicketsByUserId,
     viewAllTickets,
-    showBookedSeats
+    getBookedSeats
 };

@@ -85,7 +85,7 @@ router.post('/deleteTicketById/:id',Ticket.deleteTicketById)
 router.post('/viewTicketById/:id',Ticket.viewTicketById)
 router.post('/viewAllTickets',Ticket.viewAllTickets)
 router.post('/viewTicketsByUserId/:id',Ticket.viewTicketsByUserId)
-router.post('/showBookedSeats',Ticket.showBookedSeats)
+router.post('/getBookedSeats',Ticket.getBookedSeats)
 
 
 
