@@ -22,8 +22,11 @@ const schema = mongoose.Schema({
         ref: "showtimes",
         required: true,
     },
-    seatCount: {
-        type: Number,
+    seatNumber: {
+        type: [{
+            Type:String,
+            seatNumber:String
+        }],
         required: true
     },
     paymentStatus: {
