@@ -106,7 +106,7 @@ function App() {
             <Route path='/user-book-ticket-select-seat/:mId/:showId/:count/:movieDate/:sId' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
             {/* <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/> */}
             <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
-            <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
+            <Route path='/user-view-parking/:id' element={[<UserNavbar/>,<UserViewParking/>]}/>
             <Route path='/user-select-parking' element={[<UserNavbar/>,<UserSelectParking/>]}/>
             <Route path='/user-parking-payment' element={[<UserNavbar/>,<UserParkingPayment/>]}/>
             <Route path='/user-movie-details/:id' element={[<UserNavbar/>,<UserMovieDetails/>]}/>

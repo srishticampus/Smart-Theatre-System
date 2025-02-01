@@ -4,7 +4,16 @@ const schema = mongoose.Schema({
     ticketId: {
 
         type: mongoose.Schema.Types.ObjectId,
+
         ref: "tickets",
+    
+        required: true,
+    },
+    
+    foodId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "food",
+
         required: true,
     },
     // foodId: {
