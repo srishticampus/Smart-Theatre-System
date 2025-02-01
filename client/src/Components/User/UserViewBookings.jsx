@@ -3,10 +3,13 @@ import "../../Assets/Styles/UserViewBookings.css";
 import axios from "axios";
 import { API_BASE_URL } from "../../Services/BaseURL";
 import { Link } from "react-router-dom";
-// import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 function UserViewBookings() {
   const [data, setData] = useState([]);
+  const [data2, setData2] = useState({});
+  const [parkingData, setParkingData] = useState({});
+
 
   const id = localStorage.getItem("user");
 
@@ -14,26 +17,80 @@ function UserViewBookings() {
     axios
       .post(`${API_BASE_URL}/viewTicketsByUserId/${id}`)
       .then((res) => {
-        // console.log(res);
-        if (res.data.status == 200) {
-          setData(res.data.data || []);
+        if (res.data.status === 200) {
+          const tickets = res.data.data || [];
+          setData(tickets);
+          fetchParkingDetails(tickets);
         } else {
           setData([]);
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error("Error fetching tickets:", err);
       });
   }, []);
+
+  const fetchParkingDetails = (tickets) => {
+    const parkingPromises = tickets.map((ticket) =>
+      axios
+        .post(`${API_BASE_URL}/viewParkingByTicketId/${ticket._id}`)
+        .then((res) => {
+          console.log(res);
+
+          if (res.data.data && res.data.data._id) {
+            return { ticketId: ticket._id, parking: res.data.data };
+          } else {
+            return { ticketId: ticket._id, parking: null };
+          }
+        })
+        .catch((err) => {
+          console.error(
+            `Error fetching parking for ticket ${ticket._id}:`,
+            err
+          );
+          return { ticketId: ticket._id, parking: null };
+        })
+    );
+
+    Promise.all(parkingPromises)
+      .then((results) => {
+        const parkingInfo = {};
+        results.forEach((result) => {
+          if (result) {
+            parkingInfo[result.ticketId] = result.parking;
+            // parkingInfo[result.ticketId] = result.parking;
+          }
+        });
+        setParkingData(parkingInfo);
+      })
+      .catch((err) => {
+        console.error("Error processing parking data:", err);
+      });
+  };
 
   const getMonthName = (isoDate) => {
     if (!isoDate) return "";
     const date = new Date(isoDate);
-    return date.toLocaleString("default", { month: "long" }); // Extracts full month name
+    return date.toLocaleString("default", { month: "long" });
   };
 
-  console.log(data);
-  
+  const cancelTicket = (tId) => {
+    axios
+      .post(`${API_BASE_URL}/deleteTicketById/${tId}`)
+      .then((res) => {
+        if (res.data.status === 200) {
+          toast.error("Ticket Cancelled");
+          setData((prevData) =>
+            prevData.filter((ticket) => ticket._id !== tId)
+          );
+        }
+      })
+      .catch((err) => {
+        console.error("Error canceling ticket:", err);
+      });
+  };
+
+  console.log(parkingData);
 
   return (
     <div className="user_view_bookings_container">
@@ -44,82 +101,112 @@ function UserViewBookings() {
           </div>
           {data.length ? (
             data.map((details) => {
+              console.log(details);
+              
+              const parking = parkingData[details._id];
+
               return (
-                <>
-                  <div className="col-lg-5 col-md-4 col-sm-12">
-                    <div className="user_view_bookings_card">
-                      <p className="user_view_bookings_movie_title">
-                        {details.movieId.movieName}
-                      </p>
-                      <p className="user_view_bookings_movie_type">
-                        {details.movieId.movieType} | {details.movieId.language}
-                      </p>
-                      <p className="user_view_bookings_time">
-                        Maxus Cinemas | {details.showId.day},{" "}
-                        {getMonthName(details.movieDate)},{" "}
-                        {details.showId.startTime}
-                      </p>
+                <div key={details._id} className="col-lg-12">
+                  <div className="row">
+                    <div className="col-lg-5 col-md-4 col-sm-12">
+                      <div className="user_view_bookings_card">
+                        <p className="user_view_bookings_movie_title">
+                          {details.movieId.movieName}
+                        </p>
+                        <p className="user_view_bookings_movie_type">
+                          {details.movieId.movieType} |{" "}
+                          {details.movieId.language}
+                        </p>
+                        <p className="user_view_bookings_time">
+                          Maxus Cinemas | {details.showId.day},{" "}
+                          {getMonthName(details.movieDate)},{" "}
+                          {details.showId.startTime}
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-lg-5 col-md-4 col-sm-12">
-                    <div className="user_view_bookings_card">
-                      <p className="user_view_bookings_ticket">
-                        Ticket Number : 23456
-                      </p>
-                      <div className="d-flex justify-content-between">
-                        <p className="user_view_bookings_seats">
-                          Seat -{" "}
-                          {details.seatNumber.map((seat, index) => (
-                            <span key={index}>
-                              {seat.label}
-                              {seat.number}
-                              {index !== details.seatNumber.length - 1
-                                ? ", "
-                                : ""}
+                    <div className="col-lg-5 col-md-4 col-sm-12">
+                      <div className="user_view_bookings_card">
+                        <p className="user_view_bookings_ticket text-uppercase">
+                          Ticket Number : {details._id.slice(1,6)}
+                        </p>
+                        <div className="d-flex justify-content-between">
+                          <p className="user_view_bookings_seats">
+                            Seat -{" "}
+                            {details.seatNumber.map((seat, index) => (
+                              <span key={index}>
+                                {seat.label}
+                                {seat.number}
+                                {index !== details.seatNumber.length - 1
+                                  ? ", "
+                                  : ""}
+                              </span>
+                            ))}
+                            <span className="user_view_bookings_movie_type">
+                              ({details.seatNumber.length} Tickets)
                             </span>
-                          ))}
-                          <span className="user_view_bookings_movie_type">
-                            ({details.seatNumber.length} Tickets)
-                          </span>
-                        </p>
+                          </p>
 
-                        <p className="user_view_bookings_seats">₹ {details.amount} /-</p>
+                          <p className="user_view_bookings_seats">
+                            ₹ {details.amount} /-
+                          </p>
+                        </div>
+
+                        <div className="d-flex justify-content-between">
+                          <p className="user_view_bookings_seats mb-0">
+                            Pepsi-1, Puffs-2, Sandwich-3
+                          </p>
+                          <p className="user_view_bookings_seats">₹ 260 /-</p>
+                        </div>
+
+                        {/* Parking Details */}
+                        <div className="d-flex justify-content-between">
+                          {parking ? (
+                            <>
+                              <p className="user_view_bookings_seats m-0">
+                                {parking.vehicleType} Parking - {parking.slotNo}
+                              </p>
+                              <p className="user_view_bookings_seats m-0">
+                                ₹ {parking.amount} /-
+                              </p>
+                            </>
+                          ) : (
+                            <p className="user_view_bookings_seats m-0">
+                              No parking booked
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <div className="d-flex justify-content-between">
-                        <p className="user_view_bookings_seats mb-0">
-                          Pepsi-1, Puffs-2, Sandwich-3
-                        </p>
-                        <p className="user_view_bookings_seats">₹ 260 /-</p>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <p className="user_view_bookings_seats m-0">
-                          Bike parking - A12
-                        </p>
-                        <p className="user_view_bookings_seats m-0">₹ 60 /-</p>
+                    </div>
+
+                    <div className="col-lg-2 col-md-4 col-sm-12">
+                      <div className="user_view_bookings_buttons">
+                        <div>
+                          <Link
+                            to="/user-view-foods"
+                            className="btn btn-danger w-100 rounded-5"
+                          >
+                            Pre - Order Food
+                          </Link>
+                          {!parking && (
+                            <Link to={`/user-view-parking/${details._id}`}>
+                              <button className="btn btn-danger w-100 rounded-5 mt-3">
+                                Book Parking
+                              </button>
+                            </Link>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => cancelTicket(details._id)}
+                            className="btn btn-outline-danger w-100 rounded-5 mt-3"
+                          >
+                            Cancel ticket
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  <div className="col-lg-2 col-md-4 col-sm-12">
-                    <div className="user_view_bookings_buttons">
-                      <div>
-                        <Link
-                          to="/user-view-foods"
-                          className="btn btn-danger w-100 rounded-5"
-                        >
-                          Pre - Order Food
-                        </Link>
-                        <button className="btn btn-danger w-100 rounded-5 mt-3">
-                          Book Parking
-                        </button>
-                        <button className="btn btn-outline-danger w-100 rounded-5 mt-3">
-                          Cancel ticket
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </>
+                </div>
               );
             })
           ) : (

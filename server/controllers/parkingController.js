@@ -3,7 +3,7 @@ const Parking = require("../models/parkingModel");
 // Add a new parking entry
 const addParking = async (req, res) => {
     try {
-        const { ticketId, slotNo, vehicleType, userId, date } = req.body;
+        const { ticketId, slotNo, vehicleType, userId, date,amount } = req.body;
 
         const newParking = new Parking({
             ticketId,
@@ -11,6 +11,7 @@ const addParking = async (req, res) => {
             vehicleType,
             userId,
             date,
+            amount
         });
 
         await newParking.save();
@@ -70,6 +71,8 @@ const editParkingById = async (req, res) => {
         });
     }
 };
+
+
 
 // Delete a parking entry by ID
 const deleteParkingById = async (req, res) => {
@@ -132,10 +135,49 @@ const viewParkingById = async (req, res) => {
     }
 };
 
+const viewParkingByTicketId = async (req, res) => {
+    const ticketId = req.params.id;
+
+    console.log('ticketid',ticketId);
+    
+
+    try {
+        const parking = await Parking.findOne({ticketId:ticketId})
+            .populate('ticketId')
+
+        if (!parking) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Parking booking not found!",
+                data: null,
+            });
+        }
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Parking booking fetched successfully!",
+            data: parking,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to fetch food booking.",
+            error: error.message,
+        });
+    }
+};
+
 // View all parking entries
 const viewAllParking = async (req, res) => {
     try {
-        const parkingEntries = await Parking.find().populate('ticketId userId');
+        const parkingEntries = await Parking.find()
+        .populate({
+            path: 'ticketId',
+            populate: { path: 'showId' }, // Properly populating a nested field
+        })
+        .populate('userId')
+        .exec();
 
         return res.status(200).json({
             status: 200,
@@ -158,4 +200,5 @@ module.exports = {
     deleteParkingById,
     viewParkingById,
     viewAllParking,
+    viewParkingByTicketId
 };

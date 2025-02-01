@@ -7,6 +7,7 @@ const schema = mongoose.Schema({
         ref: "users",
         required: true,
     },
+    
     foodId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "food",

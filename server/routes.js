@@ -88,7 +88,6 @@ router.post('/viewTicketsByUserId/:id',Ticket.viewTicketsByUserId)
 router.post('/getBookedSeats',Ticket.getBookedSeats)
 
 
-
 //foodBooking
 router.post('/addFoodBooking',foodBooking.addFoodBooking)
 router.post('/viewAllFoodBookings',foodBooking.viewAllFoodBookings)
@@ -101,6 +100,7 @@ router.post('/deleteFoodBookingById/:id',foodBooking.deleteFoodBookingById)
 router.post('/addParking',parking.addParking)
 router.post('/viewAllParking',parking.viewAllParking)
 router.post('/viewParkingById/:id',parking.viewParkingById)
+router.post('/viewParkingByTicketId/:id',parking.viewParkingByTicketId)
 
 // queue
 router.post('/addQueue',queue.addQueue)
