@@ -46,6 +46,7 @@ import UserBookVirtualQueue from './Components/User/UserBookVirtualQueue';
 import UserFoodBanner from './Components/User/UserFoodBanner';
 import UserViewFoods from './Components/User/UserViewFoods';
 import UserPreOrderFood from './Components/User/UserPreOrderFood';
+import UserViewFoodPayment from './Components/User/UserViewFoodPayment';
 function App() {
   return (
     <div className="App">
@@ -101,8 +102,8 @@ function App() {
             <Route path="/user-contact" element={[<UserNavbar />, <UserContact />,]} />
             <Route path="/user-about" element={[<UserNavbar />, <UserAboutus />]} />
             <Route path='/user-book-ticket/:id' element={[<UserNavbar/>,<UserBookTickets/>]}/>
-            <Route path='/user-book-ticket-seat/:mId/:showId/:movieDate' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
-            <Route path='/user-book-ticket-select-seat/:mId/:showId/:count/:movieDate' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
+            <Route path='/user-book-ticket-seat/:mId/:showId/:movieDate/:sId' element={[<UserNavbar/>,<UserBookTicketSeatCount/>]}/>
+            <Route path='/user-book-ticket-select-seat/:mId/:showId/:count/:movieDate/:sId' element={[<UserNavbar/>,<UserBookTicketSelectSeat/>]}/>
             {/* <Route path='/user-book-ticket-selected-seat' element={[<UserNavbar/>,<UserBookTicketSelectedSeat/>]}/> */}
             <Route path='/user-book-ticket-payment' element={[<UserNavbar/>,<UserBookTicketsPayment/>]}/>
             <Route path='/user-view-parking' element={[<UserNavbar/>,<UserViewParking/>]}/>
@@ -114,6 +115,7 @@ function App() {
             <Route path='/user-book-virtualqueue/:mId/:showId/:movieDate' element={[<UserNavbar/>,<UserBookVirtualQueue/>]}/>
             <Route path='/user-view-foods' element={[<UserNavbar/>,<UserFoodBanner/>,<UserViewFoods/>]}/>
             <Route path='/user-view-pre-order-food' element={[<UserNavbar/>,<UserPreOrderFood/>]}/>
+            <Route path='/user-view-food-payment' element={[<UserNavbar/>,<UserViewFoodPayment/>]}/>
 
 
 

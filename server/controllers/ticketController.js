@@ -3,7 +3,7 @@ const Ticket = require("../models/ticketModel");
 // Add a new ticket
 const addTicket = async (req, res) => {
     try {
-        const { userId, movieId, screenId, showId, seatNumber, paymentStatus, status, bookingDate, movieDate } = req.body;
+        const { userId, movieId, screenId, showId, seatNumber, paymentStatus, status, bookingDate, movieDate, amount } = req.body;
 
         const newTicket = new Ticket({
             userId,
@@ -15,6 +15,7 @@ const addTicket = async (req, res) => {
             status,
             bookingDate,
             movieDate,
+            amount
         });
 
         await newTicket.save();
@@ -197,6 +198,8 @@ const viewAllTickets = async (req, res) => {
 
 
 const getBookedSeats = async (req, res) => {
+    console.log('req',req.body);
+    
     try {
         const { screenId, showId } = req.body; 
         
@@ -212,7 +215,7 @@ const getBookedSeats = async (req, res) => {
         const bookedSeats = tickets.map(ticket => ticket.seatNumber); 
 
         return res.status(200).json({
-            status: 200,
+            status: 200,    
             msg: "Booked seats get successfully!",
             data: {
                 screenId,

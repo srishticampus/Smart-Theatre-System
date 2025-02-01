@@ -41,7 +41,9 @@
 .user_order_food_details_img img {
   width: 74.71px;
   height: 100px;
-  border-radius: 5px 0px 0px 0px;
+  border-radius: 5px ;
+  object-fit: cover;
+  
 }
 .user_order_food_details_titile p {
   font-family: Lato;

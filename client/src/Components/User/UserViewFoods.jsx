@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../../Assets/Styles/UserViewFoods.css";
-import img from "../../Assets/Images/image.png";
 import axios from "axios";
 import { API_BASE_URL, IMG_BASE_URL } from "../../Services/BaseURL";
+import { useNavigate } from "react-router-dom";
 
 function UserViewFoods() {
   const [data, setData] = useState([]);
-      const [searchQuery, setSearchQuery] = useState(""); // State for search query
-      const [filteredData, setFilteredData] = useState([]); // State for filtered food data
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const [filteredData, setFilteredData] = useState([]); 
+  const [selectedItems, setSelectedItems] = useState([]); // State for selected items
+  const navigate=useNavigate()
 
   useEffect(() => {
     axios
       .post(`${API_BASE_URL}/viewAllFood`)
       .then((res) => {
-        console.log(res);
         setData(res.data.data);
         setFilteredData(res.data.data);
       })
@@ -22,34 +23,42 @@ function UserViewFoods() {
       });
   }, []);
 
-   // Function to handle search
-   const handleSearch = (event) => {
+  const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
 
     if (query) {
-        // Filter the data based on the search query
-        const filteredItems = data.filter(item =>
-            item.foodItem.toLowerCase().includes(query) ||
-            item.category.toLowerCase().includes(query)
-        );
-        setFilteredData(filteredItems);
+      const filteredItems = data.filter(item =>
+        item.foodItem.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+      );
+      setFilteredData(filteredItems);
     } else {
-        // If the search is empty, show all items
-        setFilteredData(data);
+      setFilteredData(data);
     }
-};
+  };
 
-const handleCategoryFilter = (category) => {
-  if (category === "All") {
-    // Show all items if "All" is selected
-    setFilteredData(data);
-  } else {
-    // Filter items by selected category
-    const filteredItems = data.filter((item) => item.category === category);
-    setFilteredData(filteredItems);
-  }
-};
+  const handleCategoryFilter = (category) => {
+    if (category === "All") {
+      setFilteredData(data);
+    } else {
+      const filteredItems = data.filter(item => item.category === category);
+      setFilteredData(filteredItems);
+    }
+  };
+
+  const handleAddRemove = (item) => {
+    const isItemAdded = selectedItems.some(selected => selected._id === item._id);
+
+    if (isItemAdded) {
+      setSelectedItems(prevItems => prevItems.filter(selected => selected._id !== item._id));
+    } else {
+      setSelectedItems(prevItems => [...prevItems, item]);
+    }
+  };
+
+  console.log(selectedItems);
+  
 
   return (
     <div>
@@ -63,91 +72,53 @@ const handleCategoryFilter = (category) => {
               <input
                 type="text"
                 className="form-control search-input"
-                placeholder="Search here    "
+                placeholder="Search here"
                 value={searchQuery}
-                onChange={handleSearch} // Call handleSearch when input changes
+                onChange={handleSearch}
               />
               <i className="fas fa-search search-icon"></i>
             </div>
           </div>
         </div>
-        {/* <div className="category_button_container">
-          <div className="user_food_category_button">
-            <button className="btn btn-outline-danger rounded-5 w-75">
-              All
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button className="btn btn-outline-danger rounded-5 w-75">
-              Snacks
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button className="btn btn-outline-danger rounded-5 w-75">
-              Puffs
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button className="btn btn-outline-danger rounded-5 w-75">
-              Deserts
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button className="btn btn-outline-danger rounded-5 w-75">
-              Beverages
-            </button>
-          </div>
-        </div> */}
+
+       
+
         <div className="category_button_container">
-          <div className="user_food_category_button">
-            <button
-              className="btn btn-outline-danger rounded-5 w-75"
-              onClick={() => handleCategoryFilter("All")}
-            >
-              All
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button
-              className="btn btn-outline-danger rounded-5 w-75"
-              onClick={() => handleCategoryFilter("Snacks")}
-            >
-              Snacks
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button
-              className="btn btn-outline-danger rounded-5 w-75"
-              onClick={() => handleCategoryFilter("Puffs")}
-            >
-              Puffs
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button
-              className="btn btn-outline-danger rounded-5 w-75"
-              onClick={() => handleCategoryFilter("Deserts")}
-            >
-              Deserts
-            </button>
-          </div>
-          <div className="user_food_category_button">
-            <button
-              className="btn btn-outline-danger rounded-5 w-75"
-              onClick={() => handleCategoryFilter("Beverages")}
-            >
-              Beverages
-            </button>
-          </div>
+          {["All", "Snacks", "Puffs", "Deserts", "Beverages"].map(category => (
+            <div className="user_food_category_button" key={category}>
+              <button
+                className="btn btn-outline-danger rounded-5 w-75"
+                onClick={() => handleCategoryFilter(category)}
+              >
+                {category}
+              </button>
+            </div>
+          ))}
         </div>
+
+        {
+          selectedItems.length>0?<div className="confirm_button text-center mb-3">
+          <button className="btn btn-danger" onClick={() => {
+                navigate("/user-view-pre-order-food", {
+                  state: {
+                    selectedItems
+                  },
+                });
+              }} > {selectedItems.length} Product Added</button>
+        </div>:''
+        }
+
+        
+
         <div className="user_food_cat_card_container">
           <div className="row">
             {filteredData.length > 0
               ? filteredData.map((e) => {
+                  const isAdded = selectedItems.some(item => item._id === e._id);
+
                   return (
-                    <div className="col-3">
+                    <div className="col-3" key={e._id}>
                       <div className="user_food_cat_card_image">
-                        {/* <img src={img} alt="" /> */}
                         <img src={`${IMG_BASE_URL}/${e.image.filename}`} alt={e.foodItem} />
                       </div>
                       <div className="user_food_cat_card_title">
@@ -155,12 +126,17 @@ const handleCategoryFilter = (category) => {
                       </div>
                       <div className="user_food_cat_card_actions">
                         <p>₹{e.amount}/-</p>
-                        <button className="btn btn-outline-danger">+Add</button>
+                        <button 
+                          className={`btn ${isAdded ? "btn-danger" : "btn-outline-danger"}`} 
+                          onClick={() => handleAddRemove(e)}
+                        >
+                          {isAdded ? "Added" : "+Add"}
+                        </button>
                       </div>
                     </div>
                   );
                 })
-              : ""}
+              : <p className="text-center">No food items found</p>}
           </div>
         </div>
       </div>

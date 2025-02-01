@@ -30,7 +30,7 @@ function UserNavbar() {
         const result = await ViewById('viewUserById',localStorage.getItem('user'));
 
         if (result.success) {
-            console.log(result);
+            // console.log(result);
             if (result.user){
                 setdata(result.user);
             setSelectedImage(`${IMG_BASE_URL}/${result.user.profilePic.filename}`); // Set initial image
