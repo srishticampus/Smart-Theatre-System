@@ -22,13 +22,12 @@ const schema = mongoose.Schema({
         ref: "showtimes",
         required: true,
     },
-    seatNumber: {
-        type: [{
+    seatNumber:  [{
             Type:String,
-            seatNumber:String
-        }],
-        required: true
-    },
+            seatNumber:Number
+        }]
+        // required: true
+    ,
     paymentStatus: {
         type: Boolean,
         default: true
