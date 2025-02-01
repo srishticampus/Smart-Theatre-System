@@ -93,7 +93,7 @@ function UserBookTickets() {
     navigate(`/user-movie-details/${id}`);
   };
   const redirect = (id) => {
-    navigate(`/user-book-ticket-seat/${movieId}/${id}/${movieDate}`);
+    navigate(`/user-book-ticket-seat/${movieId}/${id}/${movieDate}/${data.screenId._id}`);
   };
   const fetchCastData = async () => {
     try {

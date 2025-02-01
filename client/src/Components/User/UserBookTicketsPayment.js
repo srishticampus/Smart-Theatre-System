@@ -151,21 +151,24 @@ function UserBookTicketsPayment() {
     e.preventDefault();
     if (validate()) {
       console.log("Payment Successful");
-
+      console.log(seats);
+      
       axios
         .post(`${API_BASE_URL}/addTicket`, {
           userId: localStorage.getItem("user"),
           movieId: mId,
           screenId:data.screenId._id,
           showId: showId,
-          seatCount: count,
+          seatNumber: seats,
           bookingDate: new Date().toISOString().split("T")[0],
           movieDate: movieDate,
+          amount:totalPrice+60
         })
         .then((res) => {
           console.log(res);
           if(res.data.status==200){
             toast.success('Booking Confirmed')
+            navigate('/user-view-bookings')
           }
           
         })
@@ -176,7 +179,7 @@ function UserBookTicketsPayment() {
     }
   };
 
-  console.log(data);
+  console.log('seats',seats);
   
 
   return (
@@ -207,11 +210,11 @@ function UserBookTicketsPayment() {
               {seats
                 .map((seat) => {
                   const seatLabel =
-                    seat.type === "gold"
+                    seat.Type === "gold"
                       ? data.screenId.gold.seatLabel
-                      : seat.type === "silver"
+                      : seat.Type === "silver"
                       ? data.screenId.silver.seatLabel
-                      : seat.type === "platinum"
+                      : seat.Type === "platinum"
                       ? data.screenId.platinum.seatLabel
                       : "";
 

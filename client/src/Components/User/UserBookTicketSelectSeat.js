@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import { viewCount, approveById } from "../../Services/AdminService";
-import { IMG_BASE_URL } from "../../Services/BaseURL";
+import { API_BASE_URL, IMG_BASE_URL } from "../../Services/BaseURL";
 import { toast } from "react-toastify";
 import { resetPassword, ViewById } from "../../Services/CommonServices";
 import FooterLandingPage from "../Footers/FooterLandingPage";
 import "../../Assets/Styles/UserHome.css";
 import { Link, redirect, useNavigate, useParams } from "react-router-dom";
 import "../../Assets/Styles/UserBookTicketselectSeat.css";
+import axios from "axios";
 
 function UserBookTicketSelectSeat() {
-  const [selectedSeat, setSelectedSeat] = useState(null);
   const { mId } = useParams();
   const { showId } = useParams();
   const { count } = useParams();
   const { movieDate } = useParams();
+  const { sId } = useParams();
+  const [bookedSetas, setBookedSetas] = useState([]);
   const [showData, setShowData] = useState({
     day: "",
     startTime: "",
@@ -52,8 +54,6 @@ function UserBookTicketSelectSeat() {
     try {
       const result = await ViewById("viewMovieById", movieId);
       if (result.success) {
-        console.log("mov", result.user);
-
         setData(result.user || null);
       } else {
         toast.error(result.message);
@@ -70,8 +70,6 @@ function UserBookTicketSelectSeat() {
     try {
       const result = await ViewById("viewShowsById", showId);
       if (result.success) {
-        console.log("shows", result.user);
-
         setShowData(result.user || null);
       } else {
         toast.error(result.message);
@@ -85,38 +83,108 @@ function UserBookTicketSelectSeat() {
     fetchShowData();
   }, [showId]);
 
-  const handleSeatSelection = (seatNumber, type) => {
+  // useEffect(() => {
+  //   axios
+  //     .post(`${API_BASE_URL}/getBookedSeats`, { screenId: sId, showId: showId })
+  //     .then((res) => {
+  //       if (res.data.status == 200) {
+  //         setBookedSetas(res.data.data.bookedSeats || []);
+  //       } else {
+  //         setBookedSetas([]);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    axios
+      .post(`${API_BASE_URL}/getBookedSeats`, { screenId: sId, showId: showId })
+      .then((res) => {
+        console.log("Booked Seats Raw Response:", res.data);
+        const flattenedSeats = res.data.data.bookedSeats.flat() || [];
+        console.log("Processed Booked Seats:", flattenedSeats); // Debugging statement
+        setBookedSetas(flattenedSeats);
+      })
+      .catch((err) => {
+        console.log("Error fetching booked seats:", err);
+      });
+  }, []);
+
+  // const handleSeatSelection = (seatNumber, Type) => {
+  //   setSeats((prevSeats) => {
+  //     const seatExists = prevSeats.find(
+  //       (seat) => seat.number === seatNumber && seat.Type === Type
+  //     );
+
+  //     if (seatExists) {
+  //       // If seat is already selected, remove it
+  //       return prevSeats.filter(
+  //         (seat) => !(seat.number === seatNumber && seat.Type === Type)
+  //       );
+  //     } else {
+  //       if (prevSeats.length < count) {
+  //         // Add the seat if the limit is not exceeded
+  //         return [...prevSeats, { number: seatNumber, Type }];
+  //       } else {
+  //         // Replace the first selected seat with the new one
+  //         const updatedSeats = [...prevSeats];
+  //         updatedSeats.shift(); // Remove the first seat
+  //         updatedSeats.push({ number: seatNumber, Type }); // Add the new seat
+  //         return updatedSeats;
+  //       }
+  //     }
+  //   });
+  // };
+
+  const handleSeatSelection = (seatNumber, Type) => {
     setSeats((prevSeats) => {
       const seatExists = prevSeats.find(
-        (seat) => seat.number === seatNumber && seat.type === type
+        (seat) => seat.number === seatNumber && seat.Type === Type
       );
+  
+      let seatLabel = "";
+      if (Type === "platinum") {
+        seatLabel = data.screenId.platinum.seatLabel;
+      } else if (Type === "gold") {
+        seatLabel = data.screenId.gold.seatLabel;
+      } else if (Type === "silver") {
+        seatLabel = data.screenId.silver.seatLabel;
+      }
 
+      console.log("Seat Selected:", { number: seatNumber, Type, label: seatLabel });
+      console.log("Updated Seats Array:", seats);
+
+  
       if (seatExists) {
         // If seat is already selected, remove it
         return prevSeats.filter(
-          (seat) => !(seat.number === seatNumber && seat.type === type)
+          (seat) => !(seat.number === seatNumber && seat.Type === Type)
         );
       } else {
         if (prevSeats.length < count) {
           // Add the seat if the limit is not exceeded
-          return [...prevSeats, { number: seatNumber, type }];
+          return [...prevSeats, { number: seatNumber, Type, label: seatLabel }];
         } else {
           // Replace the first selected seat with the new one
           const updatedSeats = [...prevSeats];
           updatedSeats.shift(); // Remove the first seat
-          updatedSeats.push({ number: seatNumber, type }); // Add the new seat
+          updatedSeats.push({ number: seatNumber, Type, label: seatLabel }); // Add the new seat
           return updatedSeats;
         }
       }
     });
   };
+  
+  
 
   const calculateTotalPrice = () => {
     return seats.reduce((total, seat) => {
       const seatPrice =
-        seat.type === "platinum"
+        seat.Type === "platinum"
           ? data.screenId.platinum.amount
-          : seat.type === "gold"
+          : seat.Type === "gold"
           ? data.screenId.gold.amount
           : data.screenId.silver.amount;
       return total + seatPrice;
@@ -126,11 +194,19 @@ function UserBookTicketSelectSeat() {
   const totalPrice = calculateTotalPrice();
   const isAllSeatsSelected = seats.length == count;
 
-  console.log(data);
-  console.log(seats);
 
-  console.log(totalPrice);
-  console.log(isAllSeatsSelected);
+  const isSeatBooked = (seatNumber, seatType) => {
+    return bookedSetas.some(
+      (seat) => seat.number === seatNumber && seat.Type === seatType
+    );
+  };
+
+  console.log(seats);
+  
+
+  if (!bookedSetas || !seats) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -170,13 +246,13 @@ function UserBookTicketSelectSeat() {
                 <button className="btn me-4" style={{ border: "0" }} disabled>
                   {data.screenId.platinum.seatLabel}
                 </button>
-               
+
                 <div className="d-flex flex-wrap" style={{ gap: "10px" }}>
-                  {Array.from({ length: data.screenId.platinum.seatCount }).map(
+                  {/* {Array.from({ length: data.screenId.platinum.seatCount }).map(
                     (_, index) => {
                       const isSelected = seats.some(
                         (seat) =>
-                          seat.number === index + 1 && seat.type === "platinum"
+                          seat.number === index + 1 && seat.Type === "platinum"
                       );
 
                       return (
@@ -192,6 +268,36 @@ function UserBookTicketSelectSeat() {
                           }
                         >
                           {index + 1}
+                        </button>
+                      );
+                    }
+                  )} */}
+                  {Array.from({ length: data.screenId.platinum.seatCount }).map(
+                    (_, index) => {
+                      const seatNumber = index + 1;
+                      const isBooked = isSeatBooked(seatNumber, "platinum");
+                      const isSelected = seats.some(
+                        (seat) =>
+                          seat.number === seatNumber && seat.Type === "platinum"
+                      );
+
+                      return (
+                        <button
+                          key={index}
+                          className={`btn ${
+                            isBooked
+                              ? "btn-secondary"
+                              : isSelected
+                              ? "btn-success"
+                              : "btn-outline-success"
+                          } user-book-ticket-seat-select-seatbuttons me-2`}
+                          onClick={() =>
+                            !isBooked &&
+                            handleSeatSelection(seatNumber, "platinum")
+                          }
+                          disabled={isBooked}
+                        >
+                          {seatNumber}
                         </button>
                       );
                     }
@@ -215,11 +321,11 @@ function UserBookTicketSelectSeat() {
                 {data.screenId.gold.seatLabel}
               </button>
               <div className="d-flex flex-wrap" style={{ gap: "10px" }}>
-                {Array.from({ length: data.screenId.gold.seatCount }).map(
+                {/* {Array.from({ length: data.screenId.gold.seatCount }).map(
                   (_, index) => {
                     const isSelected = seats.some(
                       (seat) =>
-                        seat.number === index + 1 && seat.type === "gold"
+                        seat.number === index + 1 && seat.Type === "gold"
                     );
 
                     return (
@@ -236,6 +342,35 @@ function UserBookTicketSelectSeat() {
                       </button>
                     );
                   }
+                )} */}
+                {Array.from({ length: data.screenId.gold.seatCount }).map(
+                  (_, index) => {
+                    const seatNumber = index + 1;
+                    const isBooked = isSeatBooked(seatNumber, "gold");
+                    const isSelected = seats.some(
+                      (seat) =>
+                        seat.number === seatNumber && seat.Type === "gold"
+                    );
+
+                    return (
+                      <button
+                        key={index}
+                        className={`btn ${
+                          isBooked
+                            ? "btn-secondary"
+                            : isSelected
+                            ? "btn-success"
+                            : "btn-outline-success"
+                        } user-book-ticket-seat-select-seatbuttons me-2`}
+                        onClick={() =>
+                          !isBooked && handleSeatSelection(seatNumber, "gold")
+                        }
+                        disabled={isBooked}
+                      >
+                        {seatNumber}
+                      </button>
+                    );
+                  }
                 )}
               </div>
             </div>
@@ -244,30 +379,29 @@ function UserBookTicketSelectSeat() {
           ""
         )}
 
-{isAllSeatsSelected && (
-  <div className="d-flex justify-content-center mt-4">
-    <button
-      className="btn btn-danger"
-      onClick={() => {
-        navigate("/user-book-ticket-payment", {
-          state: {
-            mId,
-            showId,
-            count,
-            seats,
-            totalPrice,
-            movieDate
-          },
-        });
-      }}
-    >
-      Pay ₹{totalPrice}
-    </button>
-  </div>
-)}
+        {isAllSeatsSelected && (
+          <div className="d-flex justify-content-center mt-4">
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                navigate("/user-book-ticket-payment", {
+                  state: {
+                    mId,
+                    showId,
+                    count,
+                    seats,
+                    totalPrice,
+                    movieDate,
+                  },
+                });
+              }}
+            >
+              Pay ₹{totalPrice}
+            </button>
+          </div>
+        )}
 
-
-        {data.screenId.gold.seatCount > 0 ? (
+        {data.screenId.silver.seatCount > 0 ? (
           <div className="d-flex justify-content-evenly mt-4">
             <div>
               <p>Silver - &#8377;&nbsp;{data.screenId.silver.amount}/-</p>
@@ -278,13 +412,13 @@ function UserBookTicketSelectSeat() {
               <button className="btn me-4" style={{ border: "0" }} disabled>
                 {data.screenId.silver.seatLabel}
               </button>
-             
+
               <div className="d-flex flex-wrap" style={{ gap: "10px" }}>
-                {Array.from({ length: data.screenId.silver.seatCount }).map(
+                {/* {Array.from({ length: data.screenId.silver.seatCount }).map(
                   (_, index) => {
                     const isSelected = seats.some(
                       (seat) =>
-                        seat.number === index + 1 && seat.type === "silver"
+                        seat.number === index + 1 && seat.Type === "silver"
                     );
 
                     return (
@@ -298,6 +432,35 @@ function UserBookTicketSelectSeat() {
                         onClick={() => handleSeatSelection(index + 1, "silver")}
                       >
                         {index + 1}
+                      </button>
+                    );
+                  }
+                )} */}
+                {Array.from({ length: data.screenId.silver.seatCount }).map(
+                  (_, index) => {
+                    const seatNumber = index + 1;
+                    const isBooked = isSeatBooked(seatNumber, "silver");
+                    const isSelected = seats.some(
+                      (seat) =>
+                        seat.number === seatNumber && seat.Type === "silver"
+                    );
+
+                    return (
+                      <button
+                        key={index}
+                        className={`btn ${
+                          isBooked
+                            ? "btn-secondary"
+                            : isSelected
+                            ? "btn-success"
+                            : "btn-outline-success"
+                        } user-book-ticket-seat-select-seatbuttons me-2`}
+                        onClick={() =>
+                          !isBooked && handleSeatSelection(seatNumber, "silver")
+                        }
+                        disabled={isBooked}
+                      >
+                        {seatNumber}
                       </button>
                     );
                   }
