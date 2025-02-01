@@ -24,9 +24,9 @@ const schema = mongoose.Schema({
     },
     seatNumber:  [{
             Type:String,
-            seatNumber:Number
+            number:Number,
+            label:String
         }]
-        // required: true
     ,
     paymentStatus: {
         type: Boolean,
@@ -35,6 +35,10 @@ const schema = mongoose.Schema({
     status: {
         type: Boolean,
         default: true
+    },
+    amount: {
+        type: Number,
+        required: true
     },
     bookingDate: {
         type: Date,

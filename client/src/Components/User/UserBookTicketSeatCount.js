@@ -14,6 +14,7 @@ function UserBookTicketSeatCount() {
   const { mId } = useParams()
   const {showId}= useParams()
   const {movieDate}= useParams()
+  const {sId}= useParams()
    const [showData, setShowData] = useState({
       day:'',
       startTime:'',
@@ -77,7 +78,7 @@ function UserBookTicketSeatCount() {
   const redirect = (id) => {
 
 
-    navigate(`/user-book-ticket-select-seat/${movieId}/${showId}/${selectedSeat}/${movieDate}`)
+    navigate(`/user-book-ticket-select-seat/${movieId}/${showId}/${selectedSeat}/${movieDate}/${sId}`)
   }
     return (
         <div>

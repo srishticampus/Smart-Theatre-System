@@ -1,0 +1,31 @@
+.user_food_payment {
+  margin-top: 7rem;
+  width: 100%;
+}
+
+.user_food_payment_title {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 25px;
+  text-align: center;
+}
+
+.user_food_payment_table table {
+  width: 400px;
+  padding: 32px 40px 32px 40px;
+  gap: 15px;
+  border: 1px solid grey;
+  border-radius: 20px;
+  margin: auto;
+  text-align: center;
+}
+
+.user_food_payment_table th,
+th {
+  padding: 10px;
+}
+
+.user_food_payment_table hr {
+  width: 100%;
+}
