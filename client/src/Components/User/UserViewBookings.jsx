@@ -9,7 +9,7 @@ function UserViewBookings() {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState({});
   const [parkingData, setParkingData] = useState({});
-
+  const [foodData, setFoodData] = useState({ foodItems: [] });
 
   const id = localStorage.getItem("user");
 
@@ -21,6 +21,7 @@ function UserViewBookings() {
           const tickets = res.data.data || [];
           setData(tickets);
           fetchParkingDetails(tickets);
+          fetchFoodDetails(tickets); // Fetch food details
         } else {
           setData([]);
         }
@@ -35,8 +36,6 @@ function UserViewBookings() {
       axios
         .post(`${API_BASE_URL}/viewParkingByTicketId/${ticket._id}`)
         .then((res) => {
-          console.log(res);
-
           if (res.data.data && res.data.data._id) {
             return { ticketId: ticket._id, parking: res.data.data };
           } else {
@@ -68,6 +67,38 @@ function UserViewBookings() {
       });
   };
 
+  const fetchFoodDetails = (tickets) => {
+    const foodPromises = tickets.map((ticket) =>
+      axios
+        .post(`${API_BASE_URL}/viewFoodBookingByTicketId/${ticket._id}`)
+        .then((res) => {
+          if (res.data.data && res.data.data._id) {
+            return { ticketId: ticket._id, food: res.data.data };
+          } else {
+            return { ticketId: ticket._id, food: null };
+          }
+        })
+        .catch((err) => {
+          console.error(`Error fetching food for ticket ${ticket._id}:`, err);
+          return { ticketId: ticket._id, food: null };
+        })
+    );
+
+    Promise.all(foodPromises)
+      .then((results) => {
+        const foodInfo = {};
+        results.forEach((result) => {
+          if (result) {
+            foodInfo[result.ticketId] = result.food;
+          }
+        });
+        setFoodData(foodInfo);
+      })
+      .catch((err) => {
+        console.error("Error processing food data:", err);
+      });
+  };
+
   const getMonthName = (isoDate) => {
     if (!isoDate) return "";
     const date = new Date(isoDate);
@@ -90,7 +121,9 @@ function UserViewBookings() {
       });
   };
 
-  console.log(parkingData);
+  console.log(data);
+  
+
 
   return (
     <div className="user_view_bookings_container">
@@ -101,9 +134,8 @@ function UserViewBookings() {
           </div>
           {data.length ? (
             data.map((details) => {
-              console.log(details);
-              
               const parking = parkingData[details._id];
+              const food = foodData[details._id];
 
               return (
                 <div key={details._id} className="col-lg-12">
@@ -128,7 +160,7 @@ function UserViewBookings() {
                     <div className="col-lg-5 col-md-4 col-sm-12">
                       <div className="user_view_bookings_card">
                         <p className="user_view_bookings_ticket text-uppercase">
-                          Ticket Number : {details._id.slice(1,6)}
+                          Ticket Number : {details._id.slice(1, 6)}
                         </p>
                         <div className="d-flex justify-content-between">
                           <p className="user_view_bookings_seats">
@@ -153,10 +185,30 @@ function UserViewBookings() {
                         </div>
 
                         <div className="d-flex justify-content-between">
-                          <p className="user_view_bookings_seats mb-0">
-                            Pepsi-1, Puffs-2, Sandwich-3
-                          </p>
-                          <p className="user_view_bookings_seats">₹ 260 /-</p>
+                          {foodData[details._id] ? (
+                            <>
+                              <p className="user_view_bookings_seats mb-0">
+                                {foodData[details._id].foodItems.map(
+                                  (item, index) => (
+                                    <span key={index}>
+                                      {item.foodItem}-{item.quantity}
+                                      {index !==
+                                      foodData[details._id].length - 1
+                                        ? ", "
+                                        : ""}
+                                    </span>
+                                  )
+                                )}
+                              </p>
+                              <p className="user_view_bookings_seats">
+                                ₹ {foodData[details._id].totalAmount} /-
+                              </p>
+                            </>
+                          ) : (
+                            <p className="user_view_bookings_seats m-0">
+                              No food booked
+                            </p>
+                          )}
                         </div>
 
                         {/* Parking Details */}
@@ -182,12 +234,16 @@ function UserViewBookings() {
                     <div className="col-lg-2 col-md-4 col-sm-12">
                       <div className="user_view_bookings_buttons">
                         <div>
+                        {!food && (
+
                           <Link
-                            to="/user-view-foods"
+                            to={`/user-view-foods/${details._id}`}
                             className="btn btn-danger w-100 rounded-5"
                           >
                             Pre - Order Food
                           </Link>
+                          )}
+
                           {!parking && (
                             <Link to={`/user-view-parking/${details._id}`}>
                               <button className="btn btn-danger w-100 rounded-5 mt-3">

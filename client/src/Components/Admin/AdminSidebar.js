@@ -132,10 +132,10 @@ const handleClose = () => {
                   </Link>
                 </div>
               )}
-                <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
+                <div className="adjust-space" >
                 <label className="label-sub">Booking</label>
               </div>
-              {showSubscription && (
+              {/* {showSubscription && (
                 <div className="custom-dropdown-menu">
                   <Link to={'/admin_add_subscription_plan'}>
                     <div className="custom-dropdown-item">
@@ -148,11 +148,11 @@ const handleClose = () => {
                     </div>
                   </Link>
                 </div>
-              )}
-                <div className="adjust-space" onClick={toggleSubscriptionDropdown}>
+              )} */}
+                <div className="adjust-space" >
                 <label className="label-sub">Parking</label>
               </div>
-              {showSubscription && (
+              {/* {showSubscription && (
                 <div className="custom-dropdown-menu">
                   <Link to={'/admin_add_subscription_plan'}>
                     <div className="custom-dropdown-item">
@@ -165,7 +165,7 @@ const handleClose = () => {
                     </div>
                   </Link>
                 </div>
-              )}
+              )} */}
               <div className="adjust-space">
                 <Link to={'/admin_view_complaints'}>
                 <label className="label-sub">Feedback</label>

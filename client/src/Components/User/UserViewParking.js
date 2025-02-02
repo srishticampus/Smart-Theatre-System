@@ -10,8 +10,8 @@ import { API_BASE_URL } from "../../Services/BaseURL";
 function UserViewParking() {
   const { id } = useParams();
   const uId = localStorage.getItem("user");
-  const [allParking,setAllParking]=useState([])
-  const navigate=useNavigate();
+  const [allParking, setAllParking] = useState([]);
+  const navigate = useNavigate();
 
   const [carParkingSpots, setCarParkingSpots] = useState([
     { id: "C-1", isAvailable: true },
@@ -138,7 +138,6 @@ function UserViewParking() {
     axios
       .post(`${API_BASE_URL}/viewAllParking`)
       .then((res) => {
-        
         setAllParking(res.data.data);
       })
       .catch((err) => {
@@ -166,7 +165,7 @@ function UserViewParking() {
       // Extract the relevant date and show time
       const movieDate = apiData.movieDate;
       const movieStartTime = apiData.showId.startTime;
-  
+
       // Filter booked slots for the same date and start time
       const bookedSlots = allParking
         .filter(
@@ -175,7 +174,7 @@ function UserViewParking() {
             parking.ticketId?.showId?.startTime === movieStartTime
         )
         .map((parking) => parking.slotNo);
-  
+
       // Update car parking spots
       setCarParkingSpots((prevSpots) =>
         prevSpots.map((spot) => ({
@@ -183,7 +182,7 @@ function UserViewParking() {
           isAvailable: !bookedSlots.includes(spot.id),
         }))
       );
-  
+
       // Update bike parking spots
       setBikeParkingSpots((prevSpots) =>
         prevSpots.map((spot) => ({
@@ -193,10 +192,9 @@ function UserViewParking() {
       );
     }
   }, [allParking, apiData]);
-  
 
-  console.log('parlingdetails',allParking);
-  console.log('moivedetails',apiData);
+  console.log("parlingdetails", allParking);
+  console.log("moivedetails", apiData);
 
   return (
     <div className="container user-view-parking">
@@ -234,8 +232,9 @@ function UserViewParking() {
                 ) : (
                   <img
                     src={rc}
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "contain", pointerEvents: "none" }}
                     alt={`Car in ${spot.id}`}
+                    onClick={(e) => e.stopPropagation()}
                   />
                 )}
               </div>
@@ -272,7 +271,11 @@ function UserViewParking() {
                     <p className="mb-0">{spot.id}</p>
                   </div>
                 ) : (
-                  <img src={rb} alt={`Bike in ${spot.id}`} />
+                  <img
+                    src={rb}
+                    alt={`Bike in ${spot.id}`}
+                    onClick={(e) => e.stopPropagation()}
+                  />
                 )}
               </div>
             ))}
@@ -280,13 +283,17 @@ function UserViewParking() {
         </div>
         {data.slotNo && (
           <div>
-            <button className="btn btn-danger" style={{ alignItems: "center" }}  onClick={() => {
+            <button
+              className="btn btn-danger"
+              style={{ alignItems: "center" }}
+              onClick={() => {
                 navigate("/user-parking-payment", {
                   state: {
-                    data
+                    data,
                   },
                 });
-              }}>
+              }}
+            >
               Pay {data.vehicleType === "Car" ? "50" : "20"}/-
             </button>
           </div>

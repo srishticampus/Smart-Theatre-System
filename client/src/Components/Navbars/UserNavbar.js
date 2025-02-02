@@ -7,6 +7,7 @@ import { IMG_BASE_URL } from "../../Services/BaseURL";
 import { resetPassword, ViewById } from "../../Services/CommonServices";
 import arrow from '../../Assets/Images/redArrow.png';
 import '../../Assets/Styles/CustProfile.css'
+import axios from "axios";
 function UserNavbar() {
   const navigate = useNavigate();
   const [showSearchBox, setShowSearchBox] = useState(false);
@@ -167,8 +168,6 @@ const handleLogin = async (e) => {
     setShowSearchBox(!showSearchBox);
     setSearchResults([])
   };
-
-
 
   return (
     

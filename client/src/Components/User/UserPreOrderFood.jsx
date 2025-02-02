@@ -5,16 +5,18 @@ import { IMG_BASE_URL } from "../../Services/BaseURL";
 
 function UserPreOrderFood() {
   const location = useLocation();
-  const navigate=useNavigate();
-  const { selectedItems: initialItems } = location.state || {
-    selectedItems: [],
-  };
+  const navigate = useNavigate();
+
+  // Extract values from location.state
+  const { selectedItems: initialItems = [], tId = null } = location.state || {};
 
   // Add quantity field to each item
   const [selectedItems, setSelectedItems] = useState(
     initialItems.map((item) => ({ ...item, quantity: 1 }))
   );
 
+    console.log(tId); 
+    
   // Function to increase quantity
   const increaseQuantity = (id) => {
     setSelectedItems((prevItems) =>
@@ -36,11 +38,10 @@ function UserPreOrderFood() {
   };
 
   // Calculate total price dynamically
-  const totalPrice = selectedItems.reduce((total, item) => {
-    return total + item.amount * item.quantity;
-  }, 0);
-
-  console.log(selectedItems);
+  const totalPrice = selectedItems.reduce(
+    (total, item) => total + item.amount * item.quantity,
+    0
+  );
 
   return (
     <div>
@@ -104,9 +105,7 @@ function UserPreOrderFood() {
             className="btn btn-danger"
             onClick={() => {
               navigate("/user-view-food-payment", {
-                state: {
-                  selectedItems,
-                },
+                state: { selectedItems, tId },
               });
             }}
           >
