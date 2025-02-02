@@ -4,13 +4,14 @@ const FoodBooking = require("../models/foodBooking");
 // Add a new food booking
 const addFoodBooking = async (req, res) => {
     try {
-        const { ticketId, foodItems, userId, movieDate } = req.body;
+        const { ticketId, foodItems, userId, movieDate, totalAmount } = req.body;
 
         const newFoodBooking = new FoodBooking({
             ticketId,
             foodItems,
             userId,
             movieDate,
+            totalAmount
         });
         console.log(req.body.foodItems);
         
@@ -160,6 +161,35 @@ const viewFoodBookingByUserId = async (req, res) => {
         });
     }
 };
+const viewFoodBookingByTicketId = async (req, res) => {
+    const ticketId = req.params.id;
+
+    try {
+        const foodBooking = await FoodBooking.findOne({ticketId:ticketId})
+            .populate('ticketId foodItems userId');
+
+        if (!foodBooking) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Food booking not found!",
+                data: null,
+            });
+        }
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Food booking fetched successfully!",
+            data: foodBooking,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to fetch food booking.",
+            error: error.message,
+        });
+    }
+};
 // View all food bookings
 const viewAllFoodBookings = async (req, res) => {
     try {
@@ -189,5 +219,6 @@ module.exports = {
     deleteFoodBookingById,
     viewFoodBookingById,
     viewAllFoodBookings,
-    viewFoodBookingByUserId
+    viewFoodBookingByUserId,
+    viewFoodBookingByTicketId
 };

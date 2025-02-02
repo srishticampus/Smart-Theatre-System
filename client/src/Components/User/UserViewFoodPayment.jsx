@@ -1,16 +1,40 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../../Assets/Styles/UserViewFoodPayment.css";
+import axios from "axios";
+import { API_BASE_URL } from "../../Services/BaseURL";
+import { toast } from "react-toastify";
 
 function UserViewFoodPayment() {
   const location = useLocation();
-  const { selectedItems } = location.state || {};
+  const navigate=useNavigate();
+  const { selectedItems = [], tId = null } = location.state || {};
+
+
+    const [ticketDetails,setTicketDetails]=useState({})
 
   // Calculate total amount
   const totalAmount = selectedItems.reduce((total, item) => {
     return total + item.amount * item.quantity;
   }, 0);
   console.log(selectedItems);
+
+  useEffect(()=>{
+    axios
+    .post(`${API_BASE_URL}/viewTicketById/${tId}`,)
+    .then((res) => {
+      console.log(res);
+      setTicketDetails(res.data.data)
+      
+    })
+    .catch((err) => {
+      console.log(err);
+      
+    });
+  },[])
+
+  console.log(ticketDetails);
+  
 
   const [formData, setFormData] = useState({
     creditCardNumber: "",
@@ -74,34 +98,34 @@ function UserViewFoodPayment() {
     setFormData({ ...formData, [id]: value });
   };
 
+  console.log(tId);
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
       console.log("Payment Successful");
       
-    //   axios
-    //     .post(`${API_BASE_URL}/addTicket`, {
-    //       userId: localStorage.getItem("user"),
-    //       movieId: mId,
-    //       screenId:data.screenId._id,
-    //       showId: showId,
-    //       seatNumber: seats,
-    //       bookingDate: new Date().toISOString().split("T")[0],
-    //       movieDate: movieDate,
-    //       amount:totalPrice+60
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       if(res.data.status==200){
-    //         toast.success('Booking Confirmed')
-    //         navigate('/user-view-bookings')
-    //       }
+      axios
+        .post(`${API_BASE_URL}/addFoodBooking`, {
+          userId: localStorage.getItem("user"),
+          ticketId: tId,
+          foodItems:selectedItems,
+          movieDate: ticketDetails.movieDate,
+          totalAmount: totalAmount,
+        })
+        .then((res) => {
+          console.log(res);
+          if(res.data.status==200){
+            toast.success('Order Confirmed')
+            navigate('/user-view-bookings')
+          }
           
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
+        })
+        .catch((err) => {
+          console.log(err);
           
-    //     });
+        });
     }
   };
 
@@ -220,7 +244,7 @@ function UserViewFoodPayment() {
               </div>
               <div className="text-center mt-4">
                 <button type="submit" className="btn btn-danger">
-                  Pay &#8377;{totalAmount + 60}/-
+                  Pay &#8377;{totalAmount}/-
                 </button>
               </div>
             </form>

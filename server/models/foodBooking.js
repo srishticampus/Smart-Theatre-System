@@ -10,19 +10,19 @@ const schema = mongoose.Schema({
         required: true,
     },
     
-    foodId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "food",
+    // foodId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "food",
 
-        required: true,
-    },
+    //     required: true,
+    // },
     // foodId: {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "food",
     //     required: true,
     // },
     foodItems: [{ 
-        foodId: {
+        _id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "food",
             required: true,
@@ -31,6 +31,10 @@ const schema = mongoose.Schema({
             type: Number,
             required: true,
             min: 1
+        },
+        foodItem: {
+            type: String,
+            required: true,
         }
     }],
 
@@ -43,6 +47,10 @@ const schema = mongoose.Schema({
   
     movieDate: {
         type: Date,
+        required: true
+    },
+    totalAmount: {
+        type: Number,
         required: true
     },
 

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../../Assets/Styles/UserViewFoods.css";
 import axios from "axios";
 import { API_BASE_URL, IMG_BASE_URL } from "../../Services/BaseURL";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UserViewFoods() {
   const [data, setData] = useState([]);
+  const {tId}=useParams();
   const [searchQuery, setSearchQuery] = useState(""); 
   const [filteredData, setFilteredData] = useState([]); 
   const [selectedItems, setSelectedItems] = useState([]); // State for selected items
@@ -101,7 +102,8 @@ function UserViewFoods() {
           <button className="btn btn-danger" onClick={() => {
                 navigate("/user-view-pre-order-food", {
                   state: {
-                    selectedItems
+                    selectedItems,
+                    tId
                   },
                 });
               }} > {selectedItems.length} Product Added</button>
