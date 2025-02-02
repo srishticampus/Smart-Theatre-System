@@ -1,4 +1,5 @@
 const Ticket = require("../models/ticketModel");
+const Parking= require("../models/parkingModel");
 
 // Add a new ticket
 const addTicket = async (req, res) => {
@@ -81,34 +82,66 @@ const editTicketById = async (req, res) => {
 };
 
 // Delete a ticket by ID
+// const deleteTicketById = async (req, res) => {
+//     const ticketId = req.params.id;
+
+//     try {
+//         const deletedTicket = await Ticket.findByIdAndDelete(ticketId);
+
+//         if (!deletedTicket) {
+//             return res.status(404).json({
+//                 status: 404,
+//                 msg: "Ticket not found!",
+//                 data: null,
+//             });
+//         }
+
+//         return res.status(200).json({
+//             status: 200,
+//             msg: "Ticket deleted successfully!",
+//             data: deletedTicket,
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({
+//             status: 500,
+//             msg: "Failed to delete ticket.",
+//             error: error.message,
+//         });
+//     }
+// };
+
+
+
 const deleteTicketById = async (req, res) => {
-    const ticketId = req.params.id;
+    await Parking.deleteMany({parkingId:req.params.id})
+    .exec()
+    .then(data=>{
+        console.log("Parking deleted");
+      })
+      .catch(err=>{
+        console.log("erron Parking deletion");
+      })
 
-    try {
-        const deletedTicket = await Ticket.findByIdAndDelete(ticketId);
-
-        if (!deletedTicket) {
-            return res.status(404).json({
-                status: 404,
-                msg: "Ticket not found!",
-                data: null,
-            });
-        }
-
-        return res.status(200).json({
-            status: 200,
-            msg: "Ticket deleted successfully!",
-            data: deletedTicket,
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            status: 500,
-            msg: "Failed to delete ticket.",
-            error: error.message,
-        });
-    }
+      await Ticket.findByIdAndDelete({_id:req.params.id})
+      .exec()
+      .then((response)=>{
+        res.json({
+          status:200,
+          msg:"Deleted succesfully" 
+        })
+      })
+      .catch((err)=>{
+        res.json({
+          status:500,
+          msg:"error",err
+        })
+        console.log(err);
+      })
+  
+      
 };
+
 
 // View a ticket by ID
 const viewTicketById = async (req, res) => {

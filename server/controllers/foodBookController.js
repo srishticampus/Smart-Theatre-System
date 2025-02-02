@@ -4,16 +4,16 @@ const FoodBooking = require("../models/foodBooking");
 // Add a new food booking
 const addFoodBooking = async (req, res) => {
     try {
-        const { ticketId, foodId, seatLabel, userId, movieDate } = req.body;
+        const { ticketId, foodItems, userId, movieDate } = req.body;
 
         const newFoodBooking = new FoodBooking({
             ticketId,
-            foodId,
-            seatLabel,
+            foodItems,
             userId,
             movieDate,
         });
-
+        console.log(req.body.foodItems);
+        
         await newFoodBooking.save();
         return res.status(200).json({
             status: 200,
@@ -33,7 +33,7 @@ const addFoodBooking = async (req, res) => {
 // Edit a food booking by ID
 const editFoodBookingById = async (req, res) => {
     const foodBookingId = req.params.id;
-    const { ticketId, foodId, seatLabel, userId, movieDate } = req.body;
+    const { ticketId, foodId, userId, movieDate } = req.body;
 
     try {
         const existingFoodBooking = await FoodBooking.findById(foodBookingId);
@@ -50,7 +50,6 @@ const editFoodBookingById = async (req, res) => {
             {
                 ticketId,
                 foodId,
-                seatLabel,
                 userId,
                 movieDate,
             },
@@ -108,7 +107,7 @@ const viewFoodBookingById = async (req, res) => {
 
     try {
         const foodBooking = await FoodBooking.findById(foodBookingId)
-            .populate('ticketId foodId seatLabel userId');
+            .populate('ticketId foodId  userId');
 
         if (!foodBooking) {
             return res.status(404).json({
@@ -137,7 +136,7 @@ const viewFoodBookingByUserId = async (req, res) => {
 
     try {
         const foodBooking = await FoodBooking.findBy({userId:userId})
-            .populate('ticketId foodId seatLabel userId');
+            .populate('ticketId foodId  userId');
 
         if (!foodBooking) {
             return res.status(404).json({
@@ -164,8 +163,12 @@ const viewFoodBookingByUserId = async (req, res) => {
 // View all food bookings
 const viewAllFoodBookings = async (req, res) => {
     try {
-        const foodBookings = await FoodBooking.find().populate('ticketId foodId seatLabel userId');
-
+        const foodBookings = await FoodBooking.find()
+        .populate('ticketId')
+        .populate('foodItems.foodId')
+        .populate('userId')
+        .exec()
+        
         return res.status(200).json({
             status: 200,
             msg: "Food bookings fetched successfully!",
