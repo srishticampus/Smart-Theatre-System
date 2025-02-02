@@ -231,15 +231,20 @@ function UserViewParking() {
                     <p className="mb-0">{spot.id}</p>
                     <p>Available</p>
                   </div>
+                  
                 ) : (
-                  <img
+                    <img
                     src={rc}
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "contain", pointerEvents: "none" }} 
                     alt={`Car in ${spot.id}`}
+                    onClick={(e) => e.stopPropagation()} 
                   />
                 )}
               </div>
             ))}
+
+
+
           </div>
         </div>
 
@@ -272,7 +277,8 @@ function UserViewParking() {
                     <p className="mb-0">{spot.id}</p>
                   </div>
                 ) : (
-                  <img src={rb} alt={`Bike in ${spot.id}`} />
+                  <img src={rb} alt={`Bike in ${spot.id}`}                     onClick={(e) => e.stopPropagation()} 
+                  />
                 )}
               </div>
             ))}
