@@ -114,31 +114,34 @@ const editTicketById = async (req, res) => {
 
 
 const deleteTicketById = async (req, res) => {
-    await Parking.deleteMany({parkingId:req.params.id})
-    .exec()
-    .then(data=>{
-        console.log("Parking deleted");
-      })
-      .catch(err=>{
-        console.log("erron Parking deletion");
-      })
+    const ticketId = req.params.id;
 
-      await Ticket.findByIdAndDelete({_id:req.params.id})
-      .exec()
-      .then((response)=>{
-        res.json({
-          status:200,
-          msg:"Deleted succesfully" 
-        })
-      })
-      .catch((err)=>{
-        res.json({
-          status:500,
-          msg:"error",err
-        })
-        console.log(err);
-      })
-  
+    try {
+        const deletedTicket = await Ticket.findByIdAndDelete(ticketId);
+
+        if (!deletedTicket) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Ticket not found!",
+                data: null,
+            });
+        }
+        const deletedParking = await Parking.findOneAndDelete({ ticketId });
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Ticket deleted successfully!",
+            ticketData: deletedTicket,
+            parkingData: deletedParking || "No associated parking found",
+        });
+    }  catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to delete ticket and parking.",
+            error: error.message,
+        });
+    }
       
 };
 
