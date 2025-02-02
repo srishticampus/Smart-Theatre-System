@@ -3,14 +3,13 @@ import demonte from "../../Assets/Images/demonte.png";
 
 import React, { useEffect, useState, useRef } from "react";
 import { viewCount, approveById } from "../../Services/AdminService";
-import { IMG_BASE_URL } from "../../Services/BaseURL";
+import { API_BASE_URL, IMG_BASE_URL } from "../../Services/BaseURL";
 import { toast } from "react-toastify";
 import { resetPassword, ViewById } from "../../Services/CommonServices";
 import FooterLandingPage from "../Footers/FooterLandingPage";
 import "../../Assets/Styles/UserHome.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
-
+import axios from "axios";
 
 function UserBookTickets() {
   const [selectedDate, setSelectedDate] = useState({
@@ -22,6 +21,8 @@ function UserBookTickets() {
       new Date()
     ),
   });
+
+  const [bookedSetas, setBookedSetas] = useState([]);
 
   const userId = localStorage.getItem("user");
   const { id } = useParams();
@@ -93,7 +94,9 @@ function UserBookTickets() {
     navigate(`/user-movie-details/${id}`);
   };
   const redirect = (id) => {
-    navigate(`/user-book-ticket-seat/${movieId}/${id}/${movieDate}/${data.screenId._id}`);
+    navigate(
+      `/user-book-ticket-seat/${movieId}/${id}/${movieDate}/${data.screenId._id}`
+    );
   };
   const fetchCastData = async () => {
     try {
@@ -159,6 +162,58 @@ function UserBookTickets() {
   const filteredShowTimes = showTime.filter(
     (show) => show.day === selectedDate.day
   );
+
+  // useEffect(() => {
+  //   axios
+  //     .post(`${API_BASE_URL}/getBookedSeats`, { screenId: data.screenId._id, showId:  })
+  //     .then((res) => {
+  //       console.log("Booked Seats Raw Response:", res.data);
+  //       const flattenedSeats = res.data.data.bookedSeats.flat() || [];
+  //       console.log("Processed Booked Seats:", flattenedSeats); // Debugging statement
+  //       setBookedSetas(flattenedSeats);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error fetching booked seats:", err);
+  //     });
+  // }, []);
+
+  // console.log(bookedSetas);
+
+  const [bookedSeatsData, setBookedSeatsData] = useState([]);
+
+  useEffect(() => {
+    if (showTime.length > 0) {
+      showTime.forEach(async (show) => {
+        try {
+          const res = await axios.post(`${API_BASE_URL}/getBookedSeats`, {
+            screenId: data.screenId._id,
+            showId: show._id,
+          });
+          console.log(res);
+
+          if (res.data.status == 200) {
+            const bookedSeats = res.data.data.bookedSeats.flat().length || 0;
+
+            setBookedSeatsData((prev) => ({
+              ...prev,
+              [show._id]: bookedSeats,
+            }));
+          }
+        } catch (err) {
+          console.error("Error fetching booked seats:", err);
+        }
+      });
+    }
+  }, [showTime]);
+
+  // Calculate total seat count
+  const totalSeats =
+    (data.screenId.gold?.seatCount || 0) +
+    (data.screenId.silver?.seatCount || 0) +
+    (data.screenId.platinum?.seatCount || 0);
+
+  console.log(data);
+
   return (
     <div className="container">
       <div className="user-book-ticket-section-one d-flex">
@@ -368,73 +423,10 @@ function UserBookTickets() {
                 </p>
               </div>
 
-              {/* -------No time limitation in booking code------- */}
-
-              {/* <div className="card-body d-flex user-book-ticket-cardbody">
-                <p className="user-book-ticket-time">Show time</p>
-
-                {filteredShowTimes.length > 0 ? (
-                  filteredShowTimes.map((show, index) => {
-                    // Parse the startTime and compare with current time
-                    const showTime = new Date(
-                      `${selectedDate.date} ${
-                        selectedDate.month
-                      } ${new Date().getFullYear()} ${show.startTime}`
-                    );
-                    const currentTime = new Date();
-
-                    // Calculate the time difference in minutes
-                    const timeDiffInMinutes =
-                      (showTime - currentTime) / (1000 * 60);
-
-                    // If the show time is in the past, disable the button
-                    const isPast = showTime < currentTime;
-
-                    return (
-                      <button
-                        key={index}
-                        className="user-book-ticket-show-button"
-                        disabled={isPast || show.status === "Closed"}
-                        onClick={() => {
-                          if (
-                            timeDiffInMinutes > 0 &&
-                            timeDiffInMinutes <= 15
-                          ) {
-                            navigate(`/book-virtual-queue/${show._id}`);
-                          } else {
-                            redirect(show._id);
-                          }
-                        }}
-                      >
-                        <p>{show.startTime}</p>
-
-                        {timeDiffInMinutes > 0 && timeDiffInMinutes <= 15 && (
-                          <Link
-                            to={`/book-virtual-queue/${show._id}`}
-                            className="text-danger"
-                            onClick={(e) => e.stopPropagation()} // Prevents button click propagation
-                          >
-                            Book Virtual Queue
-                          </Link>
-                        )}
-
-                        <p className="text-muted user-book-ticket-show-time">
-                          {isPast ? "Time Passed" : show.status}
-                        </p>
-                      </button>
-                    );
-                  })
-                ) : (
-                  <p>No shows available for this date.</p>
-                )}
-              </div> */}
-
-              {/* -------No time limitation in booking code------- */}
-
               <div className="card-body d-flex user-book-ticket-cardbody">
                 <p className="user-book-ticket-time">Show time</p>
 
-                {filteredShowTimes.length > 0 ? (
+                {/* {filteredShowTimes.length > 0 ? (
                   filteredShowTimes.map((show, index) => {
                     // Parse the startTime and compare with current time
                     const showTime = new Date(
@@ -470,7 +462,6 @@ function UserBookTickets() {
                       >
                         <p>{show.startTime}</p>
 
-                        {/* Display a link if the show starts within 15 minutes but booking is still open */}
                         {timeDiffInMinutes > 5 && timeDiffInMinutes <= 15 && (
                           <Link
                             to={`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`}
@@ -489,7 +480,68 @@ function UserBookTickets() {
                   })
                 ) : (
                   <p>No shows available for this date.</p>
-                )}
+                )} */}
+
+                {filteredShowTimes.map((show, index) => {
+                  const showTime = new Date(
+                    `${selectedDate.date} ${
+                      selectedDate.month
+                    } ${new Date().getFullYear()} ${show.startTime}`
+                  );
+                  const currentTime = new Date();
+                  const timeDiffInMinutes =
+                    (showTime - currentTime) / (1000 * 60);
+                  const isBookingClosed = timeDiffInMinutes <= 5;
+                  const isPast = showTime < currentTime || isBookingClosed;
+
+                  console.log(bookedSeatsData);
+
+                  const bookedSeats = bookedSeatsData[show._id] || 0;
+                  const isFullyBooked = bookedSeats >= totalSeats;
+
+                  console.log("bookedSeats", bookedSeats);
+
+                  return (
+                    <button
+                      key={index}
+                      className="user-book-ticket-show-button"
+                      disabled={
+                        isPast || isFullyBooked || show.status === "Closed"
+                      }
+                      onClick={() => {
+                        if (timeDiffInMinutes > 5 && timeDiffInMinutes <= 15) {
+                          navigate(
+                            `/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`
+                          );
+                        } else {
+                          redirect(show._id);
+                        }
+                      }}
+                    >
+                      <p>{show.startTime}</p>
+
+                      {timeDiffInMinutes > 5 &&
+                        timeDiffInMinutes <= 15 &&
+                        !isFullyBooked && (
+                          <Link
+                            to={`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`}
+                            className="text-danger"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            Book Virtual Queue
+                          </Link>
+                        )}
+
+                      <p className="text-muted user-book-ticket-show-time">
+                        {isFullyBooked
+                          ? "Booking Closed (Full)"
+                          : isPast
+                          ? "Booking Closed"
+                          : show.status}
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

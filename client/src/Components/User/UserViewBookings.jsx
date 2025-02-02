@@ -121,6 +121,9 @@ function UserViewBookings() {
       });
   };
 
+  console.log(data);
+  
+
 
   return (
     <div className="user_view_bookings_container">

@@ -158,7 +158,7 @@ function UserBookVirtualQueue() {
   })();
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { 
     e.preventDefault();
     if (validate()) {
       console.log("Payment Successful");
@@ -185,6 +185,9 @@ function UserBookVirtualQueue() {
     }
   };
 
+  console.log(showData);
+  
+
   return (
     <div>
       <div className="user-ticket-payment-head-container">
@@ -203,35 +206,15 @@ function UserBookVirtualQueue() {
           </p>{" "}
         </div>
         <div className="card user-ticket-payment-cardtwo">
-          <div className="d-flex justify-content-between">
-           
-            {/* <p className="user-ticket-payment-seat">
-              Seats -{" "}
-              {seats
-                .map((seat) => {
-                  const seatLabel =
-                    seat.type === "gold"
-                      ? data.screenId.gold.seatLabel
-                      : seat.type === "silver"
-                      ? data.screenId.silver.seatLabel
-                      : seat.type === "platinum"
-                      ? data.screenId.platinum.seatLabel
-                      : "";
+          {/* <div className="d-flex justify-content-between">
 
-                  return `${seatLabel}${seat.number}`;
-                })
-                .join(", ")}
-              <span className="user-ticket-payment-seat-sub">
-                ({count} Tickets)
-              </span>
-            </p> */}
             <p className="user-ticket-payment-seat">Available Seat</p>
             <p className="user-ticket-payment-payone">25</p>
           </div>
           <div className="d-flex justify-content-between">
             <p className="user-ticket-payment-parafees">Your Queue Position</p>
             <p className="user-ticket-payment-paytwo">10 </p>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-between">
   <p className="user-ticket-payment-parafees">Queue Starting Time</p>
   <p className="user-ticket-payment-paytwo">Today, {queueStartTime}</p>
