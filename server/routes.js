@@ -93,6 +93,7 @@ router.post('/addFoodBooking',foodBooking.addFoodBooking)
 router.post('/viewAllFoodBookings',foodBooking.viewAllFoodBookings)
 router.post('/viewFoodBookingById/:id',foodBooking.viewFoodBookingById)
 router.post('/viewFoodBookingByUserId/:id',foodBooking.viewFoodBookingByUserId)
+router.post('/viewFoodBookingByTicketId/:id',foodBooking.viewFoodBookingByTicketId)
 router.post('/deleteFoodBookingById/:id',foodBooking.deleteFoodBookingById)
 
 

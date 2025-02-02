@@ -113,7 +113,7 @@ function App() {
             <Route path='/user-now-showing' element={[<UserNavbar/>,<UserNowShowing/>]}/>
             <Route path='/user-view-bookings' element={[<UserNavbar/>,<UserViewBookings/>]}/>
             <Route path='/user-book-virtualqueue/:mId/:showId/:movieDate' element={[<UserNavbar/>,<UserBookVirtualQueue/>]}/>
-            <Route path='/user-view-foods' element={[<UserNavbar/>,<UserFoodBanner/>,<UserViewFoods/>]}/>
+            <Route path='/user-view-foods/:tId' element={[<UserNavbar/>,<UserFoodBanner/>,<UserViewFoods/>]}/>
             <Route path='/user-view-pre-order-food' element={[<UserNavbar/>,<UserPreOrderFood/>]}/>
             <Route path='/user-view-food-payment' element={[<UserNavbar/>,<UserViewFoodPayment/>]}/>
 
