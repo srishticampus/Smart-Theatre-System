@@ -132,9 +132,18 @@ const handleClose = () => {
                   </Link>
                 </div>
               )}
-                <div className="adjust-space" >
-                <label className="label-sub">Booking</label>
+              <Link to={'/admin-booking-details'}>
+              <div className="adjust-space" >
+                <label className="label-sub">Ticket Bookings</label>
               </div>
+              </Link>
+
+              <Link to={'/admin-booking-history'}>
+              <div className="adjust-space" >
+                <label className="label-sub">Order History</label>
+              </div>
+              </Link>
+                
               {/* {showSubscription && (
                 <div className="custom-dropdown-menu">
                   <Link to={'/admin_add_subscription_plan'}>
@@ -149,9 +158,11 @@ const handleClose = () => {
                   </Link>
                 </div>
               )} */}
-                <div className="adjust-space" >
+                <Link to={'/admin-parking-details'}>
+              <div className="adjust-space" >
                 <label className="label-sub">Parking</label>
               </div>
+              </Link>
               {/* {showSubscription && (
                 <div className="custom-dropdown-menu">
                   <Link to={'/admin_add_subscription_plan'}>

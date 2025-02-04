@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "../../Assets/Styles/AdminParkingDetails.css";
-import axios from "axios";
-import { API_BASE_URL } from "../../Services/BaseURL";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { API_BASE_URL } from '../../Services/BaseURL';
 
-function AdminParkingDetails() {
-  const [data, setData] = useState([]);
+function StaffViewParking() {
+
+    const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
 
@@ -112,7 +112,7 @@ function AdminParkingDetails() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdminParkingDetails;
+export default StaffViewParking

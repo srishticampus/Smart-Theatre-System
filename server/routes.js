@@ -95,6 +95,7 @@ router.post('/viewFoodBookingById/:id',foodBooking.viewFoodBookingById)
 router.post('/viewFoodBookingByUserId/:id',foodBooking.viewFoodBookingByUserId)
 router.post('/viewFoodBookingByTicketId/:id',foodBooking.viewFoodBookingByTicketId)
 router.post('/deleteFoodBookingById/:id',foodBooking.deleteFoodBookingById)
+router.post('/confirmDelivery/:id',foodBooking.confirmDelivery)
 
 
 // parking
@@ -108,5 +109,7 @@ router.post('/addQueue',queue.addQueue)
 router.post('/viewAllQueues',queue.viewAllQueues)
 router.post('/viewQueueById/:id',queue.viewQueueById)
 router.post('/deleteQueueById/:id',queue.deleteQueueById)
+router.post('/viewQueueByShowId',queue.viewQueueByShowId)
+router.post('/viewQueueByMovieId',queue.viewQueueByMovieId)
 
 module.exports = router;

@@ -6,7 +6,7 @@ import axios from "axios";
 import { API_BASE_URL } from "../../Services/BaseURL";
 
 function UserBookVirtualQueue() {
-  const { mId, showId, movieDate } = useParams();
+  const { mId, showId, movieDate,seatCount } = useParams();
 
   const [showData, setShowData] = useState({
       day: "",
@@ -170,6 +170,7 @@ function UserBookVirtualQueue() {
           screenId:data.screenId._id,
           showId: showId,
           date: movieDate,
+          seatCount:seatCount
         })
         .then((res) => {
           console.log(res);

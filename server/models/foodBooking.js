@@ -53,6 +53,10 @@ const schema = mongoose.Schema({
         type: Number,
         required: true
     },
+    status: {
+        type: Boolean,
+        default: false
+    },
 
 });
 module.exports = mongoose.model('foodbookings', schema)

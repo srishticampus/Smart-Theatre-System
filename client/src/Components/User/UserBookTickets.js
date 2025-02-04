@@ -163,22 +163,6 @@ function UserBookTickets() {
     (show) => show.day === selectedDate.day
   );
 
-  // useEffect(() => {
-  //   axios
-  //     .post(`${API_BASE_URL}/getBookedSeats`, { screenId: data.screenId._id, showId:  })
-  //     .then((res) => {
-  //       console.log("Booked Seats Raw Response:", res.data);
-  //       const flattenedSeats = res.data.data.bookedSeats.flat() || [];
-  //       console.log("Processed Booked Seats:", flattenedSeats); // Debugging statement
-  //       setBookedSetas(flattenedSeats);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error fetching booked seats:", err);
-  //     });
-  // }, []);
-
-  // console.log(bookedSetas);
-
   const [bookedSeatsData, setBookedSeatsData] = useState([]);
 
   useEffect(() => {
@@ -212,7 +196,9 @@ function UserBookTickets() {
     (data.screenId.silver?.seatCount || 0) +
     (data.screenId.platinum?.seatCount || 0);
 
-  console.log(data);
+  console.log('totseat',totalSeats);
+  console.log('booked',bookedSeatsData);
+  console.log('tt',bookedSeatsData+totalSeats);
 
   return (
     <div className="container">
@@ -426,62 +412,6 @@ function UserBookTickets() {
               <div className="card-body d-flex user-book-ticket-cardbody">
                 <p className="user-book-ticket-time">Show time</p>
 
-                {/* {filteredShowTimes.length > 0 ? (
-                  filteredShowTimes.map((show, index) => {
-                    // Parse the startTime and compare with current time
-                    const showTime = new Date(
-                      `${selectedDate.date} ${
-                        selectedDate.month
-                      } ${new Date().getFullYear()} ${show.startTime}`
-                    );
-                    const currentTime = new Date();
-
-                    // Calculate the time difference in minutes
-                    const timeDiffInMinutes =
-                      (showTime - currentTime) / (1000 * 60);
-
-                    // If the show time is in the past or within 5 minutes of starting, disable the button
-                    const isBookingClosed = timeDiffInMinutes <= 5;
-                    const isPast = showTime < currentTime || isBookingClosed;
-
-                    return (
-                      <button
-                        key={index}
-                        className="user-book-ticket-show-button"
-                        disabled={isPast || show.status === "Closed"}
-                        onClick={() => {
-                          if (
-                            timeDiffInMinutes > 5 &&
-                            timeDiffInMinutes <= 15
-                          ) {
-                            navigate(`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`);
-                          } else {
-                            redirect(show._id);
-                          }
-                        }}
-                      >
-                        <p>{show.startTime}</p>
-
-                        {timeDiffInMinutes > 5 && timeDiffInMinutes <= 15 && (
-                          <Link
-                            to={`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`}
-                            className="text-danger"
-                            onClick={(e) => e.stopPropagation()} // Prevents button click propagation
-                          >
-                            Book Virtual Queue
-                          </Link>
-                        )}
-
-                        <p className="text-muted user-book-ticket-show-time">
-                          {isPast ? "Booking Closed" : show.status}
-                        </p>
-                      </button>
-                    );
-                  })
-                ) : (
-                  <p>No shows available for this date.</p>
-                )} */}
-
                 {filteredShowTimes.map((show, index) => {
                   const showTime = new Date(
                     `${selectedDate.date} ${
@@ -494,12 +424,9 @@ function UserBookTickets() {
                   const isBookingClosed = timeDiffInMinutes <= 5;
                   const isPast = showTime < currentTime || isBookingClosed;
 
-                  console.log(bookedSeatsData);
-
                   const bookedSeats = bookedSeatsData[show._id] || 0;
                   const isFullyBooked = bookedSeats >= totalSeats;
 
-                  console.log("bookedSeats", bookedSeats);
 
                   return (
                     <button
@@ -511,7 +438,7 @@ function UserBookTickets() {
                       onClick={() => {
                         if (timeDiffInMinutes > 5 && timeDiffInMinutes <= 15) {
                           navigate(
-                            `/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`
+                            `/user-book-queue-seats/${movieId}/${show._id}/${movieDate}/${data.screenId._id}`
                           );
                         } else {
                           redirect(show._id);
@@ -524,7 +451,7 @@ function UserBookTickets() {
                         timeDiffInMinutes <= 15 &&
                         !isFullyBooked && (
                           <Link
-                            to={`/user-book-virtualqueue/${movieId}/${show._id}/${movieDate}`}
+                            to={`/user-book-queue-seats/${movieId}/${show._id}/${movieDate}/${data.screenId._id}`}
                             className="text-danger"
                             onClick={(e) => e.stopPropagation()}
                           >

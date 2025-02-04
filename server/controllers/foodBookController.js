@@ -1,4 +1,5 @@
 // const FoodBooking = require("../models/foodBookingModel");
+const foodBooking = require("../models/foodBooking");
 const FoodBooking = require("../models/foodBooking");
 
 // Add a new food booking
@@ -195,7 +196,9 @@ const viewAllFoodBookings = async (req, res) => {
     try {
         const foodBookings = await FoodBooking.find()
         .populate('ticketId')
-        .populate('foodItems.foodId')
+        .populate({path:'ticketId',populate:{path:'movieId'}})
+        .populate({path:'ticketId',populate:{path:'screenId'}})
+        .populate({path:'ticketId',populate:{path:'showId'}})
         .populate('userId')
         .exec()
         
@@ -214,11 +217,32 @@ const viewAllFoodBookings = async (req, res) => {
     }
 };
 
+
+const confirmDelivery=((req,res)=>{
+    foodBooking.findByIdAndUpdate({_id:req.params.id},{
+        status:true
+    })
+    .then((result)=>{
+        res.json({
+            status:200,
+            msg:"Food delivered successfully",
+            data:result
+        })
+    })
+    .catch((err)=>{
+        res.json({
+            status:505,
+            err:err
+        })
+    })
+})
+
 module.exports = {
     addFoodBooking,
     deleteFoodBookingById,
     viewFoodBookingById,
     viewAllFoodBookings,
     viewFoodBookingByUserId,
-    viewFoodBookingByTicketId
+    viewFoodBookingByTicketId,
+    confirmDelivery
 };

@@ -47,6 +47,7 @@ import UserFoodBanner from './Components/User/UserFoodBanner';
 import UserViewFoods from './Components/User/UserViewFoods';
 import UserPreOrderFood from './Components/User/UserPreOrderFood';
 import UserViewFoodPayment from './Components/User/UserViewFoodPayment';
+import UserBookeQueueSeats from './Components/User/UserBookeQueueSeats';
 function App() {
   return (
     <div className="App">
@@ -90,10 +91,13 @@ function App() {
             <Route path='/admin-view-food' element={<AdminCall type='admin-view-food'/>}/>
             <Route path='/admin-edit-food/:id' element={<AdminCall type='admin-edit-food'/>}/>
             <Route path='/admin-parking-details' element={<AdminCall type='admin-parking-details'/>}/>
+            <Route path='/admin-booking-details' element={<AdminCall type='admin-booking-details'/>}/>
+            <Route path='/admin-booking-history' element={<AdminCall type='admin-booking-history'/>}/>
+            <Route path='/admin-booking-details-single/:id' element={<AdminCall type='admin-booking-details-single'/>}/>
 
 
 
-
+  
 
             {/* user */}
             <Route path='/user-registration' element={[<LandingNavbar />, <UserRegistration />]} />
@@ -112,10 +116,11 @@ function App() {
             <Route path='/user-movie-details/:id' element={[<UserNavbar/>,<UserMovieDetails/>]}/>
             <Route path='/user-now-showing' element={[<UserNavbar/>,<UserNowShowing/>]}/>
             <Route path='/user-view-bookings' element={[<UserNavbar/>,<UserViewBookings/>]}/>
-            <Route path='/user-book-virtualqueue/:mId/:showId/:movieDate' element={[<UserNavbar/>,<UserBookVirtualQueue/>]}/>
+            <Route path='/user-book-virtualqueue/:mId/:showId/:movieDate/:seatCount' element={[<UserNavbar/>,<UserBookVirtualQueue/>]}/>
             <Route path='/user-view-foods/:tId' element={[<UserNavbar/>,<UserFoodBanner/>,<UserViewFoods/>]}/>
             <Route path='/user-view-pre-order-food' element={[<UserNavbar/>,<UserPreOrderFood/>]}/>
             <Route path='/user-view-food-payment' element={[<UserNavbar/>,<UserViewFoodPayment/>]}/>
+            <Route path='/user-book-queue-seats/:mId/:showId/:movieDate/:sId' element={[<UserNavbar/>,<UserBookeQueueSeats/>]}/>
 
 
 
@@ -137,6 +142,14 @@ function App() {
             <Route path='/staff-profile' element={<StaffMain type='staff-profile' />} />
             <Route path='/staff-edit-profile' element={<StaffMain type='staff-edit-profile' />} />
             <Route path='/staff-view-food' element={<StaffMain type='staff-view-food' />} />
+            <Route path='/staff-view-ticket-booking' element={<StaffMain type='staff-view-ticket-booking' />} />
+            <Route path='/staff-view-bookig-history' element={<StaffMain type='staff-view-bookig-history' />} />
+            <Route path='/staff-booking-details-single/:id' element={<StaffMain type='staff-booking-details-single' />} />
+            <Route path='/staff-parking-details' element={<StaffMain type='staff-parking-details' />} />
+            <Route path='/staff-food-booking-req' element={<StaffMain type='staff-food-booking-req' />} />
+            <Route path='/staff-view-delivered-foods' element={<StaffMain type='staff-view-delivered-foods' />} />
+            <Route path='/staff-view-movies-queues' element={<StaffMain type='staff-view-movies-queues' />} />
+            <Route path='/staff-view-queues' element={<StaffMain type='staff-view-queues' />} />
 
 
 
