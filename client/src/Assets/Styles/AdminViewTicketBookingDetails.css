@@ -1,0 +1,54 @@
+.admin_view_ticket_details_img {
+  height: 250px;
+  width: 25%;
+  border-radius: 12px;
+  margin: auto;
+}
+
+.admin_view_ticket_details_img img {
+  height: 250px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.admin_view_ticket_details_head p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: center;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.admin_view_ticket_details_body{
+    height: 35vh;
+    width: 100%;
+}
+
+.admin_view_ticket_details_box1{
+    height: 15vh;
+    width: 100%;
+    margin-bottom:1vh ;
+    border-radius: 12px;
+    border: 1px solid grey;
+    padding: 5px 8px;
+}
+.admin_view_ticket_details_box2{
+    height: 19vh;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid grey;
+    padding: 5px 8px;
+
+}
+
+.admin_view_ticket_details_box3{
+    min-height: 35vh;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid grey;
+    padding: 5px 8px;
+    text-align: start;
+}

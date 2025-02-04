@@ -99,7 +99,7 @@ function LandingPage() {
               <p className="landing_banner_right_box_sub_title mt-5">
                 Stay ahead of the game! Explore upcoming films and be the first to secure your spot for the most anticipated releases.
               </p>
-              <Link to='/user_login'>
+              <Link to='/user-login'>
                 <button className="btn btn-danger landing_banner_register_btn mt-5 fw-bolder">
                   Start Now
                 </button>

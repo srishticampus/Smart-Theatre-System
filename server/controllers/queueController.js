@@ -4,7 +4,7 @@ const Queue = require("../models/queueBooking");
 // Add a new queue entry
 const addQueue = async (req, res) => {
     try {
-        const { movieId, screenId, showId, userId, date, paymentStatus } = req.body;
+        const { movieId, screenId, showId, userId, date, paymentStatus,seatCount } = req.body;
 
         const newQueue = new Queue({
             movieId,
@@ -13,6 +13,7 @@ const addQueue = async (req, res) => {
             userId,
             date,
             paymentStatus,
+            seatCount
         });
 
         await newQueue.save();
@@ -155,6 +156,67 @@ const viewAllQueues = async (req, res) => {
     }
 };
 
+//view queue by show id
+const viewQueueByShowId = async (req, res) => {
+    const showId = req.body.id;
+
+    try {
+        const queue = await Queue.find(showId)
+            // .populate("movieId screenId showId userId");
+
+        if (!queue) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Queue entry not found!",
+                data: null,
+            });
+        }
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Queue entry fetched successfully!",
+            data: queue,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to fetch queue entry.",
+            error: error.message,
+        });
+    }
+};
+
+const viewQueueByMovieId = async (req, res) => {
+    const movieId = req.body.id;
+
+    try {
+        const queue = await Queue.find(movieId)
+            // .populate("movieId screenId showId userId");
+
+        if (!queue) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Queue entry not found!",
+                data: null,
+            });
+        }
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Queue entry fetched successfully!",
+            data: queue,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to fetch queue entry.",
+            error: error.message,
+        });
+    }
+};
+
 
 
 module.exports = {
@@ -163,4 +225,6 @@ module.exports = {
     deleteQueueById,
     viewQueueById,
     viewAllQueues,
+    viewQueueByShowId,
+    viewQueueByMovieId
 };

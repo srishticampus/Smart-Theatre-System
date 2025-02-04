@@ -26,6 +26,9 @@ import AdminAddFood from "./AdminAddFood";
 import AdminViewFood from "./AdminViewFood";
 import AdminEditFood from "./AdminEditFood";
 import AdminParkingDetails from "./AdminParkingDetails";
+import AdminViewTicketBookings from "./AdminViewTicketBookings";
+import AdminViewTicketBookingDetails from "./AdminViewTicketBookingDetails";
+import AdminOrderHistory from "./AdminOrderHistory";
 
 function AdminCall({ type }) {
 
@@ -104,6 +107,15 @@ function AdminCall({ type }) {
              ):
              type === "admin-edit-food" ? (
               <AdminEditFood/>
+             ):
+             type === "admin-booking-details" ? (
+              <AdminViewTicketBookings/>
+             ):
+             type === "admin-booking-history" ? (
+              <AdminOrderHistory/>
+             ):
+             type === "admin-booking-details-single" ? (
+              <AdminViewTicketBookingDetails/>
              ):
              type === "admin-parking-details"?(
               <AdminParkingDetails/>

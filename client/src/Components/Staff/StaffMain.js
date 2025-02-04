@@ -9,6 +9,14 @@ import StaffDashboard from "./StaffDashboard";
 import StaffViewProfile from "./StaffViewProfile";
 import StaffEditProfile from "./StaffEditProfile";
 import StaffViewFood from "./StaffViewFood";
+import StaffViewTicketBooking from "./StaffViewTicketBooking";
+import StaffViewBookingHistory from "./StaffViewBookingHistory";
+import StaffViewParking from "./StaffViewParking";
+import StaffViewFoodBookingReq from "./StaffViewBookingReq";
+import StaffViewTicketDetails from "./StaffViewTicketDetails";
+import StaffViewDeliveredFood from "./StaffViewDeliveredFood";
+import StaffViewQueues from "./StaffViewQueues";
+import StaffViewMoviesForQueues from "./StaffViewMoviesForQueues";
 
 
 
@@ -41,6 +49,22 @@ function StaffMain({ type }) {
             <StaffEditProfile  />
           )  : type === "staff-view-food" ? (
             <StaffViewFood  />
+          )  : type === "staff-view-ticket-booking" ? (
+            <StaffViewTicketBooking  />
+          )  : type === "staff-view-bookig-history" ? (
+            <StaffViewBookingHistory  />
+          )  : type === "staff-booking-details-single" ? (
+            <StaffViewTicketDetails  />
+          )  : type === "staff-parking-details" ? (
+            <StaffViewParking />
+          )  : type === "staff-food-booking-req" ? (
+            <StaffViewFoodBookingReq />
+          )  : type === "staff-view-delivered-foods" ? (
+            <StaffViewDeliveredFood />
+          )  : type === "staff-view-queues" ? (
+            <StaffViewQueues />
+          )  : type === "staff-view-movies-queues" ? (
+            <StaffViewMoviesForQueues />
           ) : (
             ""
           )}
