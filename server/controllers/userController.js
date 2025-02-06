@@ -397,47 +397,38 @@ const resetPassword = async (req, res) => {
 
 //Reset pswd send mail
 
-const forgotPWDsentMail=async(req,res)=>{
-    let data=null
-    try{
-         data = await User.findOne({ email:  req.body.email })
-         if(data==null){
-        //   data = await users.findOne({ email:  req.body.email })
-        res.json({
-            status: 404,
-            msg: "No user Found",
-          });
-        }
-        //  if(data==null){
-        //   data = await rescueschema.findOne({ email: req.body.email})
-        // }
-        
-          if (data != null)
-            {
-              let id=data._id.toString()
-              testMail(data)
-            res.json({
-              status: 200,
-              msg: "Data Obtained successfully",
-            });
-          }
-          else
-            res.json({
-              status: 500,
-              msg: "Enter your Registered MailId",
-            });
-        }
-        catch(err) {
-          console.log(err);
-          res.json({
-            status: 500,
-            msg: "Data not Updated",
-            Error: err,
-          })
-        }
-    
+const forgotPWDsentMail = async (req, res) => {
+    try {
+      let data = await User.findOne({ email: req.body.email });
+  
+      console.log(req.body);
+  
+      if (data === null) {
+        return res.json({
+          status: 404,
+          msg: "No user found",
+        });
       }
-
+  
+      // Send email if user exists
+      let id = data._id.toString();
+      await testMail(data); // Ensure mail is sent before response
+  
+      return res.json({
+        status: 200,
+        msg: "Password reset email sent successfully",
+      });
+  
+    } catch (err) {
+      console.error("Error in forgotPWDsentMail:", err);
+      return res.json({
+        status: 500,
+        msg: "Internal Server Error",
+        error: err.message,
+      });
+    }
+  };
+  
 //Reset pswd after mail
 
 const resetPswdaftermail = (req, res) => {
