@@ -1,0 +1,22 @@
+.feedback_head p{
+    font-family: Lato;
+font-size: 36px;
+font-weight: 700;
+line-height: 44px;
+text-align: left;
+
+
+}
+
+.feedback_cards{
+    width: 100%;
+    min-height: 30vh;
+    border-radius: 12px;
+    border: 1px solid grey;
+}
+
+.feedback_user_details{
+    width: 100%;
+    min-height: 8vh;
+    background-color: aqua;
+}

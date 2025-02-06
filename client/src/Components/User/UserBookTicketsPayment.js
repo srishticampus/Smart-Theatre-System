@@ -152,53 +152,56 @@ function UserBookTicketsPayment() {
     if (validate()) {
       console.log("Payment Successful");
       console.log(seats);
-      
+
       axios
         .post(`${API_BASE_URL}/addTicket`, {
           userId: localStorage.getItem("user"),
           movieId: mId,
-          screenId:data.screenId._id,
+          screenId: data.screenId._id,
           showId: showId,
           seatNumber: seats,
           bookingDate: new Date().toISOString().split("T")[0],
           movieDate: movieDate,
-          amount:totalPrice+60
+          amount: totalPrice + 60,
         })
         .then((res) => {
-          console.log(res);
-          if(res.data.status==200){
-            toast.success('Booking Confirmed')
-            navigate('/user-view-bookings')
+          if (res.data.status == 200) {
+            axios.post(`${API_BASE_URL}/getTicketThroughMail/${localStorage.getItem('user')}`)
+            .then((res)=>{
+              console.log(`mail`,res);
+              
+            })
+            .catch((err)=>{
+              console.log(`mail`,err);
+              
+            })
+            toast.success("Booking Confirmed");
+            navigate("/user-view-bookings");
           }
-          
         })
         .catch((err) => {
           console.log(err);
-          
         });
     }
   };
 
+  const [userDetails, setUserDetails] = useState({});
 
-  const [userDetails,setUserDetails]=useState({})
+  useEffect(() => {
+    axios
+      .post(`${API_BASE_URL}/viewUserById/${localStorage.getItem("user")}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status == 200) {
+          setUserDetails(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  useEffect(()=>{
-axios
-        .post(`${API_BASE_URL}/viewUserById/${localStorage.getItem('user')}`)
-        .then((res)=>{
-          console.log(res);
-          if (res.data.status==200) {
-            setUserDetails(res.data.data)
-          }
-        })
-        .catch((err)=>{
-          console.log(err);
-          
-        })
-  },[])
-
-  console.log('user',userDetails);
-  
+  console.log("user", userDetails);
 
   return (
     <div>

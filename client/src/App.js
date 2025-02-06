@@ -95,6 +95,7 @@ function App() {
             <Route path='/admin-booking-details' element={<AdminCall type='admin-booking-details'/>}/>
             <Route path='/admin-booking-history' element={<AdminCall type='admin-booking-history'/>}/>
             <Route path='/admin-booking-details-single/:id' element={<AdminCall type='admin-booking-details-single'/>}/>
+            <Route path='/admin-view-feedback' element={<AdminCall type='admin-view-feedback'/>}/>
 
 
 
