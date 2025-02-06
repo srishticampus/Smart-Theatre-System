@@ -178,6 +178,7 @@ function UserBookVirtualQueue() {
           if(res.data.status==200){
             toast.success('Booking Confirmed')
             navigate('/user-home')
+            window.location.reload();
           }
           
         })
