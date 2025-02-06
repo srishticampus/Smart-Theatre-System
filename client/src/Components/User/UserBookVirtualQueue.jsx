@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ViewById } from "../../Services/CommonServices";
 import axios from "axios";
@@ -157,6 +157,7 @@ function UserBookVirtualQueue() {
     return "N/A"; // Default if showData.startTime is unavailable
   })();
   
+  const navigate=useNavigate()
 
   const handleSubmit = (e) => { 
     e.preventDefault();
@@ -176,6 +177,7 @@ function UserBookVirtualQueue() {
           console.log(res);
           if(res.data.status==200){
             toast.success('Booking Confirmed')
+            navigate('/user-home')
           }
           
         })
@@ -225,7 +227,7 @@ function UserBookVirtualQueue() {
           <div className="d-flex justify-content-between">
             <p className="user-ticket-payment-total">Amount</p>
             <p className="user-ticket-payment-total-amount">
-              <b>&#8377;20/-</b>
+              <b>&#8377;100/-</b>
             </p>
           </div>
         </div>

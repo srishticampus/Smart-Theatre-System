@@ -23,7 +23,6 @@ const registerUser = async (req, res) => {
             email,
             contact,
             password,
-        
             profilePic: req.file, 
             name
         });

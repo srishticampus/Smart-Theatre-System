@@ -188,11 +188,48 @@ const viewQueueByShowId = async (req, res) => {
 };
 
 const viewQueueByMovieId = async (req, res) => {
-    const movieId = req.body.id;
+    const movieId = req.body.movieId;
 
     try {
-        const queue = await Queue.find(movieId)
+        const queue = await Queue.find({movieId})
             // .populate("movieId screenId showId userId");
+            .populate('movieId')
+            .populate('screenId')
+            .populate('showId')
+            .populate('userId')
+
+        if (!queue) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Queue entry not found!",
+                data: null,
+            });
+        }
+
+        return res.status(200).json({
+            status: 200,
+            msg: "Queue entry fetched successfully!",
+            data: queue,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            status: 500,
+            msg: "Failed to fetch queue entry.",
+            error: error.message,
+        });
+    }
+};
+const viewQueueByUserId = async (req, res) => {
+    const userId = req.body.userId;
+
+    try {
+        const queue = await Queue.find({userId})
+            // .populate("movieId screenId showId userId");
+            .populate('movieId')
+            .populate('screenId')
+            .populate('showId')
+            .populate('userId')
 
         if (!queue) {
             return res.status(404).json({
@@ -217,6 +254,49 @@ const viewQueueByMovieId = async (req, res) => {
     }
 };
 
+const confirmBooking=((req,res)=>{
+    Queue.findByIdAndUpdate({_id:req.params.id},{
+        status:"completed"
+    })
+    .then((result)=>{
+        res.json({
+            status:200,
+            msg:"completed successfully",
+            data:result
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+        
+        res.json({
+            status:404,
+            err:err
+        })
+    })
+})
+
+const cancelBooking=((req,res)=>{
+    Queue.findByIdAndUpdate({_id:req.params.id},{
+        status:"cancel"
+    })
+    .then((result)=>{
+        res.json({
+            status:200,
+            msg:"cancel successfully",
+            data:result
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+        
+        res.json({
+            status:404,
+            err:err
+        })
+    })
+})
+
+
 
 
 module.exports = {
@@ -226,5 +306,8 @@ module.exports = {
     viewQueueById,
     viewAllQueues,
     viewQueueByShowId,
-    viewQueueByMovieId
+    viewQueueByMovieId,
+    confirmBooking,
+    cancelBooking,
+    viewQueueByUserId
 };
