@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../../Assets/Styles/AdminDashboard.css";
 import { useNavigate } from "react-router-dom";
 // FontAwesome imports
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function AdminDashboard() {
   const [value1, setValue1] = useState(1000); // Initial value for circle 1
@@ -102,7 +102,11 @@ function AdminDashboard() {
             onWheel={(e) => handleScroll(e, setValue1)} // Listen for the scroll event
           >
             <div className="progress-ring-wrapper">
-              <svg className="progress-ring" width={circleSize} height={circleSize}>
+              <svg
+                className="progress-ring"
+                width={circleSize}
+                height={circleSize}
+              >
                 <circle
                   className="background"
                   cx={radius}
@@ -117,7 +121,9 @@ function AdminDashboard() {
                   r={radius}
                   stroke="#4CAF50"
                   strokeDasharray={circumference}
-                  strokeDashoffset={circumference - (value1 / maxValue) * circumference}
+                  strokeDashoffset={
+                    circumference - (value1 / maxValue) * circumference
+                  }
                 />
               </svg>
             </div>
@@ -131,7 +137,11 @@ function AdminDashboard() {
             onWheel={(e) => handleScroll(e, setValue2)} // Listen for the scroll event
           >
             <div className="progress-ring-wrapper">
-              <svg className="progress-ring" width={circleSize} height={circleSize}>
+              <svg
+                className="progress-ring"
+                width={circleSize}
+                height={circleSize}
+              >
                 <circle
                   className="background"
                   cx={radius}
@@ -146,7 +156,9 @@ function AdminDashboard() {
                   r={radius}
                   stroke="#4CAF50"
                   strokeDasharray={circumference}
-                  strokeDashoffset={circumference - (value2 / maxValue) * circumference}
+                  strokeDashoffset={
+                    circumference - (value2 / maxValue) * circumference
+                  }
                 />
               </svg>
             </div>
@@ -160,7 +172,11 @@ function AdminDashboard() {
             onWheel={(e) => handleScroll(e, setValue3)} // Listen for the scroll event
           >
             <div className="progress-ring-wrapper">
-              <svg className="progress-ring" width={circleSize} height={circleSize}>
+              <svg
+                className="progress-ring"
+                width={circleSize}
+                height={circleSize}
+              >
                 <circle
                   className="background"
                   cx={radius}
@@ -175,7 +191,9 @@ function AdminDashboard() {
                   r={radius}
                   stroke="#4CAF50"
                   strokeDasharray={circumference}
-                  strokeDashoffset={circumference - (value3 / maxValue) * circumference}
+                  strokeDashoffset={
+                    circumference - (value3 / maxValue) * circumference
+                  }
                 />
               </svg>
             </div>
@@ -186,7 +204,7 @@ function AdminDashboard() {
 
         <p className="admin-dashboard-food-list">Food List</p>
         <table className="table table-hover table-responsive">
-        <thead style={{ backgroundColor: 'red', color: 'white' }}>
+          <thead style={{ backgroundColor: "red", color: "white" }}>
             <tr>
               <th>S No</th>
               <th>Image</th>
@@ -199,22 +217,37 @@ function AdminDashboard() {
           <tbody>
             <tr>
               <td>1</td>
-              <td><img src="image_url" alt="Food Item" style={{ width: '50px', height: '50px' }} /></td>
+              <td>
+                <img
+                  src="image_url"
+                  alt="Food Item"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </td>
               <td>Popcorn</td>
               <td>Snacks</td>
               <td>100</td>
               <td>
-               <div className="d-flex justify-content-center">
-               <FontAwesomeIcon icon={faPenToSquare} style={{ color: '#f20202' }} /> {/* Edit Icon */}
-                
-                <FontAwesomeIcon icon={faTrash} style={{ color: "#ff0000", marginLeft: '10px' }} /> {/* Trash Icon */}
-               </div>
+                <div className="d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    style={{ color: "#f20202" }}
+                  />{" "}
+                  {/* Edit Icon */}
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    style={{ color: "#ff0000", marginLeft: "10px" }}
+                  />{" "}
+                  {/* Trash Icon */}
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <a className="admin-dashboard-viewall" href="#">View All</a>
+          <a className="admin-dashboard-viewall" href="#">
+            View All
+          </a>
         </div>
       </div>
     </div>

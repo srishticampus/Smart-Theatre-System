@@ -142,23 +142,22 @@ function UserViewBookings() {
       return;
     }
 
-    // axios
-    //   .post(`${API_BASE_URL}/addRating`, {
-    //     ticketId: selectedTicket,
-    //     rating,
-    //     comment,
-    //   })
-    //   .then((res) => {
-    //     if (res.data.status === 200) {
-    //       toast.success("Thank you for your feedback!");
-    //       closeModal();
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error submitting rating:", err);
-    //     toast.error("Something went wrong!");
-    //   });
-    console.log(rating, comment);
+    axios
+      .post(`${API_BASE_URL}/addFeedback`, {
+        userId: localStorage.getItem('user'),
+        rating:rating,
+        comment:comment,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          toast.success("Thank you for your feedback!");
+          closeModal();
+        }
+      })
+      .catch((err) => {
+        console.error("Error submitting rating:", err);
+        toast.error("Something went wrong!");
+      });
   };
 
   return (
