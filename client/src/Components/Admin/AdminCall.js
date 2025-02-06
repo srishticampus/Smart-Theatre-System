@@ -29,10 +29,10 @@ import AdminParkingDetails from "./AdminParkingDetails";
 import AdminViewTicketBookings from "./AdminViewTicketBookings";
 import AdminViewTicketBookingDetails from "./AdminViewTicketBookingDetails";
 import AdminOrderHistory from "./AdminOrderHistory";
+import AdminViewFeedback from "./AdminViewFeedback";
 
 function AdminCall({ type }) {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("admin") == 0) {
@@ -64,65 +64,47 @@ function AdminCall({ type }) {
             <AdminViwAllStaff />
           ) : type === "admin-edit-staff" ? (
             <AdminEditStaff />
-          ) :
-            type === "admin-add-screen" ? (
-              <AdminAddScreen />
-            ) :
-              type === "admin-view-screen" ? (
-                <AdminViewScreen />
-            ) :
-            type === "admin-view-lounge" ? (
-
-              <AdminViewLounge />
-            ) :
-             type === "admin-edit-screen" ? (
-               <AdminEditScreen />
-             ) :
-             type === "admin-add-show" ? (
-              <AdminAddShow />
-               ) :
-                type === "admin-view-show-time" ? (
-                  <AdminViewShowTime />
-               ) :
-            type === "admin-edit-show-time" ? (
-                 <AdminEditShowTime />
-           ) :
-                 type === "admin-add-movie" ? (
-               <AdminAddMovie />
-             ) :
-             type === "admin-edit-movie" ? (
-              <AdminEditMovie/>
-             ):
-             type === "admin-view-movie" ?(
-              <AdminViewMovie/>
-             ):
-             type === "admin-view-details" ? (
-              <AdminViewDetailsMovie/>
-             ):
-             type === "admin-add-food" ? (
-              <AdminAddFood/>
-             ):
-             type === "admin-view-food" ? (
-              <AdminViewFood/>
-             ):
-             type === "admin-edit-food" ? (
-              <AdminEditFood/>
-             ):
-             type === "admin-booking-details" ? (
-              <AdminViewTicketBookings/>
-             ):
-             type === "admin-booking-history" ? (
-              <AdminOrderHistory/>
-             ):
-             type === "admin-booking-details-single" ? (
-              <AdminViewTicketBookingDetails/>
-             ):
-             type === "admin-parking-details"?(
-              <AdminParkingDetails/>
-             ):
-
-             ""
-          }
+          ) : type === "admin-add-screen" ? (
+            <AdminAddScreen />
+          ) : type === "admin-view-screen" ? (
+            <AdminViewScreen />
+          ) : type === "admin-view-lounge" ? (
+            <AdminViewLounge />
+          ) : type === "admin-edit-screen" ? (
+            <AdminEditScreen />
+          ) : type === "admin-add-show" ? (
+            <AdminAddShow />
+          ) : type === "admin-view-show-time" ? (
+            <AdminViewShowTime />
+          ) : type === "admin-edit-show-time" ? (
+            <AdminEditShowTime />
+          ) : type === "admin-add-movie" ? (
+            <AdminAddMovie />
+          ) : type === "admin-edit-movie" ? (
+            <AdminEditMovie />
+          ) : type === "admin-view-movie" ? (
+            <AdminViewMovie />
+          ) : type === "admin-view-details" ? (
+            <AdminViewDetailsMovie />
+          ) : type === "admin-add-food" ? (
+            <AdminAddFood />
+          ) : type === "admin-view-food" ? (
+            <AdminViewFood />
+          ) : type === "admin-edit-food" ? (
+            <AdminEditFood />
+          ) : type === "admin-booking-details" ? (
+            <AdminViewTicketBookings />
+          ) : type === "admin-booking-history" ? (
+            <AdminOrderHistory />
+          ) : type === "admin-booking-details-single" ? (
+            <AdminViewTicketBookingDetails />
+          ) : type === "admin-parking-details" ? (
+            <AdminParkingDetails />
+          ) : type === "admin-view-feedback" ? (
+            <AdminViewFeedback />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

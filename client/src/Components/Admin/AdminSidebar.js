@@ -178,7 +178,7 @@ const handleClose = () => {
                 </div>
               )} */}
               <div className="adjust-space">
-                <Link to={'/admin_view_complaints'}>
+                <Link to={'/admin-view-feedback'}>
                 <label className="label-sub">Feedback</label>
                 </Link>
                 
