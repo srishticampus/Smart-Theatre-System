@@ -1,5 +1,7 @@
 const User = require('../models/userModel'); 
 const multer = require("multer");
+const nodemailer =require("nodemailer")
+const Configue=require("../Configue")
 
 const storage = multer.diskStorage({
     destination: function (req, res, cb) {
@@ -13,6 +15,37 @@ const storage = multer.diskStorage({
         cb(null, filename);
     },
 });
+
+
+
+  //Mail configuration of resetpswd
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'supprot.web.application@gmail.com',
+      pass: 'ukyw olqq kuql jnty'
+    }
+  });
+
+  const testMail = (data) => {
+    let email=data.email
+    const mailOptions = {
+      from: 'supprot.web.application@gmail.com',
+      to: email,
+      subject: 'Reset Password From Maxus Cinemas',
+      text: `Dear ${data.name},${'\n'}please check this link : ${Configue.localUrl}${data._id} to reset your password`
+    };
+  
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log('Error:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+  }
+
+
 
 const uploadSingle = multer({ storage: storage }).single('profilePic');
 const registerUser = async (req, res) => {
@@ -360,6 +393,81 @@ const resetPassword = async (req, res) => {
         });
     }
 };
+
+
+//Reset pswd send mail
+
+const forgotPWDsentMail=async(req,res)=>{
+    let data=null
+    try{
+         data = await User.findOne({ email:  req.body.email })
+         if(data==null){
+        //   data = await users.findOne({ email:  req.body.email })
+        res.json({
+            status: 404,
+            msg: "No user Found",
+          });
+        }
+        //  if(data==null){
+        //   data = await rescueschema.findOne({ email: req.body.email})
+        // }
+        
+          if (data != null)
+            {
+              let id=data._id.toString()
+              testMail(data)
+            res.json({
+              status: 200,
+              msg: "Data Obtained successfully",
+            });
+          }
+          else
+            res.json({
+              status: 500,
+              msg: "Enter your Registered MailId",
+            });
+        }
+        catch(err) {
+          console.log(err);
+          res.json({
+            status: 500,
+            msg: "Data not Updated",
+            Error: err,
+          })
+        }
+    
+      }
+
+//Reset pswd after mail
+
+const resetPswdaftermail = (req, res) => {
+   
+    User.findByIdAndUpdate({ _id: req.params.id }, {
+        password: req.body.password
+    })
+        .exec()
+        .then(data => {
+            if (data != null)
+                res.json({
+                    status: 200,
+                    msg: "Updated successfully"
+                });
+            else
+                res.json({
+                    status: 500,
+                    msg: "User Not Found"
+                });
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not Updated",
+                Error: err
+            });
+        });
+};
+
+
 module.exports = {
     registerUser,
     uploadSingle,
@@ -374,5 +482,6 @@ module.exports = {
     approveUserById,
     deActivateUserById,
     rejectUserById,
-    
+    forgotPWDsentMail,
+    resetPswdaftermail
 };
