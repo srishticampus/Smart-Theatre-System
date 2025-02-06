@@ -151,11 +151,17 @@ function UserMovieDetails() {
             {castdata.map((item) => {
               return (
                 <div className="col-sm-2 d-flex flex-column align-items-center">
-                  <img
-                    src={`${IMG_BASE_URL}/${item.castImage[0].filename}`}
-                    alt="priya"
-                    className="cast-img"
-                  />
+                  {item?.castImage?.length > 0 ? (
+                    <img
+                      src={`${IMG_BASE_URL}/${item.castImage[0].filename}`}
+                      className="cast-img"
+                      alt={item.castName || "Cast Image"}
+                    />
+                  ) : (
+                    <div className="no-image-placeholder">
+                      <p>No Cast Available</p>
+                    </div>
+                  )}
                   <p className="cast-name">{item.castName}</p>
                   <p className="cast-designation">{item.role}</p>
                 </div>
@@ -183,6 +189,7 @@ function UserMovieDetails() {
                   src={`${IMG_BASE_URL}/${item.movieImage.filename}`}
                   alt={item.movieName}
                   className="card-img-top"
+                  style={{width:'18rem',height:'50vh',objectFit:'cover'}}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{item.movieName}</h5>

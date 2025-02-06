@@ -56,14 +56,15 @@ function UserContact() {
                           placeholder="Description"
                         />
                       </div>
-                    </form>
-                  </div>
-                  <div className="card-footer d-flex justify-content-center">
+                      <div className="card-footer d-flex justify-content-center">
 
                     <button className="btn btn-danger submit_button" type="submit">
                       Submit
                     </button>
                   </div>
+                    </form>
+                  </div>
+                  
                 </div>
               </div>
 

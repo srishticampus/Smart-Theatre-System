@@ -213,9 +213,8 @@ function UserNavbar() {
       });
   }, []);
 
-  console.log('allqueues',allQueues);
-  console.log('queuelistbyuser',queue);
-  
+  console.log("allqueues", allQueues);
+  console.log("queuelistbyuser", queue);
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
@@ -260,11 +259,11 @@ function UserNavbar() {
                 My Bookings
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link text-light" to="/user_add_complaint">
                 Feedback
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link text-light" to="/user-contact">
                 Contact
@@ -290,7 +289,7 @@ function UserNavbar() {
 
         {/* Search & Profile */}
         <div className="d-flex align-items-center">
-          {showSearchBox && (
+          {/* {showSearchBox && (
             <form className="d-flex me-3">
               <input
                 className="form-control"
@@ -305,7 +304,7 @@ function UserNavbar() {
             className="ri-search-line text-light me-3"
             onClick={handleSearchIconClick}
             style={{ cursor: "pointer" }}
-          ></i>
+          ></i> */}
           <div className="dropdown">
             <i
               className="ri-user-3-line text-light"
@@ -563,49 +562,56 @@ function UserNavbar() {
                       </tr>
                     </thead>
                     <tbody>
-  {queue.map((details, index) => {
-    if (details.status === "pending" || details.status === "cancel") {
-      // Get all queues for the same showId
-      const sameShowQueues = allQueues.filter(
-        (q) => q.showId._id === details.showId._id
-      );
+                      {queue.map((details, index) => {
+                        if (
+                          details.status === "pending" ||
+                          details.status === "cancel"
+                        ) {
+                          // Get all queues for the same showId
+                          const sameShowQueues = allQueues.filter(
+                            (q) => q.showId._id === details.showId._id
+                          );
 
-      // Find the user's position in the queue
-      const position = sameShowQueues.findIndex(
-        (q) => q._id === details._id
-      ) + 1;
+                          // Find the user's position in the queue
+                          const position =
+                            sameShowQueues.findIndex(
+                              (q) => q._id === details._id
+                            ) + 1;
 
-      return (
-        <tr key={index}>
-          <td>{details.movieId.movieName}</td>
-          <td>{details.showId.startTime}</td>
-          <td>{details.seatCount}</td>
-          <td>{position}</td>
-          <td
-            className={
-              details.status === "pending" ? "text-warning" : "text-danger"
-            }
-          >
-            {details.status === "pending" ? "Pending" : "Cancelled"}
-          </td>
-          {details.status === "pending" ? (
-            <td>
-              <button
-                className="btn btn-danger"
-                onClick={() => cancelQueue(details._id)}
-              >
-                Cancel
-              </button>
-            </td>
-          ) : (
-            <td>-</td>
-          )}
-        </tr>
-      );
-    }
-  })}
-</tbody>
-
+                          return (
+                            <tr key={index}>
+                              <td>{details.movieId.movieName}</td>
+                              <td>{details.showId.startTime}</td>
+                              <td>{details.seatCount}</td>
+                              <td>{position}</td>
+                              <td
+                                className={
+                                  details.status === "pending"
+                                    ? "text-warning"
+                                    : "text-danger"
+                                }
+                              >
+                                {details.status === "pending"
+                                  ? "Pending"
+                                  : "Cancelled"}
+                              </td>
+                              {details.status === "pending" ? (
+                                <td>
+                                  <button
+                                    className="btn btn-danger"
+                                    onClick={() => cancelQueue(details._id)}
+                                  >
+                                    Cancel
+                                  </button>
+                                </td>
+                              ) : (
+                                <td>-</td>
+                              )}
+                            </tr>
+                          );
+                        }
+                      })}
+                    </tbody>
                   </table>
                 ) : (
                   <p className="text-center">No queue status available.</p>
