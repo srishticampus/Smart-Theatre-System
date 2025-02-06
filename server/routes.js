@@ -12,6 +12,7 @@ const Ticket=require('./controllers/ticketController')
 const foodBooking=require('./controllers/foodBookController')
 const parking=require('./controllers/parkingController')
 const queue=require('./controllers/queueController')
+const feedback=require('./controllers/feedbackController')
 
 // User routes
 
@@ -117,5 +118,10 @@ router.post('/viewQueueByMovieId',queue.viewQueueByMovieId)
 router.post('/viewQueueByUserId',queue.viewQueueByUserId)
 router.post('/confirmBooking/:id',queue.confirmBooking)
 router.post('/cancelBooking/:id',queue.cancelBooking)
+
+//feedback
+router.post('/addFeedback',feedback.addFeedback)
+router.post('/viewAllFeedbacks',feedback.viewAllFeedbacks)
+
 
 module.exports = router;
