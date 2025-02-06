@@ -21,7 +21,7 @@ import UserViewParking from './Components/User/UserViewParking';
 import UserSelectParking from './Components/User/UserSelectParking';
 import UserParkingPayment from './Components/User/UserParkingPayment';
 
-// import ForgotPassword from './Components/User/ForgotPassword'
+import ForgotPassword from './Components/User/ForgotPassword'
 // import UserAddComplaints from './Components/User/UserAddComplaints'
 // import UserAddReview from './Components/User/UserAddReview'
 // import UserEditProfile from './Components/User/UserEditProfile'
@@ -125,16 +125,16 @@ function App() {
 
 
 
-            {/*  <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
+             <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
 
            
 
-            <Route path='/user_add_complaint' element={[<UserNavbar />, <UserAddComplaints />]} />
+            {/* <Route path='/user_add_complaint' element={[<UserNavbar />, <UserAddComplaints />]} /> */}
 
-            // <Route path='/user_profile' element={[<UserNavbar />, <UserProfile />]} />
-            <Route path='/user_edit_profile' element={[<UserNavbar />, <UserEditProfile />]} />
+             {/* <Route path='/user_profile' element={[<UserNavbar />, <UserProfile />]} />
+            <Route path='/user_edit_profile' element={[<UserNavbar />, <UserEditProfile />]} /> */}
 
-            <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
+            {/* <Route path='/user_add_review/:id' element={[<UserNavbar />, <UserAddReview />]} /> */}
 
             {/* STaff */}
 
