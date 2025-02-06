@@ -48,6 +48,7 @@ import UserViewFoods from './Components/User/UserViewFoods';
 import UserPreOrderFood from './Components/User/UserPreOrderFood';
 import UserViewFoodPayment from './Components/User/UserViewFoodPayment';
 import UserBookeQueueSeats from './Components/User/UserBookeQueueSeats';
+import ResetPassword from './Components/User/ResetPassword';
 function App() {
   return (
     <div className="App">
@@ -127,6 +128,7 @@ function App() {
 
 
              <Route path='/user_forgot_password' element={[<LandingNavbar />, <ForgotPassword activeUser='user' />]} />
+             <Route path='/user_reset_password/:id' element={[<LandingNavbar />, <ResetPassword activeUser='user'/>]} />
 
            
 
