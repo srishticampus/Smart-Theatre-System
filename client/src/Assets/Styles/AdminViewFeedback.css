@@ -13,10 +13,20 @@ text-align: left;
     min-height: 30vh;
     border-radius: 12px;
     border: 1px solid grey;
+    padding: 10px 15px;
+
 }
 
 .feedback_user_details{
     width: 100%;
     min-height: 8vh;
-    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedback_user_image img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
