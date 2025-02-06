@@ -1,5 +1,49 @@
 const Ticket = require("../models/ticketModel");
 const Parking= require("../models/parkingModel");
+const nodemailer=require("nodemailer")
+
+
+  //Mail configuration of resetpswd
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'supprot.web.application@gmail.com',
+      pass: 'ukyw olqq kuql jnty'
+    }
+  });
+
+  const testMail = (data) => {
+    let email=data.userId.email
+    const formattedDate = new Date(data.movieDate).toLocaleDateString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      });
+    const seatDetails = data.seatNumber
+    .map(seat => `${seat.Type}-${seat.label}${seat.number}`)
+    .join(",");
+
+    const mailOptions = {
+      from: 'supprot.web.application@gmail.com',
+      to: email,
+      subject: 'Ticket Confirmation',
+      text: `Dear ${data.userId.name},${'\n'} \nYour ticket has been booked successfully!\n
+      Movie:${data.movieId.movieName}\n
+      Date:${formattedDate}\n
+      Show Time:${data.showId.startTime}\n
+      Seat :${seatDetails}
+      \n\nEnjoy your movie 😊!\n\nBest regards,\nMaxus Cinemas`
+    };
+  
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log('Error:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+  }
+
 
 // Add a new ticket
 const addTicket = async (req, res) => {
@@ -270,6 +314,35 @@ const getBookedSeats = async (req, res) => {
 };
 
 
+
+const getTicketThroughMail = async (req, res) => {
+    try {
+      const data = await Ticket.findOne({ userId: req.params.id }).populate("userId").populate("movieId").populate("showId");
+  
+      if (!data) {
+        return res.status(404).json({
+          status: 404,
+          msg: "No ticket found",
+        });
+      }
+  
+      testMail(data); // Send Email
+  
+      res.status(200).json({
+        status: 200,
+        msg: "Ticket details sent successfully",
+        data: data,
+      });
+    } catch (err) {
+      console.error("Error:", err);
+      res.status(500).json({
+        status: 500,
+        msg: "Error fetching ticket",
+        error: err.message,
+      });
+    }
+  };
+
 module.exports = {
     addTicket,
     editTicketById,
@@ -277,5 +350,6 @@ module.exports = {
     viewTicketById,
     viewTicketsByUserId,
     viewAllTickets,
-    getBookedSeats
+    getBookedSeats,
+    getTicketThroughMail
 };

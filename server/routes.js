@@ -27,6 +27,8 @@ router.post('/rejectUserById/:id', User.rejectUserById);
 router.post('/approveUserById/:id', User.approveUserById);
 router.post('/editUserById/:id', User.editUserById);
 router.post('/activateUserById/:id', User.activateUserById);
+router.post('/forgotPWDsentMail', User.forgotPWDsentMail);
+router.post('/resetPswdaftermail/:id', User.resetPswdaftermail);
 
 //admin
 router.post('/adminResetPassword',Admin.adminResetPassword);
@@ -86,6 +88,7 @@ router.post('/viewTicketById/:id',Ticket.viewTicketById)
 router.post('/viewAllTickets',Ticket.viewAllTickets)
 router.post('/viewTicketsByUserId/:id',Ticket.viewTicketsByUserId)
 router.post('/getBookedSeats',Ticket.getBookedSeats)
+router.post('/getTicketThroughMail/:id',Ticket.getTicketThroughMail)
 
 
 //foodBooking
