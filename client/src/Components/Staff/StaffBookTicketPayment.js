@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import { ViewById } from "../../Services/CommonServices";
 import axios from "axios";
 import { API_BASE_URL } from "../../Services/BaseURL";
+function StaffBookTicketPayment() {
 
-function UserBookTicketsPayment() {
-  const location = useLocation();
-  const { mId, showId, count, seats, totalPrice, movieDate } =
+    const location = useLocation();
+  const { uId, mId, showId, count, seats, totalPrice, movieDate } =
     location.state || {};
   console.log(movieDate);
 
@@ -149,26 +149,24 @@ function UserBookTicketsPayment() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log("Payment Successful");
-      console.log(seats);
+
       
       axios
         .post(`${API_BASE_URL}/addTicket`, {
-          userId: localStorage.getItem("user"),
+          userId: uId,
           movieId: mId,
           screenId:data.screenId._id,
           showId: showId,
           seatNumber: seats,
           bookingDate: new Date().toISOString().split("T")[0],
           movieDate: movieDate,
-          amount:totalPrice+60
+          amount:totalPrice
         })
         .then((res) => {
           console.log(res);
           if(res.data.status==200){
             toast.success('Booking Confirmed')
-            navigate('/user-view-bookings')
+            navigate('/staff-home')
           }
           
         })
@@ -176,29 +174,9 @@ function UserBookTicketsPayment() {
           console.log(err);
           
         });
-    }
   };
 
-
-  const [userDetails,setUserDetails]=useState({})
-
-  useEffect(()=>{
-axios
-        .post(`${API_BASE_URL}/viewUserById/${localStorage.getItem('user')}`)
-        .then((res)=>{
-          console.log(res);
-          if (res.data.status==200) {
-            setUserDetails(res.data.data)
-          }
-        })
-        .catch((err)=>{
-          console.log(err);
-          
-        })
-  },[])
-
-  console.log('user',userDetails);
-  
+  console.log('seats',seats);
 
   return (
     <div>
@@ -245,15 +223,12 @@ axios
             </p>
             <p className="user-ticket-payment-payone">&#8377;{totalPrice}/-</p>
           </div>
-          <div className="d-flex justify-content-between">
-            <p className="user-ticket-payment-parafees">Convenience fees</p>
-            <p className="user-ticket-payment-paytwo">&#8377;60/- </p>
-          </div>
+         
           <hr></hr>
           <div className="d-flex justify-content-between">
             <p className="user-ticket-payment-total">Total</p>
             <p className="user-ticket-payment-total-amount">
-              <b>&#8377;{totalPrice + 60}/-</b>
+              <b>&#8377;{totalPrice}/-</b>
             </p>
           </div>
         </div>
@@ -324,83 +299,14 @@ axios
       <div className="d-flex justify-content-center mt-4 mb-3">
         <div className="card user-book-ticket-cardtwo">
           <div className="d-flex justify-content-center user-book-ticket-payment-heading">
-            <p className="payment-details-style">Payment Details</p>
+            <p className="payment-details-style">Book Now</p>
           </div>
           <div className="container">
             <form onSubmit={handleSubmit}>
-              <div className="row justify-content-center mt-4">
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <label htmlFor="creditCardNumber">Credit Card Number</label>
-                    <input
-                      type="text"
-                      className="form-control payment-card-number"
-                      id="creditCardNumber"
-                      placeholder="Enter Credit Card Number"
-                      value={formData.creditCardNumber}
-                      onChange={handleChange}
-                    />
-                    {errors.creditCardNumber && (
-                      <small className="text-danger">
-                        {errors.creditCardNumber}
-                      </small>
-                    )}
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <label htmlFor="expiryDate">Expiry Date</label>
-                    <input
-                      type="text"
-                      className="form-control payment-expiry-date"
-                      id="expiryDate"
-                      placeholder="Enter MM/YY"
-                      value={formData.expiryDate}
-                      onChange={handleChange}
-                    />
-                    {errors.expiryDate && (
-                      <small className="text-danger">{errors.expiryDate}</small>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="row justify-content-center mt-4">
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <label htmlFor="cvvCode">CVV Code</label>
-                    <input
-                      type="text"
-                      className="form-control payment-cvv-code"
-                      id="cvvCode"
-                      placeholder="Enter CVV Code"
-                      value={formData.cvvCode}
-                      onChange={handleChange}
-                    />
-                    {errors.cvvCode && (
-                      <small className="text-danger">{errors.cvvCode}</small>
-                    )}
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <label htmlFor="nameOnCard">Name On Credit Card</label>
-                    <input
-                      type="text"
-                      className="form-control payment-name-on-card"
-                      id="nameOnCard"
-                      placeholder="Enter Name On Card"
-                      value={formData.nameOnCard}
-                      onChange={handleChange}
-                    />
-                    {errors.nameOnCard && (
-                      <small className="text-danger">{errors.nameOnCard}</small>
-                    )}
-                  </div>
-                </div>
-              </div>
+              
               <div className="text-center mt-4">
                 <button type="submit" className="btn btn-danger">
-                  Pay &#8377;{totalPrice + 60}/-
+                  &#8377;{totalPrice}/-
                 </button>
               </div>
             </form>
@@ -408,7 +314,7 @@ axios
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default UserBookTicketsPayment;
+export default StaffBookTicketPayment

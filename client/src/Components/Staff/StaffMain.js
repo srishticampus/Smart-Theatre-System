@@ -17,6 +17,16 @@ import StaffViewTicketDetails from "./StaffViewTicketDetails";
 import StaffViewDeliveredFood from "./StaffViewDeliveredFood";
 import StaffViewQueues from "./StaffViewQueues";
 import StaffViewMoviesForQueues from "./StaffViewMoviesForQueues";
+import StaffSelectQueueSeat from "./StaffSelectQueueSeat";
+import StaffConfirmQueue from "./StaffConfirmQueue";
+import StaffViewQueueHistory from "./StaffViewQueueHistory";
+import StaffAddUser from "./StaffAddUser";
+import StaffViewMoviesOffline from "./StaffViewMoviesOffline";
+import StaffViewMovieDetailsOffline from "./StaffViewMovieDetailsOffline";
+import StaffBookTicketOffline from "./StaffBookTicketOffline";
+import StaffBookTicketSeatOffline from "./StaffBookTicketSeatOffline";
+import StaffSelectTicketSeat from "./StaffSelectTicketSeat";
+import StaffBookTicketPayment from "./StaffBookTicketPayment";
 
 
 
@@ -65,7 +75,27 @@ function StaffMain({ type }) {
             <StaffViewQueues />
           )  : type === "staff-view-movies-queues" ? (
             <StaffViewMoviesForQueues />
-          ) : (
+          ) : type === "staff-select-queue-seat" ? (
+            <StaffSelectQueueSeat />
+          ) : type === "staff-confirm-queue" ? (
+            <StaffConfirmQueue />
+          ) : type === "staff-view-queue-history" ? (
+            <StaffViewQueueHistory />
+          ) : type === "staff-add-user" ? (
+            <StaffAddUser />
+          ) : type === "staff-view-movies-offline" ? (
+            <StaffViewMoviesOffline />
+          ) : type === "staff-view-movie-details-offline" ? (
+            <StaffViewMovieDetailsOffline />
+          ) : type === "staff-book-ticket-offline" ? (
+            <StaffBookTicketOffline />
+          ) : type === "staff-book-ticket-seat" ? (
+            <StaffBookTicketSeatOffline />
+          ) : type === "staff-book-ticket-select-seat" ? (
+            <StaffSelectTicketSeat />
+          ) : type === "staff-book-ticket-payment" ? (
+            <StaffBookTicketPayment />
+          ): (
             ""
           )}
         </div>

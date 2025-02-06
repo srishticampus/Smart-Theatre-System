@@ -111,5 +111,8 @@ router.post('/viewQueueById/:id',queue.viewQueueById)
 router.post('/deleteQueueById/:id',queue.deleteQueueById)
 router.post('/viewQueueByShowId',queue.viewQueueByShowId)
 router.post('/viewQueueByMovieId',queue.viewQueueByMovieId)
+router.post('/viewQueueByUserId',queue.viewQueueByUserId)
+router.post('/confirmBooking/:id',queue.confirmBooking)
+router.post('/cancelBooking/:id',queue.cancelBooking)
 
 module.exports = router;

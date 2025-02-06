@@ -73,6 +73,11 @@ function StaffSidebar() {
                   <label className="label-sub">Manage Queue</label>
                 </Link>
               </div>
+              <div className="adjust-space">
+                <Link className="adjust-space" to={"/staff-view-queue-history"}>
+                  <label className="label-sub">Queue History</label>
+                </Link>
+              </div>
 
               <div className="adjust-space">
                 <div

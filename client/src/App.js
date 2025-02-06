@@ -149,7 +149,18 @@ function App() {
             <Route path='/staff-food-booking-req' element={<StaffMain type='staff-food-booking-req' />} />
             <Route path='/staff-view-delivered-foods' element={<StaffMain type='staff-view-delivered-foods' />} />
             <Route path='/staff-view-movies-queues' element={<StaffMain type='staff-view-movies-queues' />} />
-            <Route path='/staff-view-queues' element={<StaffMain type='staff-view-queues' />} />
+            <Route path='/staff-view-queues/:id' element={<StaffMain type='staff-view-queues' />} />
+            <Route path='/staff-select-queue-seat/:mId/:showId/:count/:movieDate/:sId/:uId/:qId' element={<StaffMain type='staff-select-queue-seat' />} />
+            <Route path='/staff-confirm-queue' element={<StaffMain type='staff-confirm-queue' />} />
+            <Route path='/staff-view-queue-history' element={<StaffMain type='staff-view-queue-history' />} />
+            <Route path='/staff-add-user' element={<StaffMain type='staff-add-user' />} />
+            <Route path='/staff-view-movies-offline/:uId' element={<StaffMain type='staff-view-movies-offline' />} />
+            <Route path='/staff-view-movie-details-offline/:uId/:mId' element={<StaffMain type='staff-view-movie-details-offline' />} />
+            <Route path='/staff-book-ticket-offline/:uId/:mId' element={<StaffMain type='staff-book-ticket-offline' />} />
+            <Route path='/staff-book-ticket-seat/:uId/:mId/:showId/:movieDate/:sId' element={<StaffMain type='staff-book-ticket-seat' />} />
+            <Route path='/staff-book-ticket-select-seat/:uId/:mId/:showId/:count/:movieDate/:sId' element={<StaffMain type='staff-book-ticket-select-seat' />} />
+            <Route path='/staff-book-ticket-payment' element={<StaffMain type='staff-book-ticket-payment' />} />
+
 
 
 
