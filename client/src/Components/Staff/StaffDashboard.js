@@ -4,6 +4,8 @@ import "../../Assets/Styles/StaffDashboard.css";
 
 import img from "../../Assets/Images/admin.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_BASE_URL } from "../../Services/BaseURL";
 
 function StaffDashboard() {
   const navigate = useNavigate();
@@ -14,23 +16,66 @@ function StaffDashboard() {
     }
   });
 
-  const [users, setUsers] = useState(0);
-  const [parking, setParking] = useState(0);
-  const [staff, setStaff] = useState(0);
+  const [bookings, setsetBookings] = useState([]);
+  const [parking, setParking] = useState([]);
+  const [food, setFood] = useState([]);
+  const [queue, setQueue] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios
+      .post(`${API_BASE_URL}/viewAllTickets`)
+      .then((res) => {
+        if (res.data.status == 200) {
+          setsetBookings(res.data.data);
+        } else {
+          setsetBookings([]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios.post(`${API_BASE_URL}/viewAllQueues`).then((res) => {
+      if (res.data.status == 200) {
+        setQueue(res.data.data);
+      } else {
+        setQueue([]);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    axios.post(`${API_BASE_URL}/viewAllParking`).then((res) => {
+      if (res.data.status == 200) {
+        setParking(res.data.data);
+      } else {
+        setParking([]);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    axios.post(`${API_BASE_URL}/viewAllFoodBookings`).then((res) => {
+      if (res.data.status == 200) {
+        setFood(res.data.data);
+      } else {
+        setFood([]);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
   return (
     <div className="admin_dashboard">
       <div className="container">
-        <Link to={'/staff-add-user'}>
-        <button className="btn btn-danger text-end">Book Tickets</button>
+        <Link to={"/staff-add-user"}>
+          <button className="btn btn-danger text-end">Book Tickets</button>
         </Link>
-      
 
-        <div className="row">
+        <div className="row mt-2">
           <div className="admin_dashboard_card_container">
-            <div className="staff_dashboard_cards_new mt-2">
+            <div className="staff_dashboard_cards_new mb-2">
               <div>
                 <div className="admin_dashboard_cards_icon mx-1">
                   <i class="ri-user-line"></i>
@@ -41,7 +86,7 @@ function StaffDashboard() {
                   <p className="fs-24">Ticket Booking</p>
                 </div>
                 <div className="admin_dashboard_cards_count">
-                  <p>{users}</p>
+                  <p>{bookings.length}</p>
                 </div>
               </div>
             </div>
@@ -56,7 +101,7 @@ function StaffDashboard() {
                   <p className="fs-24">Virtual Queue </p>
                 </div>
                 <div className="admin_dashboard_cards_count">
-                  <p>{staff}</p>
+                  <p>{queue.length}</p>
                 </div>
               </div>
             </div>
@@ -74,7 +119,7 @@ function StaffDashboard() {
                     <p className="ms-3 fs-24">Food Orders</p>
                   </div>
                   <div className="admin_dashboard_cards_count">
-                    <p>{parking}</p>
+                    <p>{food.length}</p>
                   </div>
                 </div>
               </div>
@@ -89,7 +134,7 @@ function StaffDashboard() {
                     <p className="ms-3 fs-24">Parking Booking</p>
                   </div>
                   <div className="admin_dashboard_cards_count">
-                    <p>{parking}</p>
+                    <p>{parking.length}</p>
                   </div>
                 </div>
               </div>
