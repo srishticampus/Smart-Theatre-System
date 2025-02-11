@@ -41,7 +41,7 @@ function UserNavbar() {
         if (result.user) {
           setdata(result.user);
           setSelectedImage(
-            `${IMG_BASE_URL}/${result.user.profilePic.filename}`
+            `${IMG_BASE_URL}/${result?.user?.profilePic?.filename}`
           ); // Set initial image
         } else setdata(null);
       } else {
@@ -354,7 +354,7 @@ function UserNavbar() {
                 <img
                   src={
                     selectedImage ||
-                    `${IMG_BASE_URL}/${data.profilePic.filename}`
+                    `${IMG_BASE_URL}/${data?.profilePic?.filename}`
                   }
                   className="img-fluid cust-pro-image-rounded"
                   alt="User"

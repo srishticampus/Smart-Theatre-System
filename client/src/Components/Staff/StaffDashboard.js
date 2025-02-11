@@ -70,7 +70,7 @@ function StaffDashboard() {
     <div className="admin_dashboard">
       <div className="container">
         <Link to={"/staff-add-user"}>
-          <button className="btn btn-danger text-end">Book Tickets</button>
+          <button className="btn btn-danger text-end">Add User</button>
         </Link>
 
         <div className="row mt-2">

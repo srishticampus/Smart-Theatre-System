@@ -195,7 +195,9 @@ const viewTicketById = async (req, res) => {
     const ticketId = req.params.id;
 
     try {
-        const ticket = await Ticket.findById(ticketId).populate('userId movieId screenId showId');
+        const ticket = await Ticket.findById(ticketId).populate('userId movieId screenId showId')
+        // .populate({path:'ticketId',populate:{path:'movieId'}});
+
 
         if (!ticket) {
             return res.status(404).json({

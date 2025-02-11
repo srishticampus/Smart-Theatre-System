@@ -119,7 +119,7 @@ function AdminViewLounge() {
                 selectedButton === 'gold' ?
                   data.gold?.amount || 0 :
                   selectedButton === 'silver' ?
-                    data.silver?.seatCount || 0 : 0}
+                    data.silver?.amount || 0 : 0}
             </button>
           </div>
           {/* <div className='d-flex mt-4'>
