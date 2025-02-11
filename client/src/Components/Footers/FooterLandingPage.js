@@ -6,9 +6,13 @@ import facebook_logo from '../../Assets/Images/facebook_logo.png'
 import insta_logo from '../../Assets/Images/insta_logo.png';
 import pinterest_logo from '../../Assets/Images/pinterest_logo.png';
 import twitter_logo from '../../Assets/Images/twitter_logo.png';
+import { Link } from 'react-router-dom';
 
 
 function FooterLandingPage() {
+    const userId=localStorage.getItem("user")
+    console.log(userId);
+    
     return (
         <div>
               <hr style={{ borderColor: 'white', borderWidth: '2px' }} />
@@ -28,10 +32,39 @@ function FooterLandingPage() {
                     <div className="col-sm-3">
                         <h5 className='Footer_heading'>Quick Links</h5>
                         <ul className='Footer_list1'>
-                            <li>Home</li>
-                            <li>About</li>
-                            <li>Book Movies</li>
-                            <li>Contact</li>
+                            {
+                                userId?(
+                                    <Link to="/user-home"> <li>Home</li></Link>
+                                ):(
+                                    <Link to="/"> <li>Home</li></Link>
+                                )
+                            }
+                           
+                            {
+                                userId?(
+                                    <Link to="/user-about"> <li>About</li></Link>
+                                ):(
+                                    <Link to="/aboutUs"> <li>About</li></Link>
+ 
+                                )
+                            }
+                           
+                           {
+                            userId?(
+                                <Link to="/user-now-showing"><li>Book Movies</li></Link>
+                            ):(
+                                <Link to="/user-login"><li>Book Movies</li></Link>
+ 
+                            )
+                           }
+                            {
+                                userId?(
+                                    <Link to="/user-contact"> <li>Contact</li></Link>
+                                ):(
+                                    <Link to="/contact"> <li>Contact</li></Link> 
+                                )
+                            }
+                           
                         </ul>
 
                     </div>

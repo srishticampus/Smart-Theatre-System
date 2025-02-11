@@ -67,7 +67,7 @@ function StaffViewDeliveredFood() {
                 </tr>
               </thead>
               <tbody>
-                {filteredData.map((e, i) => {
+                {filteredData?.map((e, i) => {
                   const movieDate = e.movieDate.slice(0, 10);
                   const showTime = e.ticketId.showId.startTime;
 
@@ -75,7 +75,7 @@ function StaffViewDeliveredFood() {
                     <tr key={e._id}>
                       <td>{i + 1}</td>
                       <td>
-                        <p>{e.ticketId.movieId.movieName}</p>
+                        <p>{e?.ticketId?.movieId?.movieName}</p>
                       </td>
                       <td>
                         <p>

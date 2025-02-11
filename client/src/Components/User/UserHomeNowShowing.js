@@ -96,7 +96,7 @@ function UserHomeNowShowing() {
                   <div className="screen2Content">
                     <div className="imageContainer">
                       <img
-                        src={`${IMG_BASE_URL}/${details.movieImage.filename}`}
+                        src={`${IMG_BASE_URL}/${details?.movieImage?.filename}`}
                         alt={details.movieName}
                         className="w-100"
                       />{" "}

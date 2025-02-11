@@ -165,7 +165,7 @@ function UserHome() {
             return (
               <div className="col-md-3">
                 <div className="card h-100" style={{ width: "18rem" }}>
-                  <img src={`${IMG_BASE_URL}/${item.movieImage.filename}`} />
+                  <img src={`${IMG_BASE_URL}/${item?.movieImage?.filename}`} />
                   <p>{item.movieName}</p>
                   <p>{item.duration}</p>
                 </div>

@@ -23,6 +23,8 @@ function AdminViewTicketBookingDetails() {
     axios
       .post(`${API_BASE_URL}/viewTicketById/${id}`)
       .then((res) => {
+        console.log(res+"resss");
+        
         if (res.data.status == 200) {
           setData(res.data.data);
         } else {
@@ -69,6 +71,8 @@ function AdminViewTicketBookingDetails() {
   }, []);
 
   console.log(foodDetails);
+  console.log(data);
+  
 
   return (
     <div>
@@ -79,11 +83,11 @@ function AdminViewTicketBookingDetails() {
         <div className="admin_view_ticket_details_head">
           <div className="admin_view_ticket_details_img">
             <img
-              src={`${IMG_BASE_URL}/${data.movieId.movieImage.filename}`}
+              src={`${IMG_BASE_URL}/${data?.movieId?.movieImage?.filename}`}
               alt="Screen 2 Left"
             />
           </div>
-          <p>{data.movieId.movieName}</p>
+          <p>{data?.movieId?.movieName}</p>
         </div>
 
         <div className="admin_view_ticket_details_body">
@@ -97,7 +101,7 @@ function AdminViewTicketBookingDetails() {
                     <small>Booking Date & Time</small>{" "}
                   </p>
                   <p className="p-0 m-0 fw-bold">
-                    {data.bookingDate.slice(0, 10)}
+                    {data?.bookingDate.slice(0, 10)}
                   </p>
                 </div>
               </div>
@@ -110,21 +114,21 @@ function AdminViewTicketBookingDetails() {
                         {" "}
                         <small>Name</small>{" "}
                       </p>
-                      <p className="p-0 m-0 fw-bold">{data.userId.name}</p>
+                      <p className="p-0 m-0 fw-bold">{data?.userId?.name}</p>
                     </div>
                     <div>
                       <p className="text-secondary m-0">
                         {" "}
                         <small>Contact</small>{" "}
                       </p>
-                      <p className="p-0 m-0 fw-bold">{data.userId.contact}</p>
+                      <p className="p-0 m-0 fw-bold">{data?.userId?.contact}</p>
                     </div>
                   </div>
                   <p className="text-secondary m-0">
                     {" "}
                     <small>E-mail</small>{" "}
                   </p>
-                  <p className="p-0 m-0 fw-bold">{data.userId.email}</p>
+                  <p className="p-0 m-0 fw-bold">{data?.userId?.email}</p>
                 </div>
               </div>
             </div>
@@ -137,7 +141,7 @@ function AdminViewTicketBookingDetails() {
                       {" "}
                       <small>Show Time</small>{" "}
                     </p>
-                    <p className="p-0 m-0 fw-bold">{data.showId.startTime}</p>
+                    <p className="p-0 m-0 fw-bold">{data?.showId?.startTime}</p>
                   </div>
                   <div>
                     <p className="text-secondary m-0">
@@ -145,7 +149,7 @@ function AdminViewTicketBookingDetails() {
                       <small>Screen</small>{" "}
                     </p>
                     <p className="p-0 m-0 fw-bold">
-                      {data.screenId.screenFormat}
+                      {data?.screenId?.screenFormat}
                     </p>
                   </div>
                 </div>
@@ -156,7 +160,7 @@ function AdminViewTicketBookingDetails() {
                       <small>Show Date</small>{" "}
                     </p>
                     <p className="p-0 m-0 fw-bold">
-                      {data.movieDate.slice(0, 10)}
+                      {data?.movieDate.slice(0, 10)}
                     </p>
                   </div>
                   <div>
@@ -164,7 +168,7 @@ function AdminViewTicketBookingDetails() {
                       {" "}
                       <small>Tickets</small>{" "}
                     </p>
-                    <p className="p-0 m-0 fw-bold">{data.seatNumber.length}</p>
+                    <p className="p-0 m-0 fw-bold">{data?.seatNumber?.length}</p>
                   </div>
                 </div>
 
@@ -185,7 +189,7 @@ function AdminViewTicketBookingDetails() {
                       {" "}
                       <small>Amount</small>{" "}
                     </p>
-                    <p className="p-0 m-0 fw-bold">{data.amount}</p>
+                    <p className="p-0 m-0 fw-bold">{data?.amount}</p>
                   </div>
                 </div>
               </div>
