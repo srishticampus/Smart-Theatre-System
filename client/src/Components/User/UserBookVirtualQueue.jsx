@@ -314,7 +314,7 @@ function UserBookVirtualQueue() {
               </div>
               <div className="text-center mt-4">
                 <button type="submit" className="btn btn-danger">
-                  Pay &#8377;20/-
+                  Pay &#8377;100/-
                 </button>
               </div>
             </form>
