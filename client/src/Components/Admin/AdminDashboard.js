@@ -249,7 +249,7 @@ function AdminDashboard() {
 </div>
 
 
-          <div
+          {/* <div
             className="circle-container"
             onWheel={(e) => handleScroll(e, setValue3)} // Listen for the scroll event
           >
@@ -281,7 +281,7 @@ function AdminDashboard() {
             </div>
             <div className="circle-value">{Math.round(value3)}</div>
             <div className="circle-label">Upcoming Movies</div>
-          </div>
+          </div> */}
         </div>
 
         {/* <p className="admin-dashboard-food-list">Food List</p>
