@@ -268,7 +268,8 @@ function StaffEditProfile() {
                           <textarea  placeholder="Enter Address"
                             name='address'
                             rows="2"
-                            onChange={handleChange}> {data.address}</textarea>
+                            value={data.address}
+                            onChange={handleChange}> </textarea>
                               {errors.address &&  (
                           <span className="text-danger">{errors.address}</span>
                         )}
