@@ -12,7 +12,7 @@ function StaffDashboard() {
 
   useEffect(() => {
     if (localStorage.getItem("staff") == null) {
-      navigate("/admin_login");
+      navigate("/admin-login");
     }
   });
 

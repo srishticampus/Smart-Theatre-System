@@ -91,7 +91,6 @@ function UserHome() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
@@ -115,7 +114,6 @@ function UserHome() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
@@ -143,8 +141,7 @@ function UserHome() {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
 
   useEffect(() => {
@@ -164,11 +161,14 @@ function UserHome() {
           {data.map((item, index) => {
             return (
               <div className="col-md-3">
-                <div className="card h-100" style={{ width: "18rem" }}>
+                <Link to={`/user-movie-details/${item._id}`}>
+                 <div className="card h-100" style={{ width: "18rem" }}>
                   <img src={`${IMG_BASE_URL}/${item?.movieImage?.filename}`} />
                   <p>{item.movieName}</p>
                   <p>{item.duration}</p>
                 </div>
+                </Link>
+               
               </div>
             );
           })}
