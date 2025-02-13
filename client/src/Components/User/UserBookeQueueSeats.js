@@ -49,8 +49,8 @@ function UserBookeQueueSeats() {
           toast.error(result.message);
         }
       } catch (error) {
-        toast.error("An unexpected error occurred during Data View");
-      }
+        console.error("Unexpected error:", error);
+    }
     };
   
     useEffect(() => {
@@ -67,8 +67,8 @@ function UserBookeQueueSeats() {
           toast.error(result.message);
         }
       } catch (error) {
-        toast.error("An unexpected error occurred during Data View");
-      }
+        console.error("Unexpected error:", error);
+    }
     };
   
     useEffect(() => {

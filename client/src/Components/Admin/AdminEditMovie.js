@@ -219,8 +219,7 @@ function AdminEditMovie() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
   useEffect(() => {
     fetchData(); // Call the async function
@@ -239,7 +238,6 @@ function AdminEditMovie() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {

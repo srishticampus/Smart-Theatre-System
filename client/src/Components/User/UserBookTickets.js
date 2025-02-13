@@ -63,7 +63,6 @@ function UserBookTickets() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
@@ -81,8 +80,7 @@ function UserBookTickets() {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
 
   useEffect(() => {
@@ -111,7 +109,6 @@ function UserBookTickets() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {

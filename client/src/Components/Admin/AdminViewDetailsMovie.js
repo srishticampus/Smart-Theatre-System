@@ -42,7 +42,6 @@ function AdminViewDetailsMovie() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
@@ -62,7 +61,6 @@ function AdminViewDetailsMovie() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {

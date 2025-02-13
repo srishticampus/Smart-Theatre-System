@@ -39,7 +39,6 @@ function UserMovieDetails() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {
@@ -57,8 +56,7 @@ function UserMovieDetails() {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
 
   useEffect(() => {
@@ -75,8 +73,7 @@ function UserMovieDetails() {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
 
   useEffect(() => {
@@ -103,7 +100,6 @@ function UserMovieDetails() {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      toast.error("An unexpected error occurred during Data View");
     }
   };
   useEffect(() => {

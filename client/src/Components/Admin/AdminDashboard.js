@@ -24,7 +24,7 @@ function AdminDashboard() {
   // Ensure user is logged in as admin
   useEffect(() => {
     if (localStorage.getItem("admin") !== "1") {
-      navigate("/admin_login");
+      navigate("/admin-login");
     }
   }, [navigate]);
 
@@ -207,7 +207,7 @@ function AdminDashboard() {
           </div>
         </div>
 
-        <p className="admin-dashboard-movie-head">Movies</p>
+        {/* <p className="admin-dashboard-movie-head">Movies</p> */}
         <div className="row circle-row">
         <div className="circle-container">
   <div className="progress-ring-wrapper">

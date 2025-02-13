@@ -58,8 +58,7 @@ function StaffSelectQueueSeat() {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
 
   useEffect(() => {
@@ -74,8 +73,7 @@ function StaffSelectQueueSeat() {
         toast.error(result.message);
       }
     } catch (error) {
-      toast.error("An unexpected error occurred during Data View");
-    }
+      console.log(error);    }
   };
 
   useEffect(() => {
