@@ -14,6 +14,9 @@ function UserViewBookings() {
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [ticketToCancel, setTicketToCancel] = useState(null);
+
 
   const id = localStorage.getItem("user");
 
@@ -109,19 +112,43 @@ function UserViewBookings() {
     return date.toLocaleString("default", { month: "long" });
   };
 
-  const cancelTicket = (tId) => {
+  // const cancelTicket = (tId) => {
+  //   axios
+  //     .post(`${API_BASE_URL}/deleteTicketById/${tId}`)
+  //     .then((res) => {
+  //       if (res.data.status === 200) {
+  //         toast.error("Ticket Cancelled");
+  //         setData((prevData) =>
+  //           prevData.filter((ticket) => ticket._id !== tId)
+  //         );
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error canceling ticket:", err);
+  //     });
+  // };
+
+  const confirmCancelTicket = (ticketId) => {
+    setTicketToCancel(ticketId);
+    setShowConfirmModal(true);
+  };
+
+
+  const cancelTicket = () => {
+    if (!ticketToCancel) return;
+
     axios
-      .post(`${API_BASE_URL}/deleteTicketById/${tId}`)
+      .post(`${API_BASE_URL}/deleteTicketById/${ticketToCancel}`)
       .then((res) => {
         if (res.data.status === 200) {
-          toast.error("Ticket Cancelled");
-          setData((prevData) =>
-            prevData.filter((ticket) => ticket._id !== tId)
-          );
+          toast.error("Ticket Cancelled.");
+          setData((prevData) => prevData.filter((ticket) => ticket._id !== ticketToCancel));
+          setShowConfirmModal(false);
         }
       })
       .catch((err) => {
         console.error("Error canceling ticket:", err);
+        setShowConfirmModal(false);
       });
   };
 
@@ -144,9 +171,9 @@ function UserViewBookings() {
 
     axios
       .post(`${API_BASE_URL}/addFeedback`, {
-        userId: localStorage.getItem('user'),
-        rating:rating,
-        comment:comment,
+        userId: localStorage.getItem("user"),
+        rating: rating,
+        comment: comment,
       })
       .then((res) => {
         if (res.data.status === 200) {
@@ -298,13 +325,13 @@ function UserViewBookings() {
                                 </Link>
                               )}
 
-                              <button
-                                type="button"
-                                onClick={() => cancelTicket(details._id)}
-                                className="btn btn-outline-danger w-100 rounded-5 mt-3"
-                              >
-                                Cancel ticket
-                              </button>
+<button
+                          type="button"
+                          onClick={() => confirmCancelTicket(details._id)}
+                          className="btn btn-outline-danger w-100 rounded-5 mt-3"
+                        >
+                          Cancel Ticket
+                        </button>
                             </>
                           ) : (
                             <button
@@ -372,6 +399,26 @@ function UserViewBookings() {
             </div>
           </div>
         )}
+
+{showConfirmModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3 className="text-center"><b>Confirm Cancellation</b></h3>
+            <p className="text-center">
+              Are you sure you want to cancel this ticket? <br />
+              Refund will be processed within <strong>3 working days.</strong>
+            </p>
+            <div className="text-center">
+              <button className="btn btn-danger me-2" onClick={cancelTicket}>
+                Confirm
+              </button>
+              <button className="btn btn-secondary" onClick={() => setShowConfirmModal(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );

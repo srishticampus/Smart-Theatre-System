@@ -211,7 +211,7 @@ console.log(movieId);
 };
 // View all Movies
 const viewAllMovies = (req, res) => {
-  Movie.find()
+  Movie.find({isActive:true})
     .exec()
     .then(movies => {
       return res.status(200).json({ msg: 'Movies list', data: movies });
@@ -288,7 +288,7 @@ const nowShowingMovies = (req, res) => {
 
   console.log("Today (normalized):", today);
 
-  Movie.find({})
+  Movie.find({isActive:true})
     .exec()
     .then((movies) => {
       console.log("Movies from DB:", movies);
@@ -332,10 +332,10 @@ const comingSoonMovies = (req, res) => {
  
   today.setHours(0, 0, 0, 0); // Set time to the beginning of today
 
-  Movie.find({})
+  Movie.find({isActive:true})
     .exec()
     .then((movies) => {
-      console.log("Movies from DB:", movies);
+      console.log("Movies from DB:", movies); 
       console.log("Today:", today);
 
       if (!movies.length) {

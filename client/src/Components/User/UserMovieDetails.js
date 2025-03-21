@@ -6,11 +6,20 @@ import { ViewById } from "../../Services/CommonServices";
 import FooterLandingPage from "../Footers/FooterLandingPage";
 import "../../Assets/Styles/UserHome.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Modal } from "bootstrap";
+
+
 function UserMovieDetails() {
   const userId = localStorage.getItem("user");
   const { id } = useParams();
   const [movieId, setMovieId] = useState(id);
 
+  const [trailerPath, setTrailerPath] = useState(""); // Store trailer file path
+  const [modalInstance, setModalInstance] = useState(null);
+  
+
+
+  
   const [data, setData2] = useState({
     movieImage: { filename: "" },
     coverImage: { filename: "" },
@@ -105,6 +114,66 @@ function UserMovieDetails() {
   useEffect(() => {
     fetchCastData(); // Call the async function
   }, [movieId]);
+
+  const handleShowTrailer = (trailerObj) => {
+    if (trailerObj?.filename) {
+      setTrailerPath(`${IMG_BASE_URL}/${trailerObj.filename}`);
+    } else {
+      setTrailerPath("");
+    }
+  
+    const modalElement = document.getElementById("trailerModal");
+  
+    if (modalElement) {
+      // Create a new Bootstrap modal instance only if it doesn't already exist
+      const newModalInstance = new Modal(modalElement, { backdrop: "static" });
+      setModalInstance(newModalInstance);
+  
+      // Show modal
+      newModalInstance.show();
+  
+      // Cleanup event listener before adding a new one
+      modalElement.removeEventListener("hidden.bs.modal", cleanupModal);
+      modalElement.addEventListener("hidden.bs.modal", cleanupModal, { once: true });
+    }
+  };
+  
+  
+  
+  const cleanupModal = () => {
+    const modalElement = document.getElementById("trailerModal");
+    const videoElement = document.querySelector("#trailerModal video");
+  
+    // Pause the video if it exists
+    if (videoElement) {
+      videoElement.pause();
+      videoElement.currentTime = 0; // Reset video to the start
+    }
+  
+    if (modalInstance) {
+      modalInstance.dispose(); // Dispose of modal safely
+      setModalInstance(null); // Reset modal instance in state
+    }
+  
+    // Remove any lingering modal backdrops
+    setTimeout(() => {
+      document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
+      document.body.classList.remove("modal-open"); // Ensure scrolling is restored
+    }, 500);
+  };
+  
+  
+
+  useEffect(() => {
+    return () => {
+      cleanupModal();
+    };
+  }, []);
+  
+  
+  
+  
+
   return (
     <div className="mt-10">
       {console.log(`${IMG_BASE_URL}${data.coverImage.filename}`)}
@@ -134,6 +203,12 @@ function UserMovieDetails() {
           <div className="screen2-btn" onClick={book}>
             Book Now
           </div>
+          <button className="screen2-btn mx-1" 
+  onClick={() => handleShowTrailer(data.trailer)} 
+  data-bs-toggle="modal" 
+  data-bs-target="#trailerModal">
+  Trailer
+</button>
         </div>
       </div>
       <div className="container mt-5">
@@ -197,6 +272,28 @@ function UserMovieDetails() {
           ))}
         </div>
       </div>
+      <div className="modal fade w-100" id="trailerModal" tabIndex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="trailerModalLabel">Movie Trailer</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body text-center">
+        {trailerPath ? (
+          <video width="100%" controls>
+            <source src={trailerPath} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <p>Trailer not available</p>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+
     </div>
   );
 }

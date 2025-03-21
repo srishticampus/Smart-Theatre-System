@@ -30,6 +30,7 @@ import AdminViewTicketBookings from "./AdminViewTicketBookings";
 import AdminViewTicketBookingDetails from "./AdminViewTicketBookingDetails";
 import AdminOrderHistory from "./AdminOrderHistory";
 import AdminViewFeedback from "./AdminViewFeedback";
+import ShowTrailer from "../Common/ShowTrailer";
 
 function AdminCall({ type }) {
   const navigate = useNavigate();
@@ -102,6 +103,8 @@ function AdminCall({ type }) {
             <AdminParkingDetails />
           ) : type === "admin-view-feedback" ? (
             <AdminViewFeedback />
+          ) : type === "admin_play_trailer" ? (
+            <ShowTrailer />
           ) : (
             ""
           )}

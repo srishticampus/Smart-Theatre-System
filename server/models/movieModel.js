@@ -74,7 +74,7 @@ const movieSchema=mongoose.Schema({
    
     isActive:{
         type:Boolean,
-        default:false
+        default:true
     },
     
     

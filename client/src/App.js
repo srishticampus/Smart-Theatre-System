@@ -1,7 +1,7 @@
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is loaded
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS
 import 'remixicon/fonts/remixicon.css';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -96,6 +96,7 @@ function App() {
             <Route path='/admin-booking-history' element={<AdminCall type='admin-booking-history'/>}/>
             <Route path='/admin-booking-details-single/:id' element={<AdminCall type='admin-booking-details-single'/>}/>
             <Route path='/admin-view-feedback' element={<AdminCall type='admin-view-feedback'/>}/>
+            <Route path='/admin_play_trailer/:id' element={<AdminCall type='admin_play_trailer'/>}/>
 
 
 
