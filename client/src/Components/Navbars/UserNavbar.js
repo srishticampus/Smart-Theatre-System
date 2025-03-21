@@ -385,7 +385,7 @@ function UserNavbar() {
         </div>
       )}
       {showEditModal && (
-        <div className="modal fade show d-block" tabIndex="-1">
+        <div className="modal fade show d-block w-100" tabIndex="-1">
           <div
             className="modal-dialog custom-modal-dialog"
             style={{

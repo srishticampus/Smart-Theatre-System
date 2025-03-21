@@ -73,6 +73,7 @@ router.post('/updateMovieById/:id',Movie.upload,Movie.updateMovieById)
 router.post('/updateCast/:id',Movie.updateCast,Movie.updateCast)
 router.post('/nowShowingMovies',Movie.nowShowingMovies)
 router.post('/comingSonnMovies',Movie.comingSoonMovies)
+router.post('/deactivateMovieById/:id',Movie.deactivateMovieById)
 
 
 // Food

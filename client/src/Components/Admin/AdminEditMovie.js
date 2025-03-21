@@ -255,6 +255,7 @@ function AdminEditMovie() {
             <input
               type="text"
               placeholder="Movie Name"
+              name="movieName"
               style={{ height: "40px",width:'100%' }}
               className="admin-edit-movie-moviename"
               value={movieDetails.movieName}
