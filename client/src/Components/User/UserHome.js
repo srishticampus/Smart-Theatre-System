@@ -164,8 +164,8 @@ function UserHome() {
                 <Link to={`/user-movie-details/${item._id}`}>
                  <div className="card h-100" style={{ width: "18rem" }}>
                   <img src={`${IMG_BASE_URL}/${item?.movieImage?.filename}`} />
-                  <p>{item.movieName}</p>
-                  <p>{item.duration}</p>
+                  <p className="mx-3" ><b>{item.movieName}</b></p>
+                  <p className="mx-3" >{item.duration}</p>
                 </div>
                 </Link>
                
@@ -233,30 +233,40 @@ function UserHome() {
         </div>
       </div>
 
-      {/* <div className="landing_sec_4">
+
+
+
+       <div className="landing_sec_4">
         {data2.length > 0 ? (
-          <>
-            <p className="landing_sec_4_head mt-5 mb-5">Coming Soon movies</p>
+          <div className="container">
+            <p className="landing_sec_4_head mt-5 mb-5">Coming Soon Movies</p>
             <div className="row g-4">
               {data2.map((item, index) => {
                 return (
                   <div className="col-md-3">
-                    <div className="card h-100" style={{ width: "18rem" }}>
+                    <div className="card h-100 " style={{ width: "18rem" }}>
                       <img
                         src={`${IMG_BASE_URL}/${item.movieImage.filename}`}
                       />
-                      <p>{item.movieName}</p>
-                      <p>{item.duration}</p>
+                      <p className="mx-3" ><b>{item.movieName}</b></p>
+                      <p className="mx-3" >{item.duration}</p>
+                      <p className="text-danger text-center" >Releasing on {item.startDate}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </>
+          </div>
         ) : (
           ""
         )}
-      </div> */}
+      </div> 
+
+
+
+
+
+
       <div className="landing_sec_5">
         <FooterLandingPage />
       </div>

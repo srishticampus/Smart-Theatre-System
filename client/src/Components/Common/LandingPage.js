@@ -144,6 +144,135 @@ function Carousel({ cards, groupedCards }) {
     </div>
   );
 }
+function Carousel2({ cards, groupedCards }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % groupedCards.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex(
+      (prevIndex) => (prevIndex - 1 + groupedCards.length) % groupedCards.length
+    );
+  };
+
+  const [data, setData] = useState([]);
+
+  const fetchData2 = async () => {
+    try {
+      const result = await viewCount("comingSonnMovies");
+
+      if (result.success) {
+        console.log(result);
+        if (result.user.length > 0) {
+          setData(result.user.reverse());
+        } else {
+          setData([]);
+        }
+      } else {
+        console.error("Data error:", result);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    }
+  };
+  useEffect(() => {
+    fetchData2(); // Call the async function
+  }, []);
+
+  return (
+    <div className="container mt-5">
+      <div
+        id="carouselExampleIndicators2"
+        className="carousel slide"
+        data-ride="carousel"
+      >
+        <div className="carousel-inner">
+          {data.length ? (
+            data.map((group, index) => (
+              <div
+                key={index}
+                className={`carousel-item ${
+                  index === activeIndex ? "active" : ""
+                }`}
+              >
+                <div className="row">
+                  {/* Previous Button */}
+                  <button
+                    className="btn btn-primary mb-3 mr-1 carousel-control-prev"
+                    onClick={prevSlide}
+                  >
+                    <i className="fa fa-arrow-left "></i>
+                  </button>
+                  {/* Cards */}
+                  {data.map((card) => (
+                    <div key={card.id} className="col-2 mb-3">
+                      <Link to={`/user-login`} >
+                      <div className="card BootstrapCard">
+                        <img
+                          className="img-fluid"
+                          src={`${IMG_BASE_URL}/${card.movieImage.filename}`}
+                        />
+                      </div>
+                      </Link>
+                      
+                    </div>
+                  ))}
+                  {/* Next Button */}
+                  <button
+                    className="btn btn-primary mb-3 carousel-control-next"
+                    onClick={nextSlide}
+                  >
+                    <i className="fa fa-arrow-right "></i>
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <h1>No Movies Found</h1>
+          )}
+        </div>
+        {/* <div className="carousel-inner">
+          {groupedCards.map((group, index) => (
+            <div
+              key={index}
+              className={`carousel-item ${
+                index === activeIndex ? "active" : ""
+              }`}
+            >
+              <div className="row">
+                <button
+                  className="btn btn-primary mb-3 mr-1 carousel-control-prev"
+                  onClick={prevSlide}
+                >
+                  <i className="fa fa-arrow-left "></i>
+                </button>
+                {group.map((card) => (
+                  <div key={card.id} className="col-2 mb-3">
+                    <div className="card BootstrapCard">
+                      <img
+                        className="img-fluid"
+                        src={card.img}
+                        alt={`movie ${card.id}`}
+                      />
+                    </div>
+                  </div>
+                ))}
+                <button
+                  className="btn btn-primary mb-3 carousel-control-next"
+                  onClick={nextSlide}
+                >
+                  <i className="fa fa-arrow-right "></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div> */}
+      </div>
+    </div>
+  );
+}
 
 function LandingPage() {
   const cards = [
@@ -254,10 +383,10 @@ function LandingPage() {
         </div>
       </div>
 
-      {/* <div className="landing_sec_4">
+      <div className="landing_sec_4">
         <p className="landing_sec_4_head mt-5 mb-5">Coming Soon movies</p>
-        <Carousel cards={cards} groupedCards={groupedCards} />
-      </div> */}
+        <Carousel2 cards={cards} groupedCards={groupedCards} />
+      </div>
       <div className="landing_sec_5">
         <FooterLandingPage />
       </div>
